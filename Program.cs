@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Gonzalo Sempol
+using System;
 using System.Linq;
 
 namespace Person
