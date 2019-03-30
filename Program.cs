@@ -1,6 +1,7 @@
+
 <<<<<<< HEAD
 =======
-﻿//Juan Manuel Beracochea De Leon, ﻿Gonzalo Sempol
+﻿//Juan Manuel Beracochea De Leon, ﻿Gonzalo Sempol, Santiago Garcia
 >>>>>>> 15a270c2f55a879cf7d1a15873c775b61210ccb4
 using System;
 using System.Linq;
