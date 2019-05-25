@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "c:\\Users\\usuario\\Desktop\\pii_2019_equipo2\\Practicas\\PracticaGitHub\\PersonAux.csproj": {}
+  },
+  "projects": {
+    "c:\\Users\\usuario\\Desktop\\pii_2019_equipo2\\Practicas\\PracticaGitHub\\PersonAux.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\usuario\\Desktop\\pii_2019_equipo2\\Practicas\\PracticaGitHub\\PersonAux.csproj",
+        "projectName": "PersonAux",
+        "projectPath": "c:\\Users\\usuario\\Desktop\\pii_2019_equipo2\\Practicas\\PracticaGitHub\\PersonAux.csproj",
+        "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\usuario\\Desktop\\pii_2019_equipo2\\Practicas\\PracticaGitHub\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
