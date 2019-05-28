@@ -2,12 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProyectoIgnis.Models;
+using MercadoIgnis.Models;
 
-namespace ProyectoIgnis.Migrations
+namespace MercadoIgnis.Migrations
 {
-    [DbContext(typeof(ProyectoIgnisContext))]
-    partial class ProyectoIgnisContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MercadoIgnisContext))]
+    partial class MercadoIgnisContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -15,7 +15,7 @@ namespace ProyectoIgnis.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
-            modelBuilder.Entity("ProyectoIgnis.Models.Especialidad", b =>
+            modelBuilder.Entity("MercadoIgnis.Models.Especialidad", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();

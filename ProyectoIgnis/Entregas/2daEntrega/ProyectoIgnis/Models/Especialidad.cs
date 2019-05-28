@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProyectoIgnis.Models
+namespace MercadoIgnis.Models
 {
     public class Especialidad
     {
