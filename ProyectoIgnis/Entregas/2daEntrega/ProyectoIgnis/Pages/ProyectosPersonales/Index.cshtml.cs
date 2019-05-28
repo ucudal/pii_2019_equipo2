@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ProyectoIgnis.Models;
+using MercadoIgnis.Models;
 
-namespace ProyectoIgnis.Pages.ProyectosPersonales
+namespace MercadoIgnis.Pages.ProyectosPersonales
 {
     public class IndexModel : PageModel
     {
-        private readonly ProyectoIgnis.Models.ProyectoIgnisContext _context;
+        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
 
-        public IndexModel(ProyectoIgnis.Models.ProyectoIgnisContext context)
+        public IndexModel(MercadoIgnis.Models.MercadoIgnisContext context)
         {
             _context = context;
         }
