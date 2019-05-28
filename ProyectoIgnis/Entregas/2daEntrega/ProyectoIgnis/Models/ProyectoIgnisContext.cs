@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ProyectoIgnis.Models;
 
 namespace ProyectoIgnis.Models
 {
@@ -10,5 +11,7 @@ namespace ProyectoIgnis.Models
         }
 
         public DbSet<ProyectoIgnis.Models.Especialidad> Especialidad { get; set; }
+
+        public DbSet<ProyectoIgnis.Models.ProyectoPersonal> ProyectoPersonal { get; set; }
     }
 }

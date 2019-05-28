@@ -1,7 +1,4 @@
-
-=======
-﻿//Juan Manuel Beracochea De Leon, ﻿Gonzalo Sempol, Camila Gonzalez ,Santiago Garcia
->>>>>>> c99f8164552610c88328c7d99cd9ea59e5a01b5c
+//Juan Manuel Beracochea De Leon, ﻿Gonzalo Sempol, Camila Gonzalez ,Santiago Garcia
 using System;
 using System.Linq;
 
