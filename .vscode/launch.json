@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/ProyectoIgnis/Entregas/2daEntrega/ProyectoIgnis/bin/Debug/netcoreapp2.2/ProyectoIgnis.dll",
+            "program": "${workspaceFolder}/MercadoIgnis/Entregas/2daEntrega/MercadoIgnis/bin/Debug/netcoreapp2.2/MercadoIgnis.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/ProyectoIgnis/Entregas/2daEntrega/ProyectoIgnis",
+            "cwd": "${workspaceFolder}/MercadoIgnis/Entregas/2daEntrega/MercadoIgnis",
             "stopAtEntry": false,
             "launchBrowser": {
                 "enabled": true

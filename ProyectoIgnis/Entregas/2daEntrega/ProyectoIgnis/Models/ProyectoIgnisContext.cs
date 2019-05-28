@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ProyectoIgnis.Models;
+using MercadoIgnis.Models;
 
 namespace MercadoIgnis.Models
 {
