@@ -1,17 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectoIgnis.Models;
 
-namespace ProyectoIgnis.Models
+namespace MercadoIgnis.Models
 {
-    public class ProyectoIgnisContext : DbContext
+    public class MercadoIgnisContext : DbContext
     {
-        public ProyectoIgnisContext (DbContextOptions<ProyectoIgnisContext> options)
+        public MercadoIgnisContext (DbContextOptions<MercadoIgnisContext> options)
             : base(options)
         {
         }
 
-        public DbSet<ProyectoIgnis.Models.Especialidad> Especialidad { get; set; }
+        public DbSet<MercadoIgnis.Models.Especialidad> Especialidad { get; set; }
 
-        public DbSet<ProyectoIgnis.Models.ProyectoPersonal> ProyectoPersonal { get; set; }
+        public DbSet<MercadoIgnis.Models.ProyectoPersonal> ProyectoPersonal { get; set; }
+
     }
 }

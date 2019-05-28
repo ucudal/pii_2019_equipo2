@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProyectoIgnis.Models;
+using MercadoIgnis.Models;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace ProyectoIgnis
+namespace MercadoIgnis
 {
     public class Startup
     {
@@ -34,7 +34,7 @@ namespace ProyectoIgnis
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ProyectoIgnisContext>(options =>
+            services.AddDbContext<MercadoIgnisContext>(options =>
             options.UseSqlite(Configuration.GetConnectionString("IgnisContext")));
 
             services.AddMvc( ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

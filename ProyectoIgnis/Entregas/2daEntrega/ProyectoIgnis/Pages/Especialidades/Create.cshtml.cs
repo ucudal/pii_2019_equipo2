@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ProyectoIgnis.Models;
+using MercadoIgnis.Models;
 
-namespace ProyectoIgnis.Pages.Especialidades
+namespace MercadoIgnis.Pages.Especialidades
 {
     public class CreateModel : PageModel
     {
-        private readonly ProyectoIgnis.Models.ProyectoIgnisContext _context;
+        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
 
-        public CreateModel(ProyectoIgnis.Models.ProyectoIgnisContext context)
+        public CreateModel(MercadoIgnis.Models.MercadoIgnisContext context)
         {
             _context = context;
         }
