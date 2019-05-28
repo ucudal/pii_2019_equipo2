@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProyectoIgnis.Migrations
+namespace MercadoIgnis.Migrations
 {
     public partial class InitialCreate : Migration
     {
