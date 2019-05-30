@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 
-namespace MercadoIgnis.Pages.ProyectosPersonales
+namespace ProyectoIgnis.Pages.ProyectosPersonales
 {
     public class DeleteModel : PageModel
     {

@@ -3,13 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MercadoIgnis.Models
 {
-    public class ProyectoPersonal
+    public class ProyectoPersonal : Proyecto
     {
-        public int ID { get; set; }
+        
         
         [Display(Name = "Tipo De Proyecto")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Text)]
         public string TipoDeProyecto { get; set; }  
+        
         [Display(Name = "Tiempo De Realizacion")]
         [DataType(DataType.Date)]
         public DateTime TiempoDeRealizacion { get; set; }

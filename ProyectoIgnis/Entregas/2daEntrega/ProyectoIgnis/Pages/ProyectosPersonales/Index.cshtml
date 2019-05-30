@@ -1,5 +1,5 @@
 @page
-@model MercadoIgnis.Pages.ProyectosPersonales.IndexModel
+@model ProyectoIgnis.Pages.ProyectosPersonales.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -19,6 +19,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProyectoPersonal[0].TiempoDeRealizacion)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].FechaComienzo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].FechaRealizacion)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -30,6 +42,18 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TiempoDeRealizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaComienzo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRealizacion)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

@@ -1,5 +1,5 @@
 @page
-@model MercadoIgnis.Pages.ProyectosPersonales.CreateModel
+@model ProyectoIgnis.Pages.ProyectosPersonales.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -22,6 +22,26 @@
                 <label asp-for="ProyectoPersonal.TiempoDeRealizacion" class="control-label"></label>
                 <input asp-for="ProyectoPersonal.TiempoDeRealizacion" class="form-control" />
                 <span asp-validation-for="ProyectoPersonal.TiempoDeRealizacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProyectoPersonal.Descripcion" class="control-label"></label>
+                <input asp-for="ProyectoPersonal.Descripcion" class="form-control" />
+                <span asp-validation-for="ProyectoPersonal.Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProyectoPersonal.Estado" class="control-label"></label>
+                <input asp-for="ProyectoPersonal.Estado" class="form-control" />
+                <span asp-validation-for="ProyectoPersonal.Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProyectoPersonal.FechaComienzo" class="control-label"></label>
+                <input asp-for="ProyectoPersonal.FechaComienzo" class="form-control" />
+                <span asp-validation-for="ProyectoPersonal.FechaComienzo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProyectoPersonal.FechaRealizacion" class="control-label"></label>
+                <input asp-for="ProyectoPersonal.FechaRealizacion" class="form-control" />
+                <span asp-validation-for="ProyectoPersonal.FechaRealizacion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
