@@ -2,14 +2,23 @@
 @model MercadoIgnis.Pages.ProyectosPersonales.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ProyectosPersonales";
 }
 
-<h1>Index</h1>
+<h1>ProyectosPersonales</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<form>
+    <p>
+        <select asp-for="busquedaPorTipo" asp-items="Model.Tipo">
+            <option value="">Todas</option>
+        </select>
+        Busqueda por fechas: <input type="text" asp-for="FechadeComienzo" />
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
