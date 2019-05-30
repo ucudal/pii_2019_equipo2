@@ -5,9 +5,15 @@ namespace MercadoIgnis.Models
 {
     public class Calificacion
         {
-            public int nota {get; set;}
+            public int ID { get; set; }
 
-            public string descripcion {get; set;}
+            [Display(Name = "Nota")]
+            [DataType(DataType.Text)]
+            public int Nota {get; set;}
+
+            [Display(Name = "Descripcion")]
+            [DataType(DataType.Text)]
+            public string Descripcion {get; set;}
         }
 
 }
