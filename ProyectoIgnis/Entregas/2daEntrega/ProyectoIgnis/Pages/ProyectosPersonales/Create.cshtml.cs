@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MercadoIgnis.Models;
 
-namespace MercadoIgnis.Pages.ProyectosPersonales
+namespace ProyectoIgnis.Pages.ProyectosPersonales
 {
     public class CreateModel : PageModel
     {
