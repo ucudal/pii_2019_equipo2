@@ -1,0 +1,58 @@
+@page "{id:int?}"
+@model ProyectoIgnis.Pages.Especialidades.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        <select asp-for="EspecialidadArea" asp-items="Model.Area">
+            <option value="">All</option>
+        </select>
+        Area: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad[0].Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad[0].Nivel)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Especialidad[0].Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Especialidad) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a href="/Especialidades/Edit/1">Edit</a> |
+                <a href="/Especialidades/Details/1">Details</a> |
+                <a href="/Especialidades/Delete/1">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

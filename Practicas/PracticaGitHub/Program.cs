@@ -1,4 +1,4 @@
-//Juan Manuel Beracochea De Leon, ﻿Gonzalo Sempol, Camila Gonzalez ,Santiago Garcia
+﻿//Juan Manuel Beracochea De Leon, ﻿Gonzalo Sempol, Camila Gonzalez ,Santiago Garcia
 using System;
 using System.Linq;
 
