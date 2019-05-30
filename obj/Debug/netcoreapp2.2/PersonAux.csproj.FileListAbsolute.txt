@@ -1,0 +1,11 @@
+C:\Users\GSempol\Desktop\PersonAux\bin\Debug\netcoreapp2.2\PersonAux.deps.json
+C:\Users\GSempol\Desktop\PersonAux\bin\Debug\netcoreapp2.2\PersonAux.runtimeconfig.json
+C:\Users\GSempol\Desktop\PersonAux\bin\Debug\netcoreapp2.2\PersonAux.runtimeconfig.dev.json
+C:\Users\GSempol\Desktop\PersonAux\bin\Debug\netcoreapp2.2\PersonAux.dll
+C:\Users\GSempol\Desktop\PersonAux\bin\Debug\netcoreapp2.2\PersonAux.pdb
+C:\Users\GSempol\Desktop\PersonAux\obj\Debug\netcoreapp2.2\PersonAux.csprojAssemblyReference.cache
+C:\Users\GSempol\Desktop\PersonAux\obj\Debug\netcoreapp2.2\PersonAux.csproj.CoreCompileInputs.cache
+C:\Users\GSempol\Desktop\PersonAux\obj\Debug\netcoreapp2.2\PersonAux.AssemblyInfoInputs.cache
+C:\Users\GSempol\Desktop\PersonAux\obj\Debug\netcoreapp2.2\PersonAux.AssemblyInfo.cs
+C:\Users\GSempol\Desktop\PersonAux\obj\Debug\netcoreapp2.2\PersonAux.dll
+C:\Users\GSempol\Desktop\PersonAux\obj\Debug\netcoreapp2.2\PersonAux.pdb
