@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 
-namespace ProyectoIgnis.Pages.ProyectosPersonales
+namespace MercadoIgnis.Pages.ProyectosPersonales
 {
     public class IndexModel : PageModel
     {

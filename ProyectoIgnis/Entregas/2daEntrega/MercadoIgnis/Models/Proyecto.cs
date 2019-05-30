@@ -12,17 +12,13 @@ namespace MercadoIgnis.Models
         [DataType(DataType.Text)]
         public string Descripcion { get; set; }  
 
-        [Display(Name = "Estado")]
-        [DataType(DataType.Text)]
-        public string Estado { get; set; }  
-
         [Display(Name = "Fecha Comienzo")]
         [DataType(DataType.Date)]
         public DateTime FechaComienzo { get; set; }  
 
-        [Display(Name = "Fecha Realización")]
+        [Display(Name = "Fecha Finalización")]
         [DataType(DataType.Date)]
-        public DateTime FechaRealizacion { get; set; }  
+        public DateTime FechaFinalizacion { get; set; }  
 
         
     }

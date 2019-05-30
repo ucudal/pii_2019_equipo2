@@ -11,9 +11,7 @@ namespace MercadoIgnis.Models
         [DataType(DataType.Text)]
         public string TipoDeProyecto { get; set; }  
         
-        [Display(Name = "Tiempo De Realizacion")]
-        [DataType(DataType.Date)]
-        public DateTime TiempoDeRealizacion { get; set; }
+        
         
 
     }
