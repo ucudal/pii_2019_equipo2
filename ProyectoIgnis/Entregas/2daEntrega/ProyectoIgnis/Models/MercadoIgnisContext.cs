@@ -14,5 +14,7 @@ namespace MercadoIgnis.Models
 
         public DbSet<MercadoIgnis.Models.ProyectoPersonal> ProyectoPersonal { get; set; }
 
+        public DbSet<MercadoIgnis.Models.Calificacion> Calificacion { get; set; }
+
     }
 }

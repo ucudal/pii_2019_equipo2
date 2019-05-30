@@ -16,6 +16,20 @@ namespace ProyectoIgnis.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
+            modelBuilder.Entity("MercadoIgnis.Models.Calificacion", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descripcion");
+
+                    b.Property<int>("Nota");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Calificacion");
+                });
+
             modelBuilder.Entity("MercadoIgnis.Models.Especialidad", b =>
                 {
                     b.Property<int>("ID")

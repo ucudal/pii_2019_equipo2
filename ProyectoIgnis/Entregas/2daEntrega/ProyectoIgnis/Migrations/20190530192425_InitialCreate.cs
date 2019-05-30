@@ -8,6 +8,20 @@ namespace ProyectoIgnis.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Calificacion",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nota = table.Column<int>(nullable: false),
+                    Descripcion = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calificacion", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Especialidad",
                 columns: table => new
                 {
@@ -42,6 +56,9 @@ namespace ProyectoIgnis.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Calificacion");
+
             migrationBuilder.DropTable(
                 name: "Especialidad");
 
