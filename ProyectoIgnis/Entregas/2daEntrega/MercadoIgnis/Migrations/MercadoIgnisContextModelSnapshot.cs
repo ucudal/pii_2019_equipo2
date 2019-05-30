@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ProyectoIgnis.Migrations
+namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(MercadoIgnisContext))]
     partial class MercadoIgnisContextModelSnapshot : ModelSnapshot
@@ -51,13 +51,9 @@ namespace ProyectoIgnis.Migrations
 
                     b.Property<string>("Descripcion");
 
-                    b.Property<string>("Estado");
-
                     b.Property<DateTime>("FechaComienzo");
 
-                    b.Property<DateTime>("FechaRealizacion");
-
-                    b.Property<DateTime>("TiempoDeRealizacion");
+                    b.Property<DateTime>("FechaFinalizacion");
 
                     b.Property<string>("TipoDeProyecto");
 
