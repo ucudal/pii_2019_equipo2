@@ -1,0 +1,51 @@
+@page 
+@model MercadoIgnis.Pages.Especialidades.IndexModel
+
+@{
+    ViewData["Title"] = "Especialidades";
+}
+
+<h1>Especialidades</h1>
+
+<p>
+    <a asp-page="Create">Crear nueva</a>
+</p>
+<form>
+    <p>
+        <select asp-for="NivelEspecialidad" asp-items="Model.Niveles">
+            <option value="">Todas</option>
+        </select>
+        Area: <input type="text" asp-for="busquedaPorTexto" />
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad[0].Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad[0].Nivel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Especialidad) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nivel)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
