@@ -7,18 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 
-namespace ProyectoIgnis.Pages.ProyectosPersonales
+namespace MercadoIgnis.Pages.ProyectosPersonales
 {
-    public class DeleteModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
 
-        public DeleteModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public DetailsModel(MercadoIgnis.Models.MercadoIgnisContext context)
         {
             _context = context;
         }
 
-        [BindProperty]
         public ProyectoPersonal ProyectoPersonal { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -35,24 +34,6 @@ namespace ProyectoIgnis.Pages.ProyectosPersonales
                 return NotFound();
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            ProyectoPersonal = await _context.ProyectoPersonal.FindAsync(id);
-
-            if (ProyectoPersonal != null)
-            {
-                _context.ProyectoPersonal.Remove(ProyectoPersonal);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
         }
     }
 }

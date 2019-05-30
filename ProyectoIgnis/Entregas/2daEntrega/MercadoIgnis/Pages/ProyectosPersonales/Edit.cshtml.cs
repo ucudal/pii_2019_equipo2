@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 
-namespace ProyectoIgnis.Pages.ProyectosPersonales
+namespace MercadoIgnis.Pages.ProyectosPersonales
 {
     public class EditModel : PageModel
     {

@@ -3,16 +3,14 @@ using System;
 using MercadoIgnis.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ProyectoIgnis.Migrations
+namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(MercadoIgnisContext))]
-    [Migration("20190530185516_InitialCreate")]
-    partial class InitialCreate
+    partial class MercadoIgnisContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,13 +37,9 @@ namespace ProyectoIgnis.Migrations
 
                     b.Property<string>("Descripcion");
 
-                    b.Property<string>("Estado");
-
                     b.Property<DateTime>("FechaComienzo");
 
-                    b.Property<DateTime>("FechaRealizacion");
-
-                    b.Property<DateTime>("TiempoDeRealizacion");
+                    b.Property<DateTime>("FechaFinalizacion");
 
                     b.Property<string>("TipoDeProyecto");
 
