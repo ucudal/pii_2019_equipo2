@@ -1,6 +1,11 @@
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+
+
+@using MercadoIgnis.Areas.Identity.Data
+
+@inject SignInManager<MercadoIgnisUser> SignInManager
+
+@inject UserManager<MercadoIgnisUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

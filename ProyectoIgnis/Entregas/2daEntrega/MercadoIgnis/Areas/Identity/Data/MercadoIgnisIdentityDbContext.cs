@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MercadoIgnis.Areas.Identity.Data;
 
 namespace MercadoIgnis.Areas.Identity.Data
 {
@@ -22,5 +23,7 @@ namespace MercadoIgnis.Areas.Identity.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<MercadoIgnis.Areas.Identity.Data.MercadoIgnisUser> MercadoIgnisUser { get; set; }
     }
 }

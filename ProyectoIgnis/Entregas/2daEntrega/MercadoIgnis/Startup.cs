@@ -41,6 +41,10 @@ namespace MercadoIgnis
 
             services.AddDbContext<MercadoIgnisContext>(options =>
             options.UseSqlite(Configuration.GetConnectionString("IgnisContext")));
+
+            services.AddDbContext<MercadoIgnisIdentityDbContext>(options =>
+                    options.UseSqlite(
+                        Configuration.GetConnectionString("IgnisContext")));
             
              services.AddMvc(config =>
             {
@@ -55,7 +59,7 @@ namespace MercadoIgnis
                     options.Conventions.AllowAnonymousToPage("/Privacy");
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-           
+           // services.AddMvc( ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
            
         }
 

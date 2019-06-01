@@ -15,11 +15,7 @@ namespace MercadoIgnis.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<MercadoIgnisIdentityDbContext>(options =>
-                    options.UseSqlite(
-                        context.Configuration.GetConnectionString("MercadoIgnisIdentityDbContextConnection")));
-
-                services.AddDefaultIdentity<IdentityUser>()
+                services.AddDefaultIdentity<MercadoIgnisUser>()
                     .AddEntityFrameworkStores<MercadoIgnisIdentityDbContext>();
             });
         }
