@@ -11,7 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MercadoIgnis.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authorization;
+using MercadoIgnis.Areas.Identity.Data;
 
 namespace MercadoIgnis
 {
@@ -35,9 +37,28 @@ namespace MercadoIgnis
             });
 
             services.AddDbContext<MercadoIgnisContext>(options =>
-            options.UseSqlite(Configuration.GetConnectionString("IgnisContext")));
+                options.UseSqlite(Configuration.GetConnectionString("IgnisContext")));
 
-            services.AddMvc( ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // Fix error More than one DbContext named 'MercadoIgnisIdentityDbContext' was found Specify which one to use by providing
+            // its fully qualified name using exact case when running dotnet aspnet-codegenerator razorpage -m MercadoIgnisUser
+            // -dc MercadoIgnis.Areas.Identity.Data.MercadoIgnisIdentityDbContext -udl -outDir Areas\Identity\Pages\MercadoIgnisUsers
+            // --referenceScriptLibraries
+            services.AddDbContext<MercadoIgnisIdentityDbContext>(options =>
+                 options.UseSqlite(Configuration.GetConnectionString("IgnisContext")));
+
+            services.AddMvc(config =>
+            {
+                // Requiere que haya usuarios logueados
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            })
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AllowAnonymousToPage("/Privacy");
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +78,7 @@ namespace MercadoIgnis
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc();
         }
