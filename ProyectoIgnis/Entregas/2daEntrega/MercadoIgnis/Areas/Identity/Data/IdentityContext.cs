@@ -9,9 +9,9 @@ using MercadoIgnis.Areas.Identity.Data;
 
 namespace MercadoIgnis.Areas.Identity.Data
 {
-    public class MercadoIgnisIdentityDbContext : IdentityDbContext<MercadoIgnisUser>
+    public class IdentityContext : IdentityDbContext<ApplicationUser>
     {
-        public MercadoIgnisIdentityDbContext(DbContextOptions<MercadoIgnisIdentityDbContext> options)
+        public IdentityContext(DbContextOptions<IdentityContext> options)
             : base(options)
         {
         }

@@ -15,9 +15,9 @@ namespace MercadoIgnis.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDefaultIdentity<MercadoIgnisUser>()
+                services.AddDefaultIdentity<ApplicationUser>()
                     .AddRoles<IdentityRole>()
-                    .AddEntityFrameworkStores<MercadoIgnisIdentityDbContext>();
+                    .AddEntityFrameworkStores<IdentityContext>();
             });
         }
     }

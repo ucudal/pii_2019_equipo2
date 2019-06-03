@@ -37,14 +37,14 @@ namespace MercadoIgnis
             });
 
             services.AddDbContext<MercadoIgnisContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("IgnisContext")));
+                options.UseSqlite(Configuration.GetConnectionString("MercadoIgnisContext")));
 
             // Fix error More than one DbContext named 'MercadoIgnisIdentityDbContext' was found Specify which one to use by providing
-            // its fully qualified name using exact case when running dotnet aspnet-codegenerator razorpage -m MercadoIgnisUser
-            // -dc MercadoIgnis.Areas.Identity.Data.MercadoIgnisIdentityDbContext -udl -outDir Areas\Identity\Pages\MercadoIgnisUsers
+            // its fully qualified name using exact case when running dotnet aspnet-codegenerator razorpage -m ApplicationUser
+            // -dc MercadoIgnis.Areas.Identity.Data.MercadoIgnisIdentityDbContext -udl -outDir Areas\Identity\Pages\ApplicationUsers
             // --referenceScriptLibraries
-            services.AddDbContext<MercadoIgnisIdentityDbContext>(options =>
-                 options.UseSqlite(Configuration.GetConnectionString("IgnisContext")));
+            services.AddDbContext<IdentityContext>(options =>
+                 options.UseSqlite(Configuration.GetConnectionString("MercadoIgnisContext")));
 
             services.AddMvc(config =>
             {

@@ -24,7 +24,7 @@ namespace MercadoIgnis
                     var context=services.
                         GetRequiredService<MercadoIgnisContext>();
                     context.Database.Migrate();
-                    
+                    SeedIdentityData.Initialize(services);
                 }
                 catch (Exception ex)
                 {
@@ -39,6 +39,5 @@ namespace MercadoIgnis
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
-
     }
 }
