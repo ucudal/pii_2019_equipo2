@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ProyectoIgnis.Migrations
+namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(MercadoIgnisContext))]
-    [Migration("20190530192425_InitialCreate")]
+    [Migration("20190601192843_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,13 +53,9 @@ namespace ProyectoIgnis.Migrations
 
                     b.Property<string>("Descripcion");
 
-                    b.Property<string>("Estado");
-
                     b.Property<DateTime>("FechaComienzo");
 
-                    b.Property<DateTime>("FechaRealizacion");
-
-                    b.Property<DateTime>("TiempoDeRealizacion");
+                    b.Property<DateTime>("FechaFinalizacion");
 
                     b.Property<string>("TipoDeProyecto");
 

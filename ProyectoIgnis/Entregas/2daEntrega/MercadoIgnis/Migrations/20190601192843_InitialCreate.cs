@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProyectoIgnis.Migrations
+namespace MercadoIgnis.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -42,11 +42,9 @@ namespace ProyectoIgnis.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Descripcion = table.Column<string>(nullable: true),
-                    Estado = table.Column<string>(nullable: true),
                     FechaComienzo = table.Column<DateTime>(nullable: false),
-                    FechaRealizacion = table.Column<DateTime>(nullable: false),
-                    TipoDeProyecto = table.Column<string>(nullable: true),
-                    TiempoDeRealizacion = table.Column<DateTime>(nullable: false)
+                    FechaFinalizacion = table.Column<DateTime>(nullable: false),
+                    TipoDeProyecto = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
