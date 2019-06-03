@@ -1,41 +1,38 @@
 @page
-@model MercadoIgnis.Areas.Identity.Pages.MercadoIgnisUsers.IndexModel
+@model MercadoIgnis.Areas.Identity.Pages.Users.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Usuarios</h1>
+<h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Crear Nuevo</a>
-</p>
+<!-- <p>
+    <a asp-page="Create">Create New</a>
+</p> -->
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MercadoIgnisUser[0].Name)
+                @Html.DisplayNameFor(model => model.ApplicationUser[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MercadoIgnisUser[0].DOB)
+                @Html.DisplayNameFor(model => model.ApplicationUser[0].DOB)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MercadoIgnisUser[0].UserName)
+                @Html.DisplayNameFor(model => model.ApplicationUser[0].UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MercadoIgnisUser[0].EmailConfirmed)
+                @Html.DisplayNameFor(model => model.ApplicationUser[0].Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MercadoIgnisUser[0].PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MercadoIgnisUser[0].AccessFailedCount)
+                @Html.DisplayNameFor(model => model.ApplicationUser[0].Role)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MercadoIgnisUser) {
+@foreach (var item in Model.ApplicationUser) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -47,13 +44,17 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccessFailedCount)
+                @if(!string.IsNullOrEmpty(item.Role))
+                {
+                    @Html.DisplayFor(modelItem => item.Role)
+                }
+                else
+                {
+                    <text>-- Select Role --</text>
+                }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

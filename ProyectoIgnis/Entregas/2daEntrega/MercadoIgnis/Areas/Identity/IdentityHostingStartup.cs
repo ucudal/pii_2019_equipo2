@@ -1,11 +1,11 @@
 using System;
-using MercadoIgnis.Areas.Identity.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MercadoIgnis.Areas.Identity.Data;
 
 [assembly: HostingStartup(typeof(MercadoIgnis.Areas.Identity.IdentityHostingStartup))]
 namespace MercadoIgnis.Areas.Identity
@@ -15,8 +15,9 @@ namespace MercadoIgnis.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDefaultIdentity<MercadoIgnisUser>()
-                    .AddEntityFrameworkStores<MercadoIgnisIdentityDbContext>();
+                services.AddDefaultIdentity<ApplicationUser>()
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<IdentityContext>();
             });
         }
     }

@@ -9,9 +9,9 @@ using MercadoIgnis.Areas.Identity.Data;
 
 namespace MercadoIgnis.Areas.Identity.Data
 {
-    public class MercadoIgnisIdentityDbContext : IdentityDbContext<IdentityUser>
+    public class IdentityContext : IdentityDbContext<ApplicationUser>
     {
-        public MercadoIgnisIdentityDbContext(DbContextOptions<MercadoIgnisIdentityDbContext> options)
+        public IdentityContext(DbContextOptions<IdentityContext> options)
             : base(options)
         {
         }
@@ -23,7 +23,5 @@ namespace MercadoIgnis.Areas.Identity.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
-
-        public DbSet<MercadoIgnis.Areas.Identity.Data.MercadoIgnisUser> MercadoIgnisUser { get; set; }
     }
 }
