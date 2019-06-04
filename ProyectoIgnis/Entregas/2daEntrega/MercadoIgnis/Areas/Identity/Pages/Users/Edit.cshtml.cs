@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using MercadoIgnis.Areas.Identity.Pages.Account;
 
 namespace MercadoIgnis.Areas.Identity.Pages.Users
 {
