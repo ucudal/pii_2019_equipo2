@@ -25,6 +25,7 @@ namespace MercadoIgnis
                         GetRequiredService<MercadoIgnisContext>();
                     context.Database.Migrate();
                     SeedIdentityData.Initialize(services);
+                    SeedData.Initialize(services);
                 }
                 catch (Exception ex)
                 {
