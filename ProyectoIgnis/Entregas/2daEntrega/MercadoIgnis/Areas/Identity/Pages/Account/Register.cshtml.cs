@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using MercadoIgnis.Areas.Identity.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MercadoIgnis.Areas.Identity.Pages.Account
 {
@@ -20,23 +21,36 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
+            this.RolesList = new List<SelectListItem>();
+            for (int i = 0; i < IdentityData.NonAdminRoleNames.Length; i++)
+            {
+                this.RolesList.Add(new SelectListItem { Value = i.ToString(), Text = IdentityData.NonAdminRoleNames[i] });
+            }
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
+        [BindProperty]
+        public int Role { get; set; }
+        [BindProperty]
+        public List<SelectListItem> RolesList { get; }
 
         public class InputModel
         {
@@ -65,6 +79,7 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            // public static string[] NonAdminRoleNames = new string[] { "Cliente", "Técnico" };
         }
 
         public void OnGet(string returnUrl = null)
@@ -85,6 +100,13 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.NonAdminRoleNames[this.Role]);
+                _userManager.AddToRoleAsync(user, roleToAdd.Name).Wait();
+
+            
+                user.AssignRole(_userManager, roleToAdd.Name);
+
+                await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
