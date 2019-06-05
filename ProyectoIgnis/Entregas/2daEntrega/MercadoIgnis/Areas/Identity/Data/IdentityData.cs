@@ -6,7 +6,7 @@ namespace MercadoIgnis.Areas.Identity.Data
     {
         public const string AdminUserName = "admin@contoso.com";
 
-        public const string AdminName = "Administrator";
+        public const string AdminName = "Administrador";
 
         public const string AdminMail = "admin@contoso.com";
 
@@ -14,8 +14,9 @@ namespace MercadoIgnis.Areas.Identity.Data
 
         public const string AdminPassword = "P@55w0rd";
 
-        public const string AdminRoleName = "Administrator";
+        public const string AdminRoleName = "Administrador";
 
         public static string[] NonAdminRoleNames = new string[] { "Cliente", "Técnico" };
+        public static string[] AllRoleNames = new string[] { "Cliente", "Técnico" , "Administrador"};
     }
 }
