@@ -26,7 +26,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Users
         {
             // Filtra el administador para que no aparezca en la lista
             var users = from m in _context.Users
-                where m.Role != IdentityData.AdminRoleName
                 select m;
 
             ApplicationUser = await users.ToListAsync();

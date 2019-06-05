@@ -27,9 +27,9 @@ namespace MercadoIgnis.Areas.Identity.Pages.Users
             _roleManager = roleManager;
 
             this.RolesList = new List<SelectListItem>();
-            for (int i = 0; i < IdentityData.NonAdminRoleNames.Length; i++)
+            for (int i = 0; i < IdentityData.AllRoleNames.Length; i++)
             {
-                this.RolesList.Add(new SelectListItem { Value = i.ToString(), Text = IdentityData.NonAdminRoleNames[i] });
+                this.RolesList.Add(new SelectListItem { Value = i.ToString(), Text = IdentityData.AllRoleNames[i] });
             }
         }
 
@@ -56,7 +56,7 @@ namespace MercadoIgnis.Areas.Identity.Pages.Users
                 return NotFound();
             }
 
-            this.Role = Array.BinarySearch(IdentityData.NonAdminRoleNames, ApplicationUser.Role);
+            this.Role = Array.BinarySearch(IdentityData.AllRoleNames, ApplicationUser.Role);
 
             return Page();
         }
@@ -84,7 +84,7 @@ namespace MercadoIgnis.Areas.Identity.Pages.Users
                 _userManager.RemoveFromRoleAsync(user, roleToRemove).Wait();
             }
 
-            var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.NonAdminRoleNames[this.Role]);
+            var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.AllRoleNames[this.Role]);
             _userManager.AddToRoleAsync(user, roleToAdd.Name).Wait();
 
             // Es necesario tener acceso a RoleManager para poder buscar el rol de este usuario; se asigna aquí para poder
