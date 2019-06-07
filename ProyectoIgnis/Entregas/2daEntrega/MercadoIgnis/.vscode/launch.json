@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/tests/MercadoIgnis.Tests/bin/Debug/netcoreapp2.2/MercadoIgnis.Tests.dll",
+            "program": "${workspaceFolder}/src/MercadoIgnis/bin/Debug/netcoreapp2.2/MercadoIgnis.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/tests/MercadoIgnis.Tests",
+            "cwd": "${workspaceFolder}/src/MercadoIgnis",
             "stopAtEntry": false,
             "launchBrowser": {
                 "enabled": true
