@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 
-namespace ProyectoIgnis.Pages.Calificaciones
+namespace MercadoIgnis.Pages.Calificaciones
 {
     public class EditModel : PageModel
     {
