@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;
 using MercadoIgnis.Models;
-using MercadoIgnis.Pages.Calificaciones; //Para usar la clase CreateModel/DeleteModel de Calificaciones
+using MercadoIgnis.Pages.Calificaciones; //Para usar la clase CreateModel/DeleteModel/EditModel de Calificaciones
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -104,9 +104,54 @@ namespace MercadoIgnis.Tests.UnitTests
            
         }
 
-        
+        [Fact]
+        public async Task OnPostEditCalificaciones_VerSiRealmenteEdita()
+        {
+            // Arrange
+            //Preparamos un contexto que guarde la base de datos en memoria ram.
+            var optionsBuilder = new DbContextOptionsBuilder<MercadoIgnisContext>()
+                .UseInMemoryDatabase("InMemoryDb");
+            
+            MercadoIgnisContext testMercadoIgnisContext = new MercadoIgnisContext(optionsBuilder.Options);
+            Calificacion calificacion= new Calificacion(){ID=2,Nota=5,Descripcion="Descripcion de prueba"};
+            
+            //Guardamos una calificacion en bd
+            testMercadoIgnisContext.Calificacion.Add(calificacion);
+            testMercadoIgnisContext.SaveChanges();
+            
+            //Creo una instancia de Calificacion para comparar más adelante
+            Calificacion CalificacionEsperada= new Calificacion(){ID=2,Nota=1,Descripcion="Nueva Descripcion"};
+            
+            // Act
+            //Creamos una pagina de tipo EditModel (de Calificaciones), la cual es la que se encarga de la logica 
+            //de editar calificaciones en bd. 
+            EditModel pageEditModel = new EditModel(testMercadoIgnisContext);
 
+            //Simulamos haber hecho el edit en una calificaion con el id
+            await pageEditModel.OnGetAsync(calificacion.ID);
 
+            //Modificamos los valores de los atributos de la instancia "calificacion" de Calificacion
+            pageEditModel.Calificacion.Descripcion=CalificacionEsperada.Descripcion;
+            pageEditModel.Calificacion.Nota= CalificacionEsperada.Nota;
+         
+            //Simulamos un post que envíe el formulario de la pagina y por ende guarda los cambios de la edicion
+            await pageEditModel.OnPostAsync();
+
+            // Assert
+            //Buscamos si aún esta en bd la calificacion que debió haber sido editada por la pagina
+            Calificacion CalificacionRecibida = await testMercadoIgnisContext.Calificacion.FindAsync(calificacion.ID);
+            
+            
+            Assert.Equal(
+                CalificacionEsperada.Descripcion.ToString(), 
+                CalificacionRecibida.Descripcion.ToString());
+             Assert.Equal(
+                CalificacionEsperada.Nota.ToString(), 
+                CalificacionRecibida.Nota.ToString());
+            //Si se ejecuta correctamente, significa que el programa modifica correctamente calificaciones  
+         
+           
+        }
         
         
     }
