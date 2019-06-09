@@ -8,8 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
-
-
+//Patron Expert
+//Patron Creator
+//IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectosPersonales -por lo que IndexModel es un experto conrespecto a crear ProyectosPersonales-.
 namespace MercadoIgnis.Pages.ProyectosPersonales
 {
     public class IndexModel : PageModel

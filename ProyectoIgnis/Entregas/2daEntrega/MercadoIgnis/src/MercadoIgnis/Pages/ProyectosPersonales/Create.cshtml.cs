@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MercadoIgnis.Models;
-
+//Patron Expert
+//Patron Creator
+//CreateModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectosPersonales -por lo que CreateModel es un experto conrespecto a crear ProyectosPersonales-.
 namespace MercadoIgnis.Pages.ProyectosPersonales
 {
     public class CreateModel : PageModel
