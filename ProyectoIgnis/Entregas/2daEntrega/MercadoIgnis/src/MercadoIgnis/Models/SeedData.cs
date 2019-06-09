@@ -288,6 +288,21 @@ namespace MercadoIgnis.Models
                     }
   
                 ); 
+
+                if (context.ProyectoIgnis.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                context.ProyectoIgnis.AddRange(
+                    new ProyectoIgnis
+                    {
+                        ID = 1,
+                        FechaComienzo= DateTime.Parse("2019-2-12"),
+                        FechaFinalizacion=DateTime.Parse("2019-3-12"),
+                        Descripcion= "Proyecto de Cine"
+                    }
+                );
                 context.SaveChanges();
                 
             }

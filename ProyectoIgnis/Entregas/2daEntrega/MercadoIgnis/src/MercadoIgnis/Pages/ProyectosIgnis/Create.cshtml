@@ -1,0 +1,44 @@
+@page
+@model MercadoIgnis.Pages.ProyectosIgnis.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ProyectoIgnis</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProyectoIgnis.Descripcion" class="control-label"></label>
+                <input asp-for="ProyectoIgnis.Descripcion" class="form-control" />
+                <span asp-validation-for="ProyectoIgnis.Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProyectoIgnis.FechaComienzo" class="control-label"></label>
+                <input asp-for="ProyectoIgnis.FechaComienzo" class="form-control" />
+                <span asp-validation-for="ProyectoIgnis.FechaComienzo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProyectoIgnis.FechaFinalizacion" class="control-label"></label>
+                <input asp-for="ProyectoIgnis.FechaFinalizacion" class="form-control" />
+                <span asp-validation-for="ProyectoIgnis.FechaFinalizacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
