@@ -6,7 +6,7 @@ namespace MercadoIgnis.Models
 {
     public class ProyectoIgnis : Proyecto
     {
-        
+        //En este modelo se uso herecia por que tanto proyecto personal como proyecto Ignis son Proyectos, eso signifca que tienen atributos compartidos
         public enum EnumEstadoProyecto {
             EnSeleccion,
             EnProceso,
