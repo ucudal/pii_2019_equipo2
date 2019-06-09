@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
-
+//Esta clase es experta en eliminar una calificaciones(Patron Expert)
 namespace MercadoIgnis.Pages.Calificaciones
 {
     public class DeleteModel : PageModel

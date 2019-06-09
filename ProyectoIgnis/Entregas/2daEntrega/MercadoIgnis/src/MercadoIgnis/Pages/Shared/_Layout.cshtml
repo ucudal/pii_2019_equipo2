@@ -42,6 +42,9 @@
                             <a class="nav-link text-dark" asp-page="/ProyectosPersonales/Index">Proyectos Personales</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/ProyectosIgnis/Index">Proyectos Ignis</a>
+                        </li>
+                        <li class="nav-item">
                             @if (User.IsInRole(IdentityData.AdminRoleName))
                             {
                                 <a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Usuarios</a>

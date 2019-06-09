@@ -22,7 +22,7 @@ namespace MercadoIgnis.Models
                 context.ProyectoPersonal.AddRange(
                     new ProyectoPersonal
                     {
-                        ID = 133768563,
+                        ID = 12,
                         Descripcion = "Parque Batlle",
                         FechaComienzo = DateTime.Parse("2019-2-12"),
                         FechaFinalizacion = DateTime.Parse("2019-4-21"),
