@@ -44,6 +44,24 @@ namespace MercadoIgnis.Migrations
                     b.ToTable("Especialidad");
                 });
 
+            modelBuilder.Entity("MercadoIgnis.Models.ProyectoIgnis", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descripcion");
+
+                    b.Property<int>("Estado");
+
+                    b.Property<DateTime>("FechaComienzo");
+
+                    b.Property<DateTime>("FechaFinalizacion");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ProyectoIgnis");
+                });
+
             modelBuilder.Entity("MercadoIgnis.Models.ProyectoPersonal", b =>
                 {
                     b.Property<int>("ID")

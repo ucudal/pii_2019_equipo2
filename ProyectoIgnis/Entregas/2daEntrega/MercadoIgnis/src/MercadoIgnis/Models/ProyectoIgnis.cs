@@ -1,13 +1,27 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace MercadoIgnis.Models
 {
     public class ProyectoIgnis : Proyecto
     {
-        [Display(Name = "Estado")]
+        
+        public enum EnumEstadoProyecto {
+            EnSeleccion,
+            EnProceso,
+            Finalizado,
+            Cancelado 
+            };
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "Estado Proyecto")]
         [DataType(DataType.Text)]
-        public string Estado { get; set; }
+        public EnumEstadoProyecto Estado { get; set; }
+
+       // public ICollection<Puesto> Puestos { get; set; }
+       
+
 
     }
 }
