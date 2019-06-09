@@ -7,11 +7,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MercadoIgnis.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
+
 //Patron Expert
 //Patron Creator
 //IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de Especialidad -por lo que IndexModel es un experto conrespecto a crear Especialidad-.
+
 namespace MercadoIgnis.Pages.Especialidades
 {
+    [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class IndexModel : PageModel
     {
         private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
@@ -47,7 +52,7 @@ namespace MercadoIgnis.Pages.Especialidades
             //Si Recibo algo no nulo del campo de texto
             if (!string.IsNullOrEmpty(busquedaPorTexto))
             {
-                especialidades = especialidades.Where(s => s.Area.Contains(busquedaPorTexto));
+                especialidades = especialidades.Where(s => s.Area.Contains(busquedaPorTexto,StringComparison.CurrentCultureIgnoreCase));
             }
 
             //Si recibo algo no nulo del option box con los niveles

@@ -8,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using MercadoIgnis.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 //Patron Expert
 //Patron Creator
 //IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectosPersonales -por lo que IndexModel es un experto conrespecto a crear ProyectosPersonales-.
 namespace MercadoIgnis.Pages.ProyectosPersonales
 {
+    [Authorize(Roles=IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
     public class IndexModel : PageModel
     {
         private readonly MercadoIgnis.Models.MercadoIgnisContext _context;

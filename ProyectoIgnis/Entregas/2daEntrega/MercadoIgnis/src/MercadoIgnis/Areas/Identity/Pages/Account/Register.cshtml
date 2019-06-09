@@ -42,7 +42,7 @@
                 @{
                 List<SelectListItem> listItems = new List<SelectListItem>(Model.RolesList);
                 }
-                @Html.DropDownListFor(model => model.Role, listItems, "-- Select Role --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Role, listItems, "-- Seleccione Rol --", new { @class = "form-control" })
                  <span asp-validation-for="Role" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>

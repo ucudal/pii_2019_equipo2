@@ -2,31 +2,31 @@
 @model MercadoIgnis.Areas.Identity.Pages.Users.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Usuarios";
 }
 
-<h1>Index</h1>
+<h1>Usuarios</h1>
 
 <!-- <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Crear Nuevo</a>
 </p> -->
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].Name)
+                Nombre
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].DOB)
+                Fecha Nacimiento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].UserName)
+                Nombre de usuario
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].Email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].Role)
+                Rol
             </th>
             <th></th>
         </tr>
@@ -53,13 +53,13 @@
                 }
                 else
                 {
-                    <text>-- Select Role --</text>
+                    <text>-- Seleccione un Rol --</text>
                 }
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
             </td>
         </tr>
 }

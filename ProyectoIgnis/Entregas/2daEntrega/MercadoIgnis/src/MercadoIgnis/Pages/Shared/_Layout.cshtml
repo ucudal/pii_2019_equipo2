@@ -30,19 +30,35 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Inicio</a>
+                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) || User.IsInRole(IdentityData.ClienteRoleName))
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Inicio</a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacidad</a>
+                            @if (User.IsInRole(IdentityData.AdminRoleName))
+                            {
+                                <a class="nav-link text-dark" asp-page="/Especialidades/Index">Especialidades</a>
+                            }
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Especialidades/Index">Especialidades</a>
+                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName))
+                            {
+                                <a class="nav-link text-dark" asp-page="/ProyectosPersonales/Index">Proyectos Personales</a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/ProyectosPersonales/Index">Proyectos Personales</a>
+                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) || User.IsInRole(IdentityData.ClienteRoleName))
+                            {
+                                 <a class="nav-link text-dark" asp-page="/ProyectosIgnis/Index">Proyectos Ignis</a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/ProyectosIgnis/Index">Proyectos Ignis</a>
+                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) || User.IsInRole(IdentityData.ClienteRoleName))
+                            {
+                                <a class="nav-link text-dark"  asp-page="/Calificaciones/Index">Calificaciones</a>
+                            }
                         </li>
                         <li class="nav-item">
                             @if (User.IsInRole(IdentityData.AdminRoleName))
@@ -68,7 +84,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            <a href="https://ucu.edu.uy/es/CentroIgnis" target="_blank"><img src="/centroignis.jpg" width="35" height="35"></a><a href="https://www.instagram.com/centroignis/" target="_blank"><img src="/ig.png" width="40" height="40"></a>MercadoIgnis - &copy; 2019 <a asp-area="" asp-page="/Privacy">Privacy</a> 
+            <a href="https://ucu.edu.uy/es/CentroIgnis" target="_blank"><img src="/centroignis.jpg" width="35" height="35"></a><a href="https://www.instagram.com/centroignis/" target="_blank"><img src="/ig.png" width="40" height="40"></a>MercadoIgnis - &copy; 2019 <a asp-area="" asp-page="/Privacy">Privacidad</a> 
         </div>
     </footer>
 
