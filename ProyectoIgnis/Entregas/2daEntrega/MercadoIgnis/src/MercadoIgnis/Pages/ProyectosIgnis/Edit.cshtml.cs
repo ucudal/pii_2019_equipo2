@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 
-namespace MercadoIgnis.Pages.Calificaciones
+namespace MercadoIgnis.Pages.ProyectosIgnis
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace MercadoIgnis.Pages.Calificaciones
         }
 
         [BindProperty]
-        public Calificacion Calificacion { get; set; }
+        public ProyectoIgnis ProyectoIgnis { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace MercadoIgnis.Pages.Calificaciones
                 return NotFound();
             }
 
-            Calificacion = await _context.Calificacion.FirstOrDefaultAsync(m => m.ID == id);
+            ProyectoIgnis = await _context.ProyectoIgnis.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Calificacion == null)
+            if (ProyectoIgnis == null)
             {
                 return NotFound();
             }
@@ -40,22 +40,20 @@ namespace MercadoIgnis.Pages.Calificaciones
 
         public async Task<IActionResult> OnPostAsync()
         {
-            
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Calificacion).State = EntityState.Modified;
+            _context.Attach(ProyectoIgnis).State = EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
-                
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CalificacionExists(Calificacion.ID))
+                if (!ProyectoIgnisExists(ProyectoIgnis.ID))
                 {
                     return NotFound();
                 }
@@ -68,9 +66,9 @@ namespace MercadoIgnis.Pages.Calificaciones
             return RedirectToPage("./Index");
         }
 
-        private bool CalificacionExists(int id)
+        private bool ProyectoIgnisExists(int id)
         {
-            return _context.Calificacion.Any(e => e.ID == id);
+            return _context.ProyectoIgnis.Any(e => e.ID == id);
         }
     }
 }

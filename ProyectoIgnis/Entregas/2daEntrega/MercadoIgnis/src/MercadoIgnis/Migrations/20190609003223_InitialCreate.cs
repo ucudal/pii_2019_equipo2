@@ -36,6 +36,22 @@ namespace MercadoIgnis.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProyectoIgnis",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Descripcion = table.Column<string>(nullable: true),
+                    FechaComienzo = table.Column<DateTime>(nullable: false),
+                    FechaFinalizacion = table.Column<DateTime>(nullable: false),
+                    Estado = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProyectoIgnis", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProyectoPersonal",
                 columns: table => new
                 {
@@ -59,6 +75,9 @@ namespace MercadoIgnis.Migrations
 
             migrationBuilder.DropTable(
                 name: "Especialidad");
+
+            migrationBuilder.DropTable(
+                name: "ProyectoIgnis");
 
             migrationBuilder.DropTable(
                 name: "ProyectoPersonal");
