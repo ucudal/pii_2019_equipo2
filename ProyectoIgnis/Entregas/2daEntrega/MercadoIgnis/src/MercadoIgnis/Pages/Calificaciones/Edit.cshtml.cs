@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
-
+//Patron Expert
+//Patron Creator
+//EditModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion -por lo que EditModel es un experto conrespecto a crear Calificacion-.
 namespace MercadoIgnis.Pages.Calificaciones
 {
     public class EditModel : PageModel

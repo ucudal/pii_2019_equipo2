@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+//Patron Expert
+//Patron Creator
+//IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de Especialidad -por lo que IndexModel es un experto conrespecto a crear Especialidad-.
 namespace MercadoIgnis.Pages.Especialidades
 {
     public class IndexModel : PageModel

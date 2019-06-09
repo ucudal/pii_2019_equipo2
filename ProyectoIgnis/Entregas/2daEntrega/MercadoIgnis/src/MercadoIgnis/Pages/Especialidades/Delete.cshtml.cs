@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
-
+//Patron Expert
+//Patron Creator
+//DeleteModel tiene los datos que serán provistos al constructor para inicializar instancias de Especialidad -por lo que DeleteModel es un experto conrespecto a crear Especialidad-.
 namespace MercadoIgnis.Pages.Especialidades
 {
     public class DeleteModel : PageModel
