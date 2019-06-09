@@ -2,12 +2,12 @@
 @model MercadoIgnis.Areas.Identity.Pages.Users.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
-<h4>ApplicationUser</h4>
+<h4>Usuario</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -38,17 +38,17 @@
                 @{
                 List<SelectListItem> listItems = new List<SelectListItem>(Model.RolesList);
                 }
-                @Html.DropDownListFor(model => model.Role, listItems, "-- Select Role --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Role, listItems, "-- Seleccione Rol --", new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Volver a la lista</a>
 </div>
 
 @section Scripts {

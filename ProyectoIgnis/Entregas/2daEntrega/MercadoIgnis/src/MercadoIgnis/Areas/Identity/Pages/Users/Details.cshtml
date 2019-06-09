@@ -2,10 +2,10 @@
 @model MercadoIgnis.Areas.Identity.Pages.Users.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
     <h4>User</h4>
@@ -45,12 +45,12 @@
                 }
                 else
                 {
-                    <text>-- Select Role --</text>
+                    <text>-- Seleccione Rol --</text>
                 }
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.ApplicationUser.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.ApplicationUser.Id">Editar</a> |
+    <a asp-page="./Index">Volver a la lista</a>
 </div>

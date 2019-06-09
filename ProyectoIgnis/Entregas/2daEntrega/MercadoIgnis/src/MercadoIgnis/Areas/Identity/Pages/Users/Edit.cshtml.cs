@@ -77,11 +77,13 @@ namespace MercadoIgnis.Areas.Identity.Pages.Users
             var rolesForUser = await _userManager.GetRolesAsync(user);
             foreach (var roleToRemove in rolesForUser)
             {
+                /*
                 if (roleToRemove.Equals(IdentityData.AdminRoleName))
                 {
                     throw new InvalidOperationException($"Cannot edit '{IdentityData.AdminRoleName}'.");
-                }
+                }*/
                 _userManager.RemoveFromRoleAsync(user, roleToRemove).Wait();
+                
             }
 
             var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.AllRoleNames[this.Role]);

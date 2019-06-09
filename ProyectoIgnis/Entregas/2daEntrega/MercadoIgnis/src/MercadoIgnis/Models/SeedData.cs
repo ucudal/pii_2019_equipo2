@@ -22,11 +22,23 @@ namespace MercadoIgnis.Models
                 context.ProyectoPersonal.AddRange(
                     new ProyectoPersonal
                     {
-                        ID = 12,
-                        Descripcion = "Parque Batlle",
+                        ID = 1,
+                        Descripcion = "Fotos en el Parque Batlle",
                         FechaComienzo = DateTime.Parse("2019-2-12"),
                         FechaFinalizacion = DateTime.Parse("2019-4-21"),
                         TipoDeProyecto = "Foto",
+                        
+                    }
+  
+                );
+                context.ProyectoPersonal.AddRange(
+                    new ProyectoPersonal
+                    {
+                        ID = 2,
+                        Descripcion = "Animación 3d",
+                        FechaComienzo = DateTime.Parse("2019-2-16"),
+                        FechaFinalizacion = DateTime.Parse("2019-2-19"),
+                        TipoDeProyecto = "Edicion 3d",
                         
                     }
   
@@ -39,9 +51,9 @@ namespace MercadoIgnis.Models
                 context.Calificacion.AddRange(
                      new Calificacion
                      {
-                         ID=5389412,
+                         ID=1,
                          Nota = 1,
-                         Descripcion = "Parque Batlle",
+                         Descripcion = "Descripcion de prueba, calificaciones de un tecnico de proyectos terminados",
                         
                      }
                  );
@@ -189,15 +201,7 @@ namespace MercadoIgnis.Models
                     }
 
                 );
-                context.Especialidad.AddRange(
-                    new Especialidad
-                    {
-                        ID = 145,
-                        Area = "Operador de Cabina 03 y Estudio de Radio",
-                        Nivel = "Básico"
-                    }
-  
-                );
+                
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -287,6 +291,15 @@ namespace MercadoIgnis.Models
                         Nivel = "Avanzado"
                     }
   
+                );
+                context.Especialidad.AddRange(
+                    new Especialidad
+                    {
+                        ID = 25,
+                        Area = "Operador de Cabina 03 y Estudio de Radio",
+                        Nivel = "Básico"
+                    }
+  
                 ); 
 
                 if (context.ProyectoIgnis.Any())
@@ -297,10 +310,28 @@ namespace MercadoIgnis.Models
                 context.ProyectoIgnis.AddRange(
                     new ProyectoIgnis
                     {
-                        ID = 1,
+                        ID = 3,
                         FechaComienzo= DateTime.Parse("2019-2-12"),
                         FechaFinalizacion=DateTime.Parse("2019-3-12"),
                         Descripcion= "Proyecto de Cine"
+                    }
+                );
+                context.ProyectoIgnis.AddRange(
+                    new ProyectoIgnis
+                    {
+                        ID = 4,
+                        FechaComienzo= DateTime.Parse("2019-3-15"),
+                        FechaFinalizacion=DateTime.Parse("2019-3-20"),
+                        Descripcion= "Cortometraje"
+                    }
+                );
+                context.ProyectoIgnis.AddRange(
+                    new ProyectoIgnis
+                    {
+                        ID = 5,
+                        FechaComienzo= DateTime.Parse("2019-7-1"),
+                        FechaFinalizacion=DateTime.Parse("2019-7-10"),
+                        Descripcion= "Demo de canción"
                     }
                 );
                 context.SaveChanges();

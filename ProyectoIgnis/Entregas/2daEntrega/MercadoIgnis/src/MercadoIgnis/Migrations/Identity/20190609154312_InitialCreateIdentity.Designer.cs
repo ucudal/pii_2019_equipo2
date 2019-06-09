@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoIgnis.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190609003232_InitialCreateIdentity")]
+    [Migration("20190609154312_InitialCreateIdentity")]
     partial class InitialCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
