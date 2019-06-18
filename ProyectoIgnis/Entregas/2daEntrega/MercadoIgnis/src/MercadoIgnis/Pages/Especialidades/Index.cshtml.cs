@@ -19,9 +19,9 @@ namespace MercadoIgnis.Pages.Especialidades
     [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class IndexModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public IndexModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public IndexModel(IdentityContext context)
         {
             _context = context;
         }

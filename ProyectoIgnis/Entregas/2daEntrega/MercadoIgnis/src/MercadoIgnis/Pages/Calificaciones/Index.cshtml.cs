@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
+using MercadoIgnis.Areas.Identity.Data;
 //Patron Expert
 //Patron Creator
 //IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion -por lo que IndexModel es un experto conrespecto a crear Calificacion-.
@@ -13,9 +14,9 @@ namespace MercadoIgnis.Pages.Calificaciones
 {
     public class IndexModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public IndexModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public IndexModel(IdentityContext context)
         {
             _context = context;
         }

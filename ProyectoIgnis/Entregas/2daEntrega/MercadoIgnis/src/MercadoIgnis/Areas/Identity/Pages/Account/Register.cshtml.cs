@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using MercadoIgnis.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MercadoIgnis.Models;
+
 
 namespace MercadoIgnis.Areas.Identity.Pages.Account
 {
@@ -85,6 +87,9 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
         public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
+
+           
+             
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -92,12 +97,33 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {
+                var user = new ApplicationUser();
+                if(Role==0)
+                {
+                    user = new Cliente {
                     Name = Input.Name,
                     DOB = Input.DOB,
                     UserName = Input.Email,
-                    Email = Input.Email
+                    Email = Input.Email,
+                    RUT = 213123
                 };
+
+                }else if(Role==1)
+                {
+                    user = new Tecnico {
+                    Name = Input.Name,
+                    DOB = Input.DOB,
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    EsEgresado = true
+                };
+
+                }else
+                {
+                    //Throw exception
+                }
+                
+
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.NonAdminRoleNames[this.Role]);
@@ -122,6 +148,10 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    //Creamos en funcion del rol
+
+
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

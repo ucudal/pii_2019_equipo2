@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MercadoIgnis.Migrations.Identity
+namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
     partial class IdentityContextModelSnapshot : ModelSnapshot
@@ -27,6 +27,9 @@ namespace MercadoIgnis.Migrations.Identity
                         .IsConcurrencyToken();
 
                     b.Property<DateTime>("DOB");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -69,7 +72,84 @@ namespace MercadoIgnis.Migrations.Identity
                         .IsUnique()
                         .HasName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("ApplicationUser");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Calificacion", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descripcion");
+
+                    b.Property<int>("Nota");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Calificacion");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Especialidad", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Area");
+
+                    b.Property<string>("Nivel");
+
+                    b.Property<string>("TecnicoId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TecnicoId");
+
+                    b.ToTable("Especialidad");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Proyecto", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descripcion");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
+                    b.Property<DateTime>("FechaComienzo");
+
+                    b.Property<DateTime>("FechaFinalizacion");
+
+                    b.Property<string>("TecnicoId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TecnicoId");
+
+                    b.ToTable("Proyecto");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Proyecto");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Puesto", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("EspecialidadID");
+
+                    b.Property<int>("ProyectoIgnisID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("EspecialidadID");
+
+                    b.HasIndex("ProyectoIgnisID");
+
+                    b.ToTable("Puesto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -183,6 +263,73 @@ namespace MercadoIgnis.Migrations.Identity
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("MercadoIgnis.Models.Cliente", b =>
+                {
+                    b.HasBaseType("MercadoIgnis.Areas.Identity.Data.ApplicationUser");
+
+                    b.Property<double>("RUT");
+
+                    b.HasDiscriminator().HasValue("Cliente");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Tecnico", b =>
+                {
+                    b.HasBaseType("MercadoIgnis.Areas.Identity.Data.ApplicationUser");
+
+                    b.Property<bool>("EsEgresado");
+
+                    b.HasDiscriminator().HasValue("Tecnico");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.ProyectoIgnis", b =>
+                {
+                    b.HasBaseType("MercadoIgnis.Models.Proyecto");
+
+                    b.Property<string>("ClienteId");
+
+                    b.Property<int>("Estado");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasDiscriminator().HasValue("ProyectoIgnis");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.ProyectoPersonal", b =>
+                {
+                    b.HasBaseType("MercadoIgnis.Models.Proyecto");
+
+                    b.Property<string>("TipoDeProyecto");
+
+                    b.HasDiscriminator().HasValue("ProyectoPersonal");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Especialidad", b =>
+                {
+                    b.HasOne("MercadoIgnis.Models.Tecnico")
+                        .WithMany("Especialidades")
+                        .HasForeignKey("TecnicoId");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Proyecto", b =>
+                {
+                    b.HasOne("MercadoIgnis.Models.Tecnico")
+                        .WithMany("Proyectos")
+                        .HasForeignKey("TecnicoId");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Puesto", b =>
+                {
+                    b.HasOne("MercadoIgnis.Models.Especialidad", "Especialidad")
+                        .WithMany()
+                        .HasForeignKey("EspecialidadID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MercadoIgnis.Models.ProyectoIgnis")
+                        .WithMany("Puestos")
+                        .HasForeignKey("ProyectoIgnisID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -226,6 +373,13 @@ namespace MercadoIgnis.Migrations.Identity
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.ProyectoIgnis", b =>
+                {
+                    b.HasOne("MercadoIgnis.Models.Cliente")
+                        .WithMany("ProyectosIgnis")
+                        .HasForeignKey("ClienteId");
                 });
 #pragma warning restore 612, 618
         }

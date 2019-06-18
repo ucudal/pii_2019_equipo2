@@ -7,10 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using MercadoIgnis.Areas.Identity.Data;
-//Patron Expert
-//Patron Creator
-//IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectoIgnis -por lo que IndexModel es un experto conrespecto a crear ProyectoIgnis-.
-namespace MercadoIgnis.Pages.ProyectosIgnis
+
+
+namespace MercadoIgnis.Pages.Puestos
 {
     public class IndexModel : PageModel
     {
@@ -21,11 +20,12 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
             _context = context;
         }
 
-        public IList<ProyectoIgnis> ProyectoIgnis { get;set; }
+        public IList<Puesto> Puesto { get;set; }
 
         public async Task OnGetAsync()
         {
-            ProyectoIgnis = await _context.ProyectoIgnis.ToListAsync();
+            Puesto = await _context.Puesto
+                .Include(p => p.Especialidad).ToListAsync();
         }
     }
 }

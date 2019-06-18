@@ -8,10 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using MercadoIgnis.Areas.Identity.Data;
-//Patron Expert
-//Patron Creator
-//EditModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion -por lo que EditModel es un experto conrespecto a crear Calificacion-.
-namespace MercadoIgnis.Pages.Calificaciones
+
+namespace MercadoIgnis.Pages.Puestos
 {
     public class EditModel : PageModel
     {
@@ -23,7 +21,7 @@ namespace MercadoIgnis.Pages.Calificaciones
         }
 
         [BindProperty]
-        public Calificacion Calificacion { get; set; }
+        public Puesto Puesto { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,33 +30,33 @@ namespace MercadoIgnis.Pages.Calificaciones
                 return NotFound();
             }
 
-            Calificacion = await _context.Calificacion.FirstOrDefaultAsync(m => m.ID == id);
+            Puesto = await _context.Puesto
+                .Include(p => p.Especialidad).FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Calificacion == null)
+            if (Puesto == null)
             {
                 return NotFound();
             }
+           ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "ID");
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Calificacion).State = EntityState.Modified;
+            _context.Attach(Puesto).State = EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
-                
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CalificacionExists(Calificacion.ID))
+                if (!PuestoExists(Puesto.ID))
                 {
                     return NotFound();
                 }
@@ -71,9 +69,9 @@ namespace MercadoIgnis.Pages.Calificaciones
             return RedirectToPage("./Index");
         }
 
-        private bool CalificacionExists(int id)
+        private bool PuestoExists(int id)
         {
-            return _context.Calificacion.Any(e => e.ID == id);
+            return _context.Puesto.Any(e => e.ID == id);
         }
     }
 }

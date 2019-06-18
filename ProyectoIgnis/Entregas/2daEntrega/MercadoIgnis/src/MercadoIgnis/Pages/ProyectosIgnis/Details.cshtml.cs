@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
+using MercadoIgnis.Areas.Identity.Data;
 //Patron Expert
 //Patron Creator
 //DetailsModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectoIgnis -por lo que DetailsModel es un experto conrespecto a crear ProyectoIgnis-.
@@ -13,9 +14,9 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
 {
     public class DetailsModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public DetailsModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public DetailsModel(IdentityContext context)
         {
             _context = context;
         }

@@ -15,7 +15,7 @@ using Xunit;
 using MercadoIgnis.Models;
 using MercadoIgnis.Pages.Especialidades; //Para usar la clase CreateModel/DeleteModel/EditModel de Especialidades
 using Microsoft.Extensions.DependencyInjection;
-
+using MercadoIgnis.Areas.Identity.Data;
 
 namespace MercadoIgnis.Tests.UnitTests
 {
@@ -27,10 +27,10 @@ namespace MercadoIgnis.Tests.UnitTests
         {
             // Arrange
             //Preparamos un contexto que guarde la base de datos en memoria ram.
-            var OptionsBuilder = new DbContextOptionsBuilder<MercadoIgnisContext>()
+            var OptionsBuilder = new DbContextOptionsBuilder<IdentityContext>()
                 .UseInMemoryDatabase("InMemoryDb");
             
-            MercadoIgnisContext TestMercadoIgnisContext = new MercadoIgnisContext(OptionsBuilder.Options);
+            IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
             
             //Creamos una Especialidad esperada
             Especialidad EspecialidadEsperada = new Especialidad(){ID=1,Area="Foto Fija",Nivel="Basico"};
@@ -38,7 +38,7 @@ namespace MercadoIgnis.Tests.UnitTests
             // Act
             //Creamos una pagina de tipo CreateModel (de Especialidades), la cual es la que se encarga de la logica 
             //de crear Especialidades en bd.
-            CreateModel PageCreateModel = new CreateModel(TestMercadoIgnisContext);
+            CreateModel PageCreateModel = new CreateModel(TestIdentityContext);
                       
           
             //Introducimos una Especialidad en el modelo de la pagina que creamos, a mano Seteamos los valores de 
@@ -51,7 +51,7 @@ namespace MercadoIgnis.Tests.UnitTests
 
             // Assert
             //Buscamos usando el contexto la Especialidad recien creada por id
-            Especialidad EspecialidadRecibida = await TestMercadoIgnisContext.Especialidad.FindAsync(1);
+            Especialidad EspecialidadRecibida = await TestIdentityContext.Especialidad.FindAsync(1);
             
             //Comparamos que la que creamos en el modelo de la pagina y por ende mandamos a crear en bd, 
             //y la Especialidad que recibimos de bd con id 1, tengan igual Nivel y Area
@@ -74,28 +74,28 @@ namespace MercadoIgnis.Tests.UnitTests
         {
             // Arrange
             //Preparamos un contexto que guarde la base de datos en memoria ram.
-            var OptionsBuilder = new DbContextOptionsBuilder<MercadoIgnisContext>()
+            var OptionsBuilder = new DbContextOptionsBuilder<IdentityContext>()
                 .UseInMemoryDatabase("InMemoryDb");
             
-            MercadoIgnisContext TestMercadoIgnisContext = new MercadoIgnisContext(OptionsBuilder.Options);
+            IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
             Especialidad Especialidad= new Especialidad(){ID=1,Area="Foto Fija",Nivel="Basico"};
             
             //Guardamos una Especialidad en bd
-            TestMercadoIgnisContext.Especialidad.Add(Especialidad);
-            await TestMercadoIgnisContext.SaveChangesAsync();
+            TestIdentityContext.Especialidad.Add(Especialidad);
+            await TestIdentityContext.SaveChangesAsync();
             
            
             // Act
             //Creamos una pagina de tipo DeleteModel (de Especialidades), la cual es la que se encarga de la logica 
             //de borrar Especialidades en bd.
-            DeleteModel PageDeleteModel = new DeleteModel(TestMercadoIgnisContext);
+            DeleteModel PageDeleteModel = new DeleteModel(TestIdentityContext);
          
             //Simulamos un post que envíe el formulario de la pagina y por ende borre en bd la Especialidad que ingresamos en bd anteriormente
             await PageDeleteModel.OnPostAsync(Especialidad.ID);
 
             // Assert
             //Buscamos si aún esta en bd la Especialidad que debió haber sido borrada por la pagina
-            Especialidad EspecialidadRecibida = await TestMercadoIgnisContext.Especialidad.FindAsync(Especialidad.ID);
+            Especialidad EspecialidadRecibida = await TestIdentityContext.Especialidad.FindAsync(Especialidad.ID);
             
             
             Assert.Null(EspecialidadRecibida);
@@ -109,15 +109,15 @@ namespace MercadoIgnis.Tests.UnitTests
         {
             // Arrange
             //Preparamos un contexto que guarde la base de datos en memoria ram.
-            var OptionsBuilder = new DbContextOptionsBuilder<MercadoIgnisContext>()
+            var OptionsBuilder = new DbContextOptionsBuilder<IdentityContext>()
                 .UseInMemoryDatabase("InMemoryDb");
             
-            MercadoIgnisContext TestMercadoIgnisContext = new MercadoIgnisContext(OptionsBuilder.Options);
+            IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
             Especialidad Especialidad= new Especialidad(){ID=2,Area="Foto Fija",Nivel="Basico"};
             
             //Guardamos una Especialidad en bd
-            TestMercadoIgnisContext.Especialidad.Add(Especialidad);
-            TestMercadoIgnisContext.SaveChanges();
+            TestIdentityContext.Especialidad.Add(Especialidad);
+            TestIdentityContext.SaveChanges();
             
             //Creo una instancia de Especialidad para comparar más adelante
             Especialidad EspecialidadEsperada= new Especialidad(){ID=2,Area="Animacion",Nivel="Avanzado"};
@@ -125,7 +125,7 @@ namespace MercadoIgnis.Tests.UnitTests
             // Act
             //Creamos una pagina de tipo EditModel (de Especialidades), la cual es la que se encarga de la logica 
             //de editar Especialidades en bd. 
-            EditModel PageEditModel = new EditModel(TestMercadoIgnisContext);
+            EditModel PageEditModel = new EditModel(TestIdentityContext);
 
             //Simulamos haber hecho el edit en una especialidad con el id
             await PageEditModel.OnGetAsync(Especialidad.ID);
@@ -139,7 +139,7 @@ namespace MercadoIgnis.Tests.UnitTests
 
             // Assert
             //Buscamos si aún esta en bd la Especialidad que debió haber sido editada por la pagina
-            Especialidad EspecialidadRecibida = await TestMercadoIgnisContext.Especialidad.FindAsync(Especialidad.ID);
+            Especialidad EspecialidadRecibida = await TestIdentityContext.Especialidad.FindAsync(Especialidad.ID);
             
             
             Assert.Equal(

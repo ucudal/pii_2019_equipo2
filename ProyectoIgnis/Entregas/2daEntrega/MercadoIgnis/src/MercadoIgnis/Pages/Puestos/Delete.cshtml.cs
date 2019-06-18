@@ -7,10 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using MercadoIgnis.Areas.Identity.Data;
-//Patron Expert
-//Patron Creator
-//DeleteModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion -por lo que DeleteModel es un experto conrespecto a crear Calificacion-.
-namespace MercadoIgnis.Pages.Calificaciones
+
+namespace MercadoIgnis.Pages.Puestos
 {
     public class DeleteModel : PageModel
     {
@@ -22,7 +20,7 @@ namespace MercadoIgnis.Pages.Calificaciones
         }
 
         [BindProperty]
-        public Calificacion Calificacion { get; set; }
+        public Puesto Puesto { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,9 +29,10 @@ namespace MercadoIgnis.Pages.Calificaciones
                 return NotFound();
             }
 
-            Calificacion = await _context.Calificacion.FirstOrDefaultAsync(m => m.ID == id);
+            Puesto = await _context.Puesto
+                .Include(p => p.Especialidad).FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Calificacion == null)
+            if (Puesto == null)
             {
                 return NotFound();
             }
@@ -47,11 +46,11 @@ namespace MercadoIgnis.Pages.Calificaciones
                 return NotFound();
             }
 
-            Calificacion = await _context.Calificacion.FindAsync(id);
+            Puesto = await _context.Puesto.FindAsync(id);
 
-            if (Calificacion != null)
+            if (Puesto != null)
             {
-                _context.Calificacion.Remove(Calificacion);
+                _context.Puesto.Remove(Puesto);
                 await _context.SaveChangesAsync();
             }
 

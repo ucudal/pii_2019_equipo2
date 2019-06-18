@@ -2,16 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
-
+using MercadoIgnis.Areas.Identity.Data;
 namespace MercadoIgnis.Models
 {
     public static class SeedData
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new MercadoIgnisContext(
+            using (var context = new IdentityContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<MercadoIgnisContext>>()))
+                    DbContextOptions<IdentityContext>>()))
             {
                 // Look for any movies.
                 if (context.ProyectoPersonal.Any())
@@ -43,6 +43,7 @@ namespace MercadoIgnis.Models
                     }
   
                 );
+                /*
                 if (context.Calificacion.Any())
                 {
                     return;   // DB has been seeded
@@ -300,7 +301,7 @@ namespace MercadoIgnis.Models
                         Nivel = "Básico"
                     }
   
-                ); 
+                ); */
 
                 if (context.ProyectoIgnis.Any())
                 {

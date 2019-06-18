@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
+using MercadoIgnis.Areas.Identity.Data;
 //Patron Expert
 //Patron Creator
 //EditModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectoIgnis -por lo que EditModel es un experto conrespecto a crear ProyectoIgnis-.
@@ -14,9 +15,9 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
 {
     public class EditModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public EditModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public EditModel(IdentityContext context)
         {
             _context = context;
         }
