@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MercadoIgnis.Models;
+using MercadoIgnis.Areas.Identity.Data;
 //Patron Expert
 //Patron Creator
 //CreateModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion -por lo que CreateModel es un experto conrespecto a crear Calificacion-.
@@ -14,9 +15,9 @@ namespace MercadoIgnis.Pages.Calificaciones
 {
     public class CreateModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public CreateModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public CreateModel(IdentityContext context)
         {
             _context = context;
         }

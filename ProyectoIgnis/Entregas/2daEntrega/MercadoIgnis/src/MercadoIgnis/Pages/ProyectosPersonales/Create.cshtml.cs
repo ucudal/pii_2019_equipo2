@@ -17,9 +17,9 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
     [Authorize(Roles=IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
     public class CreateModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public CreateModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public CreateModel(IdentityContext context)
         {
             _context = context;
         }

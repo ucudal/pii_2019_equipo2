@@ -15,6 +15,7 @@ using Xunit;
 using MercadoIgnis.Models;
 using MercadoIgnis.Pages.Calificaciones; //Para usar la clase CreateModel/DeleteModel/EditModel de Calificaciones
 using Microsoft.Extensions.DependencyInjection;
+using MercadoIgnis.Areas.Identity.Data;
 
 
 namespace MercadoIgnis.Tests.UnitTests
@@ -27,10 +28,10 @@ namespace MercadoIgnis.Tests.UnitTests
         {
             // Arrange
             //Preparamos un contexto que guarde la base de datos en memoria ram.
-            var OptionsBuilder = new DbContextOptionsBuilder<MercadoIgnisContext>()
+            var OptionsBuilder = new DbContextOptionsBuilder<IdentityContext>()
                 .UseInMemoryDatabase("InMemoryDb");
             
-            MercadoIgnisContext TestMercadoIgnisContext = new MercadoIgnisContext(OptionsBuilder.Options);
+            IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
             
             //Creamos una calificacion esperada
             Calificacion CalificacionEsperada = new Calificacion(){ID=1,Nota=5,Descripcion="Descripcion de prueba"};
@@ -38,7 +39,7 @@ namespace MercadoIgnis.Tests.UnitTests
             // Act
             //Creamos una pagina de tipo CreateModel (de Calificaciones), la cual es la que se encarga de la logica 
             //de crear calificaciones en bd.
-            CreateModel PageCreateModel = new CreateModel(TestMercadoIgnisContext);
+            CreateModel PageCreateModel = new CreateModel(TestIdentityContext);
                       
           
             //Introducimos una calificacion en el modelo de la pagina que creamos, a mano Seteamos los valores de 
@@ -51,7 +52,7 @@ namespace MercadoIgnis.Tests.UnitTests
 
             // Assert
             //Buscamos usando el contexto la Calificacion recien creada por id
-            Calificacion CalificacionRecibida = await TestMercadoIgnisContext.Calificacion.FindAsync(1);
+            Calificacion CalificacionRecibida = await TestIdentityContext.Calificacion.FindAsync(1);
             
             //Comparamos que la que creamos en el modelo de la pagina y por ende mandamos a crear en bd, 
             //y la calificacion que recibimos de bd con id 1, tengan igual descripcion y nota
@@ -74,28 +75,28 @@ namespace MercadoIgnis.Tests.UnitTests
         {
             // Arrange
             //Preparamos un contexto que guarde la base de datos en memoria ram.
-            var OptionsBuilder = new DbContextOptionsBuilder<MercadoIgnisContext>()
+            var OptionsBuilder = new DbContextOptionsBuilder<IdentityContext>()
                 .UseInMemoryDatabase("InMemoryDb");
             
-            MercadoIgnisContext TestMercadoIgnisContext = new MercadoIgnisContext(OptionsBuilder.Options);
+            IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
             Calificacion Calificacion= new Calificacion(){ID=1,Nota=5,Descripcion="Descripcion de prueba"};
             
             //Guardamos una calificacion en bd
-            TestMercadoIgnisContext.Calificacion.Add(Calificacion);
-            await TestMercadoIgnisContext.SaveChangesAsync();
+            TestIdentityContext.Calificacion.Add(Calificacion);
+            await TestIdentityContext.SaveChangesAsync();
             
            
             // Act
             //Creamos una pagina de tipo DeleteModel (de Calificaciones), la cual es la que se encarga de la logica 
             //de borrar calificaciones en bd.
-            DeleteModel pageDeleteModel = new DeleteModel(TestMercadoIgnisContext);
+            DeleteModel pageDeleteModel = new DeleteModel(TestIdentityContext);
          
             //Simulamos un post que envíe el formulario de la pagina y por ende borre en bd la calificacion que ingresamos en bd anteriormente
             await pageDeleteModel.OnPostAsync(Calificacion.ID);
 
             // Assert
             //Buscamos si aún esta en bd la calificacion que debió haber sido borrada por la pagina
-            Calificacion CalificacionRecibida = await TestMercadoIgnisContext.Calificacion.FindAsync(Calificacion.ID);
+            Calificacion CalificacionRecibida = await TestIdentityContext.Calificacion.FindAsync(Calificacion.ID);
             
             
             Assert.Null(CalificacionRecibida);
@@ -109,15 +110,15 @@ namespace MercadoIgnis.Tests.UnitTests
         {
             // Arrange
             //Preparamos un contexto que guarde la base de datos en memoria ram.
-            var OptionsBuilder = new DbContextOptionsBuilder<MercadoIgnisContext>()
+            var OptionsBuilder = new DbContextOptionsBuilder<IdentityContext>()
                 .UseInMemoryDatabase("InMemoryDb");
             
-            MercadoIgnisContext TestMercadoIgnisContext = new MercadoIgnisContext(OptionsBuilder.Options);
+            IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
             Calificacion Calificacion= new Calificacion(){ID=2,Nota=5,Descripcion="Descripcion de prueba"};
             
             //Guardamos una calificacion en bd
-            TestMercadoIgnisContext.Calificacion.Add(Calificacion);
-            TestMercadoIgnisContext.SaveChanges();
+            TestIdentityContext.Calificacion.Add(Calificacion);
+            TestIdentityContext.SaveChanges();
             
             //Creo una instancia de Calificacion para comparar más adelante
             Calificacion CalificacionEsperada= new Calificacion(){ID=2,Nota=1,Descripcion="Nueva Descripcion"};
@@ -125,7 +126,7 @@ namespace MercadoIgnis.Tests.UnitTests
             // Act
             //Creamos una pagina de tipo EditModel (de Calificaciones), la cual es la que se encarga de la logica 
             //de editar calificaciones en bd. 
-            EditModel PageEditModel = new EditModel(TestMercadoIgnisContext);
+            EditModel PageEditModel = new EditModel(TestIdentityContext);
 
             //Simulamos haber hecho el edit en una calificaion con el id
             await PageEditModel.OnGetAsync(Calificacion.ID);
@@ -139,7 +140,7 @@ namespace MercadoIgnis.Tests.UnitTests
 
             // Assert
             //Buscamos si aún esta en bd la calificacion que debió haber sido editada por la pagina
-            Calificacion CalificacionRecibida = await TestMercadoIgnisContext.Calificacion.FindAsync(Calificacion.ID);
+            Calificacion CalificacionRecibida = await TestIdentityContext.Calificacion.FindAsync(Calificacion.ID);
             
             
             Assert.Equal(

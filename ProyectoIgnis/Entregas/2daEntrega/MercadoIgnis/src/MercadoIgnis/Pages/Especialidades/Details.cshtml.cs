@@ -18,9 +18,9 @@ namespace MercadoIgnis.Pages.Especialidades
     [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class DetailsModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public DetailsModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public DetailsModel(IdentityContext context)
         {
             _context = context;
         }
@@ -35,7 +35,7 @@ namespace MercadoIgnis.Pages.Especialidades
             }
 
             Especialidad = await _context.Especialidad.FirstOrDefaultAsync(m => m.ID == id);
-
+            
             if (Especialidad == null)
             {
                 return NotFound();

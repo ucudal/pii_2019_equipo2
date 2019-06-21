@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MercadoIgnis.Models;
+using MercadoIgnis.Areas.Identity.Data;
 
 namespace MercadoIgnis.Tests
 {
     public static class Utilities
     {
         #region snippet1
-        public static DbContextOptions<MercadoIgnisContext> TestDbContextOptions()
+        public static DbContextOptions<IdentityContext> TestDbContextOptions()
         {
             // Create a new service provider to create a new in-memory database.
             var serviceProvider = new ServiceCollection()
@@ -22,7 +23,7 @@ namespace MercadoIgnis.Tests
             // Create a new options instance using an in-memory database and 
             // IServiceProvider that the context should resolve all of its 
             // services from.
-            var builder = new DbContextOptionsBuilder<MercadoIgnisContext>()
+            var builder = new DbContextOptionsBuilder<IdentityContext>()
                 .UseInMemoryDatabase("InMemoryDb")
                 .UseInternalServiceProvider(serviceProvider);
 

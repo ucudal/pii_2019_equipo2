@@ -16,9 +16,9 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
     [Authorize(Roles=IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
     public class DeleteModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public DeleteModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public DeleteModel(IdentityContext context)
         {
             _context = context;
         }

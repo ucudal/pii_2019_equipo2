@@ -19,9 +19,9 @@ namespace MercadoIgnis.Pages.Especialidades
     
     public class CreateModel : PageModel
     {
-        private readonly MercadoIgnis.Models.MercadoIgnisContext _context;
+        private readonly IdentityContext _context;
 
-        public CreateModel(MercadoIgnis.Models.MercadoIgnisContext context)
+        public CreateModel(IdentityContext context)
         {
             _context = context;
         }
