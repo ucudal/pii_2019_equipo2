@@ -1,0 +1,43 @@
+@page
+@model MercadoIgnis.Pages.ProyectosPersonales.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>ProyectoPersonal</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProyectoPersonal.TipoDeProyecto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProyectoPersonal.TipoDeProyecto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProyectoPersonal.Descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProyectoPersonal.Descripcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProyectoPersonal.FechaComienzo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProyectoPersonal.FechaComienzo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProyectoPersonal.FechaFinalizacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProyectoPersonal.FechaFinalizacion)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ProyectoPersonal.ID">Editar</a> |
+    <a asp-page="./Index">Volver a la lista</a>
+</div>

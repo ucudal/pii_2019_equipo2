@@ -1,0 +1,67 @@
+@page
+@model MercadoIgnis.Areas.Identity.Pages.Users.IndexModel
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>Usuarios</h1>
+
+<!-- <p>
+    <a asp-page="Create">Crear Nuevo</a>
+</p> -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Fecha Nacimiento
+            </th>
+            <th>
+                Nombre de usuario
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Rol
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ApplicationUser) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @if(!string.IsNullOrEmpty(item.Role))
+                {
+                    @Html.DisplayFor(modelItem => item.Role)
+                }
+                else
+                {
+                    <text>-- Seleccione un Rol --</text>
+                }
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+@page
+@model MercadoIgnis.Pages.ProyectosIgnis.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Proyectos Ignis</h1>
+
+<p>
+    <a asp-page="Create">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoIgnis[0].Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoIgnis[0].FechaComienzo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoIgnis[0].FechaFinalizacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.ProyectoIgnis) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaComienzo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFinalizacion)
+            </td>
+            <td>
+                <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> |
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
