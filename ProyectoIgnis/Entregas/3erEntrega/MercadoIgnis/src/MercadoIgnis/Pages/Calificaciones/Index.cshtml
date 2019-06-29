@@ -1,0 +1,42 @@
+@page
+@model MercadoIgnis.Pages.Calificaciones.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Calificaciones de un tecnico</h1>
+
+<p>
+    <a asp-page="Create">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Calificacion[0].Nota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calificacion[0].Descripcion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Calificacion) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

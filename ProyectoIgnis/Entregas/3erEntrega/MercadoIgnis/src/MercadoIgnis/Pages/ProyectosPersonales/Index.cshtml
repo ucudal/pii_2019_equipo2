@@ -1,0 +1,63 @@
+@page
+@model MercadoIgnis.Pages.ProyectosPersonales.IndexModel
+
+@{
+    ViewData["Title"] = "ProyectosPersonales";
+}
+
+<h1>Proyectos Personales</h1>
+
+<p>
+    <a asp-page="Create">Crear Nuevo</a>
+</p>
+<form>
+    <p>
+        <select asp-for="busquedaPorTipo" asp-items="Model.Tipo">
+            <option value="">Todas</option>
+        </select>
+        Busqueda por fechas de comienzo mayores a: <input type="text" asp-for="FechadeComienzo" />
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].TipoDeProyecto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].FechaComienzo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].FechaFinalizacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ProyectoPersonal) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoDeProyecto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaComienzo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFinalizacion)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
