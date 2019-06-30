@@ -36,6 +36,8 @@ namespace MercadoIgnis.Areas.Identity.Data
 
         public DbSet<MercadoIgnis.Models.ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
 
+        public DbSet<MercadoIgnis.Models.EspecialidadesTecnicos> EspecialidadesTecnicos { get; set; }
+
         
 
         

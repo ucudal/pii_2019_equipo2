@@ -64,7 +64,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 1,
-                        Area = "Foto Fija",
+                        Area = "Foto Fija - Básico ",
                         Nivel = "Básico"
                     }
                 );
@@ -74,7 +74,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 2,
-                        Area = "Foto Fija",
+                        Area = "Foto Fija - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -84,7 +84,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 3,
-                        Area = "Asistente de cámara",
+                        Area = "Asistente de cámara - Básico",
                         Nivel = "Básico"
                     }
 
@@ -94,7 +94,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 4,
-                        Area = "Asistente de producción",
+                        Area = "Asistente de producción - Básico",
                         Nivel = "Básico"
                     }
 
@@ -104,7 +104,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 5,
-                        Area = "Asistente de dirección",
+                        Area = "Asistente de dirección - Básico",
                         Nivel = "Básico"
                     }
 
@@ -114,7 +114,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 6,
-                        Area = "Asistente de arte (escenografía, vestuario, utilería)",
+                        Area = "Asistente de arte (escenografía, vestuario, utilería) - Básico",
                         Nivel = "Básico"
                     }
 
@@ -124,7 +124,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 7,
-                        Area = "Sonidista",
+                        Area = "Sonidista - Básico",
                         Nivel = "Básico"
                     }
 
@@ -134,7 +134,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 8,
-                        Area = "Editor",
+                        Area = "Editor - Básico",
                         Nivel = "Básico"
                     }
 
@@ -144,7 +144,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 9,
-                        Area = "Redactor creativo",
+                        Area = "Redactor creativo - Básico",
                         Nivel = "Básico"
                     }
 
@@ -154,7 +154,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 10,
-                        Area = "Presentador / conductor",
+                        Area = "Presentador / conductor - Básico",
                         Nivel = "Básico"
                     }
 
@@ -164,7 +164,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 11,
-                        Area = "Ilustrador",
+                        Area = "Ilustrador - Básico",
                         Nivel = "Básico"
                     }
 
@@ -174,7 +174,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 12,
-                        Area = "Diseñador gráfico",
+                        Area = "Diseñador gráfico - Básico",
                         Nivel = "Básico"
                     }
 
@@ -184,7 +184,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 13,
-                        Area = "Operador de Cabina 02",
+                        Area = "Operador de Cabina 02 - Básico",
                         Nivel = "Básico"
                     }
 
@@ -193,7 +193,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 14,
-                        Area = "Operador de Cabina 02",
+                        Area = "Operador de Cabina 02 - Básico",
                         Nivel = "Básico"
                     }
 
@@ -203,7 +203,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 15,
-                        Area = "Cámara y asistente de cámara",
+                        Area = "Cámara y asistente de cámara - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -212,7 +212,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 16,
-                        Area = "Cámara 360º",
+                        Area = "Cámara 360º - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -221,7 +221,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 17,
-                        Area = "Postproductor de imagen",
+                        Area = "Postproductor de imagen - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -230,7 +230,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 18,
-                        Area = "Editor",
+                        Area = "Editor - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -239,7 +239,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 19,
-                        Area = "Sonidista",
+                        Area = "Sonidista - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -248,7 +248,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 20,
-                        Area = "Postproductor de sonido",
+                        Area = "Postproductor de sonido - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -257,7 +257,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 21,
-                        Area = "Redactor creativo",
+                        Area = "Redactor creativo - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -266,7 +266,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 22,
-                        Area = "Presentador / conductor",
+                        Area = "Presentador / conductor - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -275,7 +275,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 23,
-                        Area = "Animador / infografista",
+                        Area = "Animador / infografista - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -284,7 +284,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 24,
-                        Area = "Operador de Cabina 01 Estudio de Grabación",
+                        Area = "Operador de Cabina 01 Estudio de Grabación - Avanzado",
                         Nivel = "Avanzado"
                     }
 
@@ -293,7 +293,7 @@ namespace MercadoIgnis.Models
                     new Especialidad
                     {
                         ID = 25,
-                        Area = "Operador de Cabina 03 y Estudio de Radio",
+                        Area = "Operador de Cabina 03 y Estudio de Radio - Básico",
                         Nivel = "Básico"
                     }
   

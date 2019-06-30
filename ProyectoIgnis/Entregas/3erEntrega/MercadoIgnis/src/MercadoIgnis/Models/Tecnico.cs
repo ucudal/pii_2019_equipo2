@@ -13,8 +13,8 @@ namespace MercadoIgnis.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string ID{get;set;}
         public bool EsEgresado{ get; set; }
-        public ICollection<Proyecto> Proyectos { get; set; }
-        public ICollection<Especialidad> Especialidades { get; set; }
+        //public ICollection<Proyecto> Proyectos { get; set; } ver si se precisa
+        public ICollection<EspecialidadesTecnicos> EspecialidadesTecnicos { get; set; }
         
     }
 }
