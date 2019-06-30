@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190630164702_InitialCreateIdentity")]
+    [Migration("20190630201206_InitialCreateIdentity")]
     partial class InitialCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,38 +106,63 @@ namespace MercadoIgnis.Migrations
 
                     b.Property<string>("Nivel");
 
-                    b.Property<string>("TecnicoID");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("TecnicoID");
 
                     b.ToTable("Especialidad");
                 });
 
-            modelBuilder.Entity("MercadoIgnis.Models.Proyecto", b =>
+            modelBuilder.Entity("MercadoIgnis.Models.EspecialidadesTecnicos", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("EspecialidadID");
+
+                    b.Property<string>("TecnicoID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("EspecialidadID");
+
+                    b.HasIndex("TecnicoID");
+
+                    b.ToTable("EspecialidadesTecnicos");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.ProyectoIgnis", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Descripcion");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
+                    b.Property<int>("Estado");
 
                     b.Property<DateTime>("FechaComienzo");
 
                     b.Property<DateTime>("FechaFinalizacion");
 
-                    b.Property<string>("TecnicoID");
+                    b.HasKey("ID");
+
+                    b.ToTable("ProyectoIgnis");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.ProyectoPersonal", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descripcion");
+
+                    b.Property<DateTime>("FechaComienzo");
+
+                    b.Property<DateTime>("FechaFinalizacion");
+
+                    b.Property<string>("TipoDeProyecto");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("TecnicoID");
-
-                    b.ToTable("Proyecto");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Proyecto");
+                    b.ToTable("ProyectoPersonal");
                 });
 
             modelBuilder.Entity("MercadoIgnis.Models.ProyectosIgnisClientes", b =>
@@ -299,35 +324,15 @@ namespace MercadoIgnis.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MercadoIgnis.Models.ProyectoIgnis", b =>
+            modelBuilder.Entity("MercadoIgnis.Models.EspecialidadesTecnicos", b =>
                 {
-                    b.HasBaseType("MercadoIgnis.Models.Proyecto");
+                    b.HasOne("MercadoIgnis.Models.Especialidad", "Especialidad")
+                        .WithMany()
+                        .HasForeignKey("EspecialidadID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Property<int>("Estado");
-
-                    b.HasDiscriminator().HasValue("ProyectoIgnis");
-                });
-
-            modelBuilder.Entity("MercadoIgnis.Models.ProyectoPersonal", b =>
-                {
-                    b.HasBaseType("MercadoIgnis.Models.Proyecto");
-
-                    b.Property<string>("TipoDeProyecto");
-
-                    b.HasDiscriminator().HasValue("ProyectoPersonal");
-                });
-
-            modelBuilder.Entity("MercadoIgnis.Models.Especialidad", b =>
-                {
-                    b.HasOne("MercadoIgnis.Models.Tecnico")
-                        .WithMany("Especialidades")
-                        .HasForeignKey("TecnicoID");
-                });
-
-            modelBuilder.Entity("MercadoIgnis.Models.Proyecto", b =>
-                {
-                    b.HasOne("MercadoIgnis.Models.Tecnico")
-                        .WithMany("Proyectos")
+                    b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
+                        .WithMany("EspecialidadesTecnicos")
                         .HasForeignKey("TecnicoID");
                 });
 

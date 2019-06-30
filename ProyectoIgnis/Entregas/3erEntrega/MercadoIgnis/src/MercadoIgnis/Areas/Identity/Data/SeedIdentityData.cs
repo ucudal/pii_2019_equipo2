@@ -29,7 +29,7 @@ namespace MercadoIgnis.Areas.Identity.Data
 
         private static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
-            // Crea el primer y �nico administrador si no existe. Primero crea un usuario y luego se asigna el rol de adminstrador.
+            // Crea el primer y único administrador si no existe. Primero crea un usuario y luego se asigna el rol de adminstrador.
             if (userManager.FindByNameAsync(IdentityData.AdminUserName).Result == null)
             {
                 ApplicationUser user = new ApplicationUser();

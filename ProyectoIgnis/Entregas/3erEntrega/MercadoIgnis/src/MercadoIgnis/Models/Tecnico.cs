@@ -15,8 +15,8 @@ namespace MercadoIgnis.Models
         
         
         public bool EsEgresado{ get; set; }
-        public ICollection<Proyecto> Proyectos { get; set; }
-        public ICollection<Especialidad> Especialidades { get; set; }
+        //public ICollection<Proyecto> Proyectos { get; set; } ver si se precisa
+        public ICollection<EspecialidadesTecnicos> EspecialidadesTecnicos { get; set; }
         
     }
 }
