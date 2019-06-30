@@ -7,14 +7,14 @@ namespace MercadoIgnis.Models
     public class Puesto
     {
         public int ID { get; set; }
-        
+
         [ScaffoldColumn(false)]
-        public int EspecialidadID {get; set;}
+        public int EspecialidadID { get; set; }
         public Especialidad Especialidad { get; set; } //Se carga con el ID Especialidad
-        
+
         [ScaffoldColumn(false)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public ProyectoIgnis ProyectoIgnis { get; set; }
-        public int ProyectoIgnisID {get; set;} 
+        public int ProyectoIgnisID { get; set; }
     }
 }

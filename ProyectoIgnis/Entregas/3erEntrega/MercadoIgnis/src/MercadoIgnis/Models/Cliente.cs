@@ -7,8 +7,8 @@ namespace MercadoIgnis.Models
 {
     public class Cliente : ApplicationUser
     {
-        
-        public double RUT {get; set;}
+
+        public double RUT { get; set; }
         public ICollection<ProyectoIgnis> ProyectosIgnis { get; set; }
     }
 }

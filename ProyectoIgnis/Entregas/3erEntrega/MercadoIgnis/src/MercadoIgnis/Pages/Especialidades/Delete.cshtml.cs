@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MercadoIgnis.Pages.Especialidades
 {
-    [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
+    [Authorize(Roles = IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class DeleteModel : PageModel
     {
         private readonly IdentityContext _context;

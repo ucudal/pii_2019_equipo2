@@ -9,11 +9,11 @@ namespace MercadoIgnis.Models
 
         [Display(Name = "Nota")]
         [DataType(DataType.Text)]
-        public int Nota {get; set;}
+        public int Nota { get; set; }
 
         [Display(Name = "Descripcion")]
         [DataType(DataType.Text)]
-        public string Descripcion {get; set;}
+        public string Descripcion { get; set; }
     }
 
 }

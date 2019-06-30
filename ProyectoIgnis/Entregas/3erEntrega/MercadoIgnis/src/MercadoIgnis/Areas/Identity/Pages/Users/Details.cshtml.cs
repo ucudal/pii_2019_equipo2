@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MercadoIgnis.Areas.Identity.Pages.Users
 {
-    [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
+    [Authorize(Roles = IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class DetailsModel : PageModel
     {
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;

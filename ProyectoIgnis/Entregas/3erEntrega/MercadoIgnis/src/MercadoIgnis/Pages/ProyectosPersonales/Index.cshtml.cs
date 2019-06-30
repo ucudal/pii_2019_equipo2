@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 //IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectosPersonales -por lo que IndexModel es un experto conrespecto a crear ProyectosPersonales-.
 namespace MercadoIgnis.Pages.ProyectosPersonales
 {
-    [Authorize(Roles=IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
+    [Authorize(Roles = IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
     public class IndexModel : PageModel
     {
         private readonly IdentityContext _context;
@@ -25,30 +25,30 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
             _context = context;
         }
 
-        public IList<ProyectoPersonal> ProyectoPersonal { get;set; }
-         [BindProperty(SupportsGet = true)]
+        public IList<ProyectoPersonal> ProyectoPersonal { get; set; }
+        [BindProperty(SupportsGet = true)]
 
         public string busquedaPorTipo { get; set; }
         // Requires using Microsoft.AspNetCore.Mvc.Rendering;
         public SelectList Tipo { get; set; }
         [BindProperty(SupportsGet = true)]
-      
-        public string FechadeComienzo { get; set; }  
+
+        public string FechadeComienzo { get; set; }
         public async Task OnGetAsync()
         {
             // // Use LINQ to get list of niveles.
             IQueryable<string> TipoQuery = from m in _context.ProyectoPersonal
-                                            orderby m.TipoDeProyecto
-                                            select m.TipoDeProyecto;
-            
+                                           orderby m.TipoDeProyecto
+                                           select m.TipoDeProyecto;
 
-            
- 
+
+
+
             ProyectoPersonal = await _context.ProyectoPersonal.ToListAsync();
 
             var ProyectosPersonales = from m in _context.ProyectoPersonal
-                 select m;
-            
+                                      select m;
+
             //Si Recibo algo no nulo del campo de texto
             if (!string.IsNullOrEmpty(busquedaPorTipo))
             {
@@ -62,7 +62,7 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
                 {
                     ProyectosPersonales = ProyectosPersonales.Where(x => x.FechaComienzo >= DateTime.Parse(FechadeComienzo));
                 }
-                
+
             }
             Tipo = new SelectList(await TipoQuery.Distinct().ToListAsync());
             ProyectoPersonal = await ProyectosPersonales.ToListAsync();

@@ -37,7 +37,7 @@ namespace MercadoIgnis.Pages.Puestos
             {
                 return NotFound();
             }
-           ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "ID");
+            ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "ID");
             return Page();
         }
 

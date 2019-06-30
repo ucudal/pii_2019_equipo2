@@ -38,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.ProyectoPersonal) {
+    @foreach (var item in Model.ProyectoPersonal) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TipoDeProyecto)
@@ -58,6 +58,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
