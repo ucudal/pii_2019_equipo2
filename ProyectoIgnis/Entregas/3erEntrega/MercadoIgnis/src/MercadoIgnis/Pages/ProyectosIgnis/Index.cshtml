@@ -23,6 +23,9 @@
                 @Html.DisplayNameFor(model => model.ProyectoIgnis[0].FechaFinalizacion)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ProyectoIgnis[0].Estado)
+            </th>
+            <th>
                Propietario
             </th>
             <th></th>
@@ -39,6 +42,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Proyecto.FechaFinalizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proyecto.Estado)
             </td>
             <td>
                @Html.DisplayFor(modelItem => item.NombrePropietario)

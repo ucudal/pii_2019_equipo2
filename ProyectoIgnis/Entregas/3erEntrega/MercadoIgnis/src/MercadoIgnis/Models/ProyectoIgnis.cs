@@ -14,7 +14,7 @@ namespace MercadoIgnis.Models
             Cancelado 
             };
 
-        [ScaffoldColumn(false)]
+        
         [Display(Name = "Estado Proyecto")]
         [DataType(DataType.Text)]
         public EnumEstadoProyecto Estado { get; set; }
