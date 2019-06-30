@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190630043356_InitialCreateIdentity")]
+    [Migration("20190630162032_InitialCreateIdentity")]
     partial class InitialCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,11 +92,7 @@ namespace MercadoIgnis.Migrations
                 {
                     b.Property<string>("ID");
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Cliente");
                 });
@@ -185,13 +181,9 @@ namespace MercadoIgnis.Migrations
                 {
                     b.Property<string>("ID");
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<bool>("EsEgresado");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Tecnico");
                 });
@@ -325,13 +317,6 @@ namespace MercadoIgnis.Migrations
                     b.HasDiscriminator().HasValue("ProyectoPersonal");
                 });
 
-            modelBuilder.Entity("MercadoIgnis.Models.Cliente", b =>
-                {
-                    b.HasOne("MercadoIgnis.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-                });
-
             modelBuilder.Entity("MercadoIgnis.Models.Especialidad", b =>
                 {
                     b.HasOne("MercadoIgnis.Models.Tecnico")
@@ -369,13 +354,6 @@ namespace MercadoIgnis.Migrations
                         .WithMany("Puestos")
                         .HasForeignKey("ProyectoIgnisID")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MercadoIgnis.Models.Tecnico", b =>
-                {
-                    b.HasOne("MercadoIgnis.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

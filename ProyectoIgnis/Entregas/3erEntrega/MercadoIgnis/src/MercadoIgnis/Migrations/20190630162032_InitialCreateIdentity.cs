@@ -64,6 +64,29 @@ namespace MercadoIgnis.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cliente",
+                columns: table => new
+                {
+                    ID = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cliente", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tecnico",
+                columns: table => new
+                {
+                    ID = table.Column<string>(nullable: false),
+                    EsEgresado = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tecnico", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -122,43 +145,6 @@ namespace MercadoIgnis.Migrations
                         principalTable: "ApplicationUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Cliente",
-                columns: table => new
-                {
-                    ID = table.Column<string>(nullable: false),
-                    ApplicationUserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cliente", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Cliente_ApplicationUser_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "ApplicationUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tecnico",
-                columns: table => new
-                {
-                    ID = table.Column<string>(nullable: false),
-                    ApplicationUserId = table.Column<string>(nullable: true),
-                    EsEgresado = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tecnico", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Tecnico_ApplicationUser_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "ApplicationUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -342,11 +328,6 @@ namespace MercadoIgnis.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cliente_ApplicationUserId",
-                table: "Cliente",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Especialidad_TecnicoID",
                 table: "Especialidad",
                 column: "TecnicoID");
@@ -376,11 +357,6 @@ namespace MercadoIgnis.Migrations
                 name: "IX_Puesto_ProyectoIgnisID",
                 table: "Puesto",
                 column: "ProyectoIgnisID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tecnico_ApplicationUserId",
-                table: "Tecnico",
-                column: "ApplicationUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -413,6 +389,9 @@ namespace MercadoIgnis.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "ApplicationUser");
+
+            migrationBuilder.DropTable(
                 name: "Cliente");
 
             migrationBuilder.DropTable(
@@ -423,9 +402,6 @@ namespace MercadoIgnis.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tecnico");
-
-            migrationBuilder.DropTable(
-                name: "ApplicationUser");
         }
     }
 }

@@ -302,12 +302,13 @@ namespace MercadoIgnis.Models
                     }
   
                 ); 
-
+                
+                /* deshabilitados porque falta agregar la relacion con el cliente que lo creó
                 if (context.ProyectoIgnis.Any())
                 {
                     return;   // DB has been seeded
                 }
-                /* deshabilitados porque falta agregar la relacion con el cliente que lo creó
+                
                 context.ProyectoIgnis.AddRange(
                     new ProyectoIgnis
                     {
@@ -335,8 +336,9 @@ namespace MercadoIgnis.Models
                         Descripcion= "Demo de canción"
                     }
                 );
+                */
                 context.SaveChanges();
-                 */
+                 
                 
             }
         }
