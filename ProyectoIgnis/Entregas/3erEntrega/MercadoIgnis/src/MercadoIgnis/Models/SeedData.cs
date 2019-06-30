@@ -307,7 +307,7 @@ namespace MercadoIgnis.Models
                 {
                     return;   // DB has been seeded
                 }
-
+                /* deshabilitados porque falta agregar la relacion con el cliente que lo creó
                 context.ProyectoIgnis.AddRange(
                     new ProyectoIgnis
                     {
@@ -336,6 +336,7 @@ namespace MercadoIgnis.Models
                     }
                 );
                 context.SaveChanges();
+                 */
                 
             }
         }
