@@ -17,8 +17,8 @@ namespace MercadoIgnis.Areas.Identity.Data
         {
         }
 
-        public DbSet<MercadoIgnis.Models.Tecnico> Tecnicos { get; set; }
-        public DbSet<MercadoIgnis.Models.Cliente> Clientes { get; set; }
+        public DbSet<MercadoIgnis.Models.Tecnico> Tecnico { get; set; }
+        public DbSet<MercadoIgnis.Models.Cliente> Cliente { get; set; }
         public DbSet<Identity.Data.ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<MercadoIgnis.Models.Especialidad> Especialidad { get; set; }
 
@@ -29,15 +29,22 @@ namespace MercadoIgnis.Areas.Identity.Data
         public DbSet<MercadoIgnis.Models.Puesto> Puesto { get; set; }
         public DbSet<MercadoIgnis.Models.Calificacion> Calificacion { get; set; }
 
+        public DbSet<MercadoIgnis.Models.ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
+
+        
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
-            //builder.Entity<Tecnico>().ToTable("Tecnico");
-            //builder.Entity<Cliente>().ToTable("Cliente");
+           
+
             builder.Entity<ApplicationUser>().ToTable("ApplicationUser");
+
+          
+       
         }
     }
 }

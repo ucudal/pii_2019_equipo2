@@ -1,3 +1,4 @@
+@echo off
 echo Borrando...
 rd Migrations /s /q
 del BdMercadoIgnis.db

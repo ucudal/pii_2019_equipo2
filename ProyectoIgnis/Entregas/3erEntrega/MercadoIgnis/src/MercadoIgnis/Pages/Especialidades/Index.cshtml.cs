@@ -41,6 +41,7 @@ namespace MercadoIgnis.Pages.Especialidades
             IQueryable<string> nivelesQuery = from m in _context.Especialidad
                                             orderby m.Nivel
                                             select m.Nivel;
+                                            
 
             
  

@@ -19,7 +19,9 @@ namespace MercadoIgnis.Models
         [DataType(DataType.Text)]
         public EnumEstadoProyecto Estado { get; set; }
 
-        public IList<Puesto> Puestos { get; set; }
+       public ICollection<Puesto> Puestos { get; set; }
+
+       public ProyectosIgnisClientes ProyectosIgnisClientes {get; set; } //estaba como collection
        
 
 

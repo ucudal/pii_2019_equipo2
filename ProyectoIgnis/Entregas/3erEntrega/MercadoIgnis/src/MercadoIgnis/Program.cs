@@ -6,11 +6,15 @@ using MercadoIgnis.Models;
 using System;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Areas.Identity.Data;
+using MercadoIgnis.Areas.Identity.Pages.Account;
 
 namespace MercadoIgnis
 {
     public class Program
     {
+        
+       
+        
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
@@ -21,11 +25,13 @@ namespace MercadoIgnis
 
                 try
                 {
-                    var context=services.
+                   var context=services.
                         GetRequiredService<IdentityContext>();
                     context.Database.Migrate();
                     SeedIdentityData.Initialize(services);
                     SeedData.Initialize(services);
+                    ContextoSingleton.Instance.Initialize(services);
+                    
                 }
                 catch (Exception ex)
                 {

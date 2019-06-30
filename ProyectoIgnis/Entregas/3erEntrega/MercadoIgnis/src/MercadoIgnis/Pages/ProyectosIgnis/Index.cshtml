@@ -22,6 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProyectoIgnis[0].FechaFinalizacion)
             </th>
+            <th>
+               Propietario
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,6 +39,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaFinalizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProyectosIgnisClientes.ClienteID)
             </td>
             <td>
                 <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> |

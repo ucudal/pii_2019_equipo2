@@ -39,10 +39,11 @@ namespace MercadoIgnis.Models
                         FechaComienzo = DateTime.Parse("2019-2-16"),
                         FechaFinalizacion = DateTime.Parse("2019-2-19"),
                         TipoDeProyecto = "Edicion 3d",
-                        
+
                     }
-  
+
                 );
+                
                 if (context.Calificacion.Any())
                 {
                     return;   // DB has been seeded
@@ -300,7 +301,7 @@ namespace MercadoIgnis.Models
                         Nivel = "Básico"
                     }
   
-                );
+                ); 
 
                 if (context.ProyectoIgnis.Any())
                 {
