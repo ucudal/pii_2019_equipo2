@@ -5,21 +5,19 @@ namespace MercadoIgnis.Models
 {
     public abstract class Proyecto
     {
-        
         public int ID { get; set; }
-        
+
         [Display(Name = "Descripcion")]
         [DataType(DataType.Text)]
-        public string Descripcion { get; set; }  
+        public string Descripcion { get; set; }
 
         [Display(Name = "Fecha Comienzo")]
         [DataType(DataType.Date)]
-        public DateTime FechaComienzo { get; set; }  
+        public DateTime FechaComienzo { get; set; }
 
         [Display(Name = "Fecha Finalización")]
         [DataType(DataType.Date)]
-        public DateTime FechaFinalizacion { get; set; }  
-
+        public DateTime FechaFinalizacion { get; set; }
         
     }
 }

@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MercadoIgnis.Pages.Especialidades
 {
-    [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
+    [Authorize(Roles = IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class IndexModel : PageModel
     {
         private readonly IdentityContext _context;
@@ -26,8 +26,8 @@ namespace MercadoIgnis.Pages.Especialidades
             _context = context;
         }
 
-        public IList<Especialidad> Especialidad { get;set; }
-         [BindProperty(SupportsGet = true)]
+        public IList<Especialidad> Especialidad { get; set; }
+        [BindProperty(SupportsGet = true)]
 
         public string busquedaPorTexto { get; set; }
         // Requires using Microsoft.AspNetCore.Mvc.Rendering;
@@ -39,21 +39,18 @@ namespace MercadoIgnis.Pages.Especialidades
         {
             // Use LINQ to get list of niveles.
             IQueryable<string> nivelesQuery = from m in _context.Especialidad
-                                            orderby m.Nivel
-                                            select m.Nivel;
-                                            
+                                              orderby m.Nivel
+                                              select m.Nivel;
 
-            
- 
             Especialidad = await _context.Especialidad.ToListAsync();
 
             var especialidades = from m in _context.Especialidad
-                 select m;
-            
+                                 select m;
+
             //Si Recibo algo no nulo del campo de texto
             if (!string.IsNullOrEmpty(busquedaPorTexto))
             {
-                especialidades = especialidades.Where(s => s.Area.Contains(busquedaPorTexto,StringComparison.CurrentCultureIgnoreCase));
+                especialidades = especialidades.Where(s => s.Area.Contains(busquedaPorTexto, StringComparison.CurrentCultureIgnoreCase));
             }
 
             //Si recibo algo no nulo del option box con los niveles

@@ -11,7 +11,7 @@ namespace MercadoIgnis.Models
         {
             using (var context = new IdentityContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<IdentityContext>>()))
+                DbContextOptions<IdentityContext>>()))
             {
                 // Look for any movies.
                 if (context.ProyectoPersonal.Any())
@@ -27,9 +27,8 @@ namespace MercadoIgnis.Models
                         FechaComienzo = DateTime.Parse("2019-2-12"),
                         FechaFinalizacion = DateTime.Parse("2019-4-21"),
                         TipoDeProyecto = "Foto",
-                        
                     }
-  
+
                 );
                 context.ProyectoPersonal.AddRange(
                     new ProyectoPersonal
@@ -39,7 +38,6 @@ namespace MercadoIgnis.Models
                         FechaComienzo = DateTime.Parse("2019-2-16"),
                         FechaFinalizacion = DateTime.Parse("2019-2-19"),
                         TipoDeProyecto = "Edicion 3d",
-
                     }
 
                 );
@@ -50,15 +48,15 @@ namespace MercadoIgnis.Models
                 }
 
                 context.Calificacion.AddRange(
-                     new Calificacion
-                     {
-                         ID=1,
-                         Nota = 1,
-                         Descripcion = "Descripcion de prueba, calificaciones de un tecnico de proyectos terminados",
-                        
-                     }
-                 );
-                
+                    new Calificacion
+                    {
+                        ID = 1,
+                        Nota = 1,
+                        Descripcion = "Descripcion de prueba, calificaciones de un tecnico de proyectos terminados",
+
+                    }
+                );
+
                 if (context.Especialidad.Any())
                 {
                     return;   // DB has been seeded
@@ -72,8 +70,8 @@ namespace MercadoIgnis.Models
                         Nivel = "Básico"
                     }
                 );
-                     
-                    
+
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -81,9 +79,9 @@ namespace MercadoIgnis.Models
                         Area = "Foto Fija",
                         Nivel = "Avanzado"
                     }
-  
+
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -91,9 +89,9 @@ namespace MercadoIgnis.Models
                         Area = "Asistente de cámara",
                         Nivel = "Básico"
                     }
-  
+
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -101,9 +99,9 @@ namespace MercadoIgnis.Models
                         Area = "Asistente de producción",
                         Nivel = "Básico"
                     }
-  
+
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -113,7 +111,7 @@ namespace MercadoIgnis.Models
                     }
 
                 );
-               
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -121,9 +119,9 @@ namespace MercadoIgnis.Models
                         Area = "Asistente de arte (escenografía, vestuario, utilería)",
                         Nivel = "Básico"
                     }
-  
+
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -131,9 +129,9 @@ namespace MercadoIgnis.Models
                         Area = "Sonidista",
                         Nivel = "Básico"
                     }
-  
+
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -143,7 +141,7 @@ namespace MercadoIgnis.Models
                     }
 
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -153,7 +151,7 @@ namespace MercadoIgnis.Models
                     }
 
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -163,7 +161,7 @@ namespace MercadoIgnis.Models
                     }
 
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -171,9 +169,9 @@ namespace MercadoIgnis.Models
                         Area = "Ilustrador",
                         Nivel = "Básico"
                     }
-    
+
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -181,9 +179,9 @@ namespace MercadoIgnis.Models
                         Area = "Diseñador gráfico",
                         Nivel = "Básico"
                     }
-  
+
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -191,7 +189,7 @@ namespace MercadoIgnis.Models
                         Area = "Operador de Cabina 02",
                         Nivel = "Básico"
                     }
-  
+
                 );
                 context.Especialidad.AddRange(
                     new Especialidad
@@ -202,7 +200,7 @@ namespace MercadoIgnis.Models
                     }
 
                 );
-                
+
                 context.Especialidad.AddRange(
                     new Especialidad
                     {
@@ -219,7 +217,7 @@ namespace MercadoIgnis.Models
                         Area = "Cámara 360º",
                         Nivel = "Avanzado"
                     }
-  
+
                 );
                 context.Especialidad.AddRange(
                     new Especialidad
@@ -228,7 +226,7 @@ namespace MercadoIgnis.Models
                         Area = "Postproductor de imagen",
                         Nivel = "Avanzado"
                     }
-  
+
                 );
                 context.Especialidad.AddRange(
                     new Especialidad
@@ -246,7 +244,7 @@ namespace MercadoIgnis.Models
                         Area = "Sonidista",
                         Nivel = "Avanzado"
                     }
-  
+
                 );
                 context.Especialidad.AddRange(
                     new Especialidad
@@ -255,7 +253,7 @@ namespace MercadoIgnis.Models
                         Area = "Postproductor de sonido",
                         Nivel = "Avanzado"
                     }
-  
+
                 );
                 context.Especialidad.AddRange(
                     new Especialidad
@@ -264,7 +262,7 @@ namespace MercadoIgnis.Models
                         Area = "Redactor creativo",
                         Nivel = "Avanzado"
                     }
-  
+
                 );
                 context.Especialidad.AddRange(
                     new Especialidad
@@ -273,7 +271,7 @@ namespace MercadoIgnis.Models
                         Area = "Presentador / conductor",
                         Nivel = "Avanzado"
                     }
-  
+
                 );
                 context.Especialidad.AddRange(
                     new Especialidad
@@ -291,7 +289,7 @@ namespace MercadoIgnis.Models
                         Area = "Operador de Cabina 01 Estudio de Grabación",
                         Nivel = "Avanzado"
                     }
-  
+
                 );
                 context.Especialidad.AddRange(
                     new Especialidad
@@ -313,27 +311,27 @@ namespace MercadoIgnis.Models
                     new ProyectoIgnis
                     {
                         ID = 3,
-                        FechaComienzo= DateTime.Parse("2019-2-12"),
-                        FechaFinalizacion=DateTime.Parse("2019-3-12"),
-                        Descripcion= "Proyecto de Cine"
+                        FechaComienzo = DateTime.Parse("2019-2-12"),
+                        FechaFinalizacion = DateTime.Parse("2019-3-12"),
+                        Descripcion = "Proyecto de Cine"
                     }
                 );
                 context.ProyectoIgnis.AddRange(
                     new ProyectoIgnis
                     {
                         ID = 4,
-                        FechaComienzo= DateTime.Parse("2019-3-15"),
-                        FechaFinalizacion=DateTime.Parse("2019-3-20"),
-                        Descripcion= "Cortometraje"
+                        FechaComienzo = DateTime.Parse("2019-3-15"),
+                        FechaFinalizacion = DateTime.Parse("2019-3-20"),
+                        Descripcion = "Cortometraje"
                     }
                 );
                 context.ProyectoIgnis.AddRange(
                     new ProyectoIgnis
                     {
                         ID = 5,
-                        FechaComienzo= DateTime.Parse("2019-7-1"),
-                        FechaFinalizacion=DateTime.Parse("2019-7-10"),
-                        Descripcion= "Demo de canción"
+                        FechaComienzo = DateTime.Parse("2019-7-1"),
+                        FechaFinalizacion = DateTime.Parse("2019-7-10"),
+                        Descripcion = "Demo de canción"
                     }
                 );
                 */
@@ -344,4 +342,3 @@ namespace MercadoIgnis.Models
         }
     }
 }
-                              

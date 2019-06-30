@@ -33,7 +33,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -95,9 +94,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
         public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-
-           
-             
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -121,7 +117,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                 var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.NonAdminRoleNames[this.Role]);
                 _userManager.AddToRoleAsync(user, roleToAdd.Name).Wait();
 
-            
                 user.AssignRole(_userManager, roleToAdd.Name);
 
                 await _userManager.UpdateAsync(user);
@@ -186,7 +181,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return Page();
         }

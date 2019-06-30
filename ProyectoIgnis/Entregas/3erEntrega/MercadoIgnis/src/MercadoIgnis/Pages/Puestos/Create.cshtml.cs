@@ -20,33 +20,28 @@ namespace MercadoIgnis.Pages.Puestos
             _context = context;
         }
 
-       
         public IActionResult OnGet(int? id)
         {
             if (id == null)
             {
                 return NotFound();
-            }else
-            {
-                
-               
-            ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "Area");
-            
-           
-            Console.WriteLine($"El valor de id onget:{id}");
-            
             }
-            
-                       
-            return Page();
+            else
+            {
 
-            
+
+                ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "Area");
+
+
+                Console.WriteLine($"El valor de id onget:{id}");
+
+            }
+            return Page();
         }
 
 
         [BindProperty]
         public Puesto Puesto { get; set; }
-       
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
@@ -54,8 +49,8 @@ namespace MercadoIgnis.Pages.Puestos
             {
                 return Page();
             }
-            
-            Puesto.ProyectoIgnisID=id;
+
+            Puesto.ProyectoIgnisID = id;
             Console.WriteLine($"El valor de id onpost:{Puesto.ProyectoIgnisID}");
             _context.Puesto.Add(Puesto);
             await _context.SaveChangesAsync();

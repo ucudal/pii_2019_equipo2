@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MercadoIgnis.Pages.Especialidades
 {
-    [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
+    [Authorize(Roles = IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class DetailsModel : PageModel
     {
         private readonly IdentityContext _context;
@@ -35,7 +35,7 @@ namespace MercadoIgnis.Pages.Especialidades
             }
 
             Especialidad = await _context.Especialidad.FirstOrDefaultAsync(m => m.ID == id);
-            
+
             if (Especialidad == null)
             {
                 return NotFound();

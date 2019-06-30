@@ -21,7 +21,7 @@ namespace MercadoIgnis.Pages.Calificaciones
             _context = context;
         }
 
-        public IList<Calificacion> Calificacion { get;set; }
+        public IList<Calificacion> Calificacion { get; set; }
 
         public async Task OnGetAsync()
         {

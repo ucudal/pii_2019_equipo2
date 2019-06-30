@@ -11,7 +11,6 @@ namespace MercadoIgnis.Pages
     {
         public void OnGet()
         {
-
         }
     }
 }

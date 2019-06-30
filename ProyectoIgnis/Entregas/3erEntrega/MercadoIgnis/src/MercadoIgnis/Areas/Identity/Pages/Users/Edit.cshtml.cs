@@ -13,7 +13,7 @@ using MercadoIgnis.Areas.Identity.Pages.Account;
 
 namespace MercadoIgnis.Areas.Identity.Pages.Users
 {
-    [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
+    [Authorize(Roles = IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class EditModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -83,7 +83,7 @@ namespace MercadoIgnis.Areas.Identity.Pages.Users
                     throw new InvalidOperationException($"Cannot edit '{IdentityData.AdminRoleName}'.");
                 }*/
                 _userManager.RemoveFromRoleAsync(user, roleToRemove).Wait();
-                
+
             }
 
             var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.AllRoleNames[this.Role]);
