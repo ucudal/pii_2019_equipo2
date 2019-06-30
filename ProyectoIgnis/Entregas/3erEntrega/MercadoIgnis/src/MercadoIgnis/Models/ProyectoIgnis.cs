@@ -17,11 +17,10 @@ namespace MercadoIgnis.Models
         [ScaffoldColumn(false)]
         [Display(Name = "Estado Proyecto")]
         [DataType(DataType.Text)]
-        public EnumEstadoProyecto Estado { get; set; }
+        public EnumEstadoProyecto Estado {get; set;}
 
         public IList<Puesto> Puestos { get; set; }
-       
-
-
+        // public Cliente cliente {get; set;}
+        // public int clienteID {get; set;}
     }
 }
