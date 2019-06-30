@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 //DetailsModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectosPersonales -por lo que DetailsModel es un experto conrespecto a crear ProyectosPersonales-.
 namespace MercadoIgnis.Pages.ProyectosPersonales
 {
-    [Authorize(Roles=IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
+    [Authorize(Roles = IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
     public class DetailsModel : PageModel
     {
         private readonly IdentityContext _context;

@@ -20,14 +20,14 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         {
             _context = context;
         }
-        public int clienteID {get; set;}
-        public IList<ProyectoIgnis> ProyectoIgnis { get;set; }
+        public int clienteID { get; set; }
+        public IList<ProyectoIgnis> ProyectoIgnis { get; set; }
 
         public async Task OnGetAsync()
         {
             ProyectoIgnis = await _context.ProyectoIgnis
             .Include(p => p.Puestos)
-           //.Include(p => p.cliente)
+            //.Include(p => p.cliente)
             .ToListAsync();
         }
     }

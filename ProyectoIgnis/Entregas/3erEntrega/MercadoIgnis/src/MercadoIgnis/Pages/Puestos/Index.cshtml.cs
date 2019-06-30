@@ -20,9 +20,9 @@ namespace MercadoIgnis.Pages.Puestos
             _context = context;
         }
 
-        public IList<Puesto> Puesto { get;set; }
-        public int ProyectoIgnisID {get; set;} 
-        public int EspecialidadID {get; set;}
+        public IList<Puesto> Puesto { get; set; }
+        public int ProyectoIgnisID { get; set; }
+        public int EspecialidadID { get; set; }
         public async Task OnGetAsync()
         {
             Puesto = await _context.Puesto

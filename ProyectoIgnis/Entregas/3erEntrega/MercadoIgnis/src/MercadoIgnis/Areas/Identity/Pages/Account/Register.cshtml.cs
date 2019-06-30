@@ -25,7 +25,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -87,9 +86,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
         public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-
-           
-             
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -98,38 +94,39 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser();
-                if(Role==0)
+                if (Role == 0)
                 {
-                    user = new Cliente {
-                    Name = Input.Name,
-                    DOB = Input.DOB,
-                    UserName = Input.Email,
-                    Email = Input.Email,
-                    RUT = 213123
-                };
+                    user = new Cliente
+                    {
+                        Name = Input.Name,
+                        DOB = Input.DOB,
+                        UserName = Input.Email,
+                        Email = Input.Email,
+                        RUT = 213123
+                    };
 
-                }else if(Role==1)
+                }
+                else if (Role == 1)
                 {
-                    user = new Tecnico {
-                    Name = Input.Name,
-                    DOB = Input.DOB,
-                    UserName = Input.Email,
-                    Email = Input.Email,
-                    EsEgresado = true
-                };
+                    user = new Tecnico
+                    {
+                        Name = Input.Name,
+                        DOB = Input.DOB,
+                        UserName = Input.Email,
+                        Email = Input.Email,
+                        EsEgresado = true
+                    };
 
-                }else
+                }
+                else
                 {
                     //Throw exception
                 }
-                
-
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.NonAdminRoleNames[this.Role]);
                 _userManager.AddToRoleAsync(user, roleToAdd.Name).Wait();
 
-            
                 user.AssignRole(_userManager, roleToAdd.Name);
 
                 await _userManager.UpdateAsync(user);
@@ -150,8 +147,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     //Creamos en funcion del rol
-
-
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
@@ -159,7 +154,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return Page();
         }

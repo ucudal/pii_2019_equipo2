@@ -43,7 +43,7 @@ namespace MercadoIgnis.Pages.Calificaciones
 
         public async Task<IActionResult> OnPostAsync()
         {
-            
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -54,7 +54,7 @@ namespace MercadoIgnis.Pages.Calificaciones
             try
             {
                 await _context.SaveChangesAsync();
-                
+
             }
             catch (DbUpdateConcurrencyException)
             {
