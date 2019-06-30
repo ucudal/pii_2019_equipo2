@@ -23,31 +23,38 @@
                 @Html.DisplayNameFor(model => model.ProyectoIgnis[0].FechaFinalizacion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProyectoIgnis[1].Puestos)
+                @Html.DisplayNameFor(model => model.ProyectoIgnis[0].Estado)
+            </th>
+            <th>
+               Propietario
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.ProyectoIgnis) {
+    @foreach (var item in Model.ListaProyectosConNombreCliente) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
+                @Html.DisplayFor(modelItem => item.Proyecto.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaComienzo)
+                @Html.DisplayFor(modelItem => item.Proyecto.FechaComienzo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaFinalizacion)
+                @Html.DisplayFor(modelItem => item.Proyecto.FechaFinalizacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Puestos)
+                @Html.DisplayFor(modelItem => item.Proyecto.Estado)
             </td>
             <td>
-                <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> |
-                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+               @Html.DisplayFor(modelItem => item.NombrePropietario)
+               
+            </td>
+            <td>
+                <a asp-page="../Puestos/Create" asp-route-id="@item.Proyecto.ID">Agregar Puesto</a> |
+                <a asp-page="./Edit" asp-route-id="@item.Proyecto.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Proyecto.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Proyecto.ID">Borrar</a>
             </td>
         </tr>
     }

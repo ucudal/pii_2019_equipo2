@@ -25,13 +25,19 @@ namespace MercadoIgnis.Areas.Identity.Data
             builder.Entity<ApplicationUser>().ToTable("ApplicationUser");
         }
 
-        public DbSet<MercadoIgnis.Models.Tecnico> Tecnicos { get; set; }
-        public DbSet<MercadoIgnis.Models.Cliente> Clientes { get; set; }
+        public DbSet<MercadoIgnis.Models.Tecnico> Tecnico { get; set; }
+        public DbSet<MercadoIgnis.Models.Cliente> Cliente { get; set; }
         public DbSet<Identity.Data.ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<MercadoIgnis.Models.Especialidad> Especialidad { get; set; }
         public DbSet<MercadoIgnis.Models.ProyectoPersonal> ProyectoPersonal { get; set; }
         public DbSet<MercadoIgnis.Models.ProyectoIgnis> ProyectoIgnis { get; set; }
         public DbSet<MercadoIgnis.Models.Puesto> Puesto { get; set; }
         public DbSet<MercadoIgnis.Models.Calificacion> Calificacion { get; set; }
+
+        public DbSet<MercadoIgnis.Models.ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
+
+        
+
+        
     }
 }

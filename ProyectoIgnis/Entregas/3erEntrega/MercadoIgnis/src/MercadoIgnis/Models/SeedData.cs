@@ -41,6 +41,7 @@ namespace MercadoIgnis.Models
                     }
 
                 );
+                
                 if (context.Calificacion.Any())
                 {
                     return;   // DB has been seeded
@@ -297,14 +298,15 @@ namespace MercadoIgnis.Models
                         Area = "Operador de Cabina 03 y Estudio de Radio",
                         Nivel = "Básico"
                     }
-
-                );
-
+  
+                ); 
+                
+                /* deshabilitados porque falta agregar la relacion con el cliente que lo creó
                 if (context.ProyectoIgnis.Any())
                 {
                     return;   // DB has been seeded
                 }
-
+                
                 context.ProyectoIgnis.AddRange(
                     new ProyectoIgnis
                     {
@@ -332,8 +334,10 @@ namespace MercadoIgnis.Models
                         Descripcion = "Demo de canción"
                     }
                 );
+                */
                 context.SaveChanges();
-
+                 
+                
             }
         }
     }

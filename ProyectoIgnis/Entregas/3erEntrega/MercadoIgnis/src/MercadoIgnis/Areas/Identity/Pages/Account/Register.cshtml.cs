@@ -14,11 +14,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MercadoIgnis.Models;
 
 
+
+
+
+
+
+
 namespace MercadoIgnis.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
+               
+        
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
@@ -93,35 +101,17 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser();
-                if (Role == 0)
-                {
-                    user = new Cliente
-                    {
-                        Name = Input.Name,
-                        DOB = Input.DOB,
-                        UserName = Input.Email,
-                        Email = Input.Email,
-                        RUT = 213123
-                    };
+               
+                var user = new ApplicationUser {
+                    Name = Input.Name,
+                    DOB = Input.DOB,
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                };
 
-                }
-                else if (Role == 1)
-                {
-                    user = new Tecnico
-                    {
-                        Name = Input.Name,
-                        DOB = Input.DOB,
-                        UserName = Input.Email,
-                        Email = Input.Email,
-                        EsEgresado = true
-                    };
+                
+                
 
-                }
-                else
-                {
-                    //Throw exception
-                }
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.NonAdminRoleNames[this.Role]);
@@ -146,7 +136,44 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    //Creamos en funcion del rol
+                    //Creamos la relacion entre Cliente/Tecnico y el ApplicationUser con la data del usuario en funcion del rol
+                    
+                    if (Role == 0) //Cliente
+                    {
+                        
+                        var cliente = new Cliente
+                        {
+                            ID = user.Id
+                           
+                        };
+                        
+                        ContextoSingleton.Instance.Contexto.Cliente.Add(cliente);
+                        
+                        
+                        await ContextoSingleton.Instance.Contexto.SaveChangesAsync();
+
+                    }
+                    else if (Role == 1) //Tecnico
+                    {
+                        
+                        var tecnico = new Tecnico
+                        {
+                            ID = user.Id
+                           
+                        };
+                        
+                        ContextoSingleton.Instance.Contexto.Tecnico.Add(tecnico);
+                        
+                        
+                        await ContextoSingleton.Instance.Contexto.SaveChangesAsync();
+
+                    }
+                    else
+                    {
+                        //Throw exception
+                    }
+
+
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

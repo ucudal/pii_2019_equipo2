@@ -15,13 +15,16 @@ namespace MercadoIgnis.Models
             Cancelado
         };
 
-        [ScaffoldColumn(false)]
+        
         [Display(Name = "Estado Proyecto")]
         [DataType(DataType.Text)]
         public EnumEstadoProyecto Estado { get; set; }
 
-        public IList<Puesto> Puestos { get; set; }
-        // public Cliente cliente {get; set;}
-        // public int clienteID {get; set;}
+       public ICollection<Puesto> Puestos { get; set; }
+
+       public ProyectosIgnisClientes ProyectosIgnisClientes {get; set; } //estaba como collection
+       
+
+
     }
 }
