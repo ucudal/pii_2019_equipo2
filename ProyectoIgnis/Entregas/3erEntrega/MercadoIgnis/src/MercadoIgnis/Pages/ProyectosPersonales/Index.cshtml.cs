@@ -5,26 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using MercadoIgnis.Areas.Identity.Data;
 using MercadoIgnis.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
-using MercadoIgnis.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authorization;
-//Patron Expert
-//Patron Creator
-//IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectosPersonales -por lo que IndexModel es un experto conrespecto a crear ProyectosPersonales-.
+using static MercadoIgnis.Models.ProyectoPersonal;
+
 namespace MercadoIgnis.Pages.ProyectosPersonales
 {
-    [Authorize(Roles = IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
     public class IndexModel : PageModel
     {
-        private readonly IdentityContext _context;
+        private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
-        public IndexModel(IdentityContext context)
+        public IndexModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
-
         public IList<ProyectoPersonal> ProyectoPersonal { get; set; }
         [BindProperty(SupportsGet = true)]
 
@@ -34,15 +29,14 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
         [BindProperty(SupportsGet = true)]
 
         public string FechadeComienzo { get; set; }
+        public EnumTipoProyectoPersonal Tipos { get; set; }
+
         public async Task OnGetAsync()
         {
-            // // Use LINQ to get list of niveles.
+            // // Use LINQ to get list of Proyectos Personales.
             IQueryable<string> TipoQuery = from m in _context.ProyectoPersonal
-                                           orderby m.TipoDeProyecto
-                                           select m.TipoDeProyecto;
-
-
-
+                                            orderby m.Tipos.ToString()
+                                            select m.Tipos.ToString();
 
             ProyectoPersonal = await _context.ProyectoPersonal.ToListAsync();
 
@@ -52,7 +46,7 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
             //Si Recibo algo no nulo del campo de texto
             if (!string.IsNullOrEmpty(busquedaPorTipo))
             {
-                ProyectosPersonales = ProyectosPersonales.Where(s => s.TipoDeProyecto.Contains(busquedaPorTipo));
+                ProyectosPersonales = ProyectosPersonales.Where(s => s.Tipos.ToString().Contains(busquedaPorTipo));
             }
             DateTime date;
             //Si recibo algo no nulo del option box con los niveles

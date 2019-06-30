@@ -225,7 +225,7 @@ namespace MercadoIgnis.Migrations
                     Discriminator = table.Column<string>(nullable: false),
                     TecnicoID = table.Column<string>(nullable: true),
                     Estado = table.Column<int>(nullable: true),
-                    TipoDeProyecto = table.Column<string>(nullable: true)
+                    Tipos = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

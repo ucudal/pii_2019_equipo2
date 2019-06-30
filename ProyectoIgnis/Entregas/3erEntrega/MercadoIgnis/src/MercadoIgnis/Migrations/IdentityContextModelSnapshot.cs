@@ -310,7 +310,7 @@ namespace MercadoIgnis.Migrations
                 {
                     b.HasBaseType("MercadoIgnis.Models.Proyecto");
 
-                    b.Property<string>("TipoDeProyecto");
+                    b.Property<int>("Tipos");
 
                     b.HasDiscriminator().HasValue("ProyectoPersonal");
                 });

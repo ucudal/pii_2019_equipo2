@@ -33,7 +33,7 @@ namespace MercadoIgnis.Tests.UnitTests
             IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
 
             //Creamos un Proyecto Personal Esperado
-            ProyectoPersonal ProyectoPersonalEsperado = new ProyectoPersonal() { ID = 1, Descripcion = "Book", FechaComienzo = DateTime.Parse("2019/02/12"), FechaFinalizacion = DateTime.Parse("2019/02/12"), TipoDeProyecto = "Foto" };
+            ProyectoPersonal ProyectoPersonalEsperado = new ProyectoPersonal() { ID = 1, Descripcion = "Book", FechaComienzo = DateTime.Parse("2019/02/12"), FechaFinalizacion = DateTime.Parse("2019/02/12") };
 
             // Act
             //Creamos una pagina de tipo CreateModel (de ProyectosPersonales), la cual es la que se encarga de la logica 
@@ -43,7 +43,7 @@ namespace MercadoIgnis.Tests.UnitTests
 
             //Introducimos un Proyecto Personal en el modelo de la pagina que creamos, a mano Seteamos los valores del 
             // Proyecto Personal de esa página
-            PageCreateModel.ProyectoPersonal = new ProyectoPersonal() { ID = 1, Descripcion = "Book", FechaComienzo = DateTime.Parse("2019/02/12"), FechaFinalizacion = DateTime.Parse("2019/02/12"), TipoDeProyecto = "Foto" };
+            PageCreateModel.ProyectoPersonal = new ProyectoPersonal() { ID = 1, Descripcion = "Book", FechaComienzo = DateTime.Parse("2019/02/12"), FechaFinalizacion = DateTime.Parse("2019/02/12")};
 
 
             //Simulamos un post que envíe el formulario de la pagina y por ende guarde en bd, el Proyecto Personal que ingresamos en esa pagina
@@ -65,8 +65,8 @@ namespace MercadoIgnis.Tests.UnitTests
                 ProyectoPersonalEsperado.FechaFinalizacion.ToString(),
                 ProyectoPersonalRecibida.FechaFinalizacion.ToString());
             Assert.Equal(
-                ProyectoPersonalEsperado.TipoDeProyecto.ToString(),
-                ProyectoPersonalRecibida.TipoDeProyecto.ToString());
+                ProyectoPersonalEsperado.Tipos.ToString(),
+                ProyectoPersonalRecibida.Tipos.ToString());
 
             //Si esto no falla, concluimos que la pagina de Proyectos Personales (de tener bien seteado el modelo), 
             //guarda sin problemas un Proyecto Personal en bd cuando no hay nada ingresado   
@@ -82,7 +82,7 @@ namespace MercadoIgnis.Tests.UnitTests
                 .UseInMemoryDatabase("InMemoryDb");
 
             IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
-            ProyectoPersonal ProyectoPersonal = new ProyectoPersonal() { ID = 45, Descripcion = "Book", FechaComienzo = DateTime.Parse("2019/02/12"), FechaFinalizacion = DateTime.Parse("2019/02/12"), TipoDeProyecto = "Foto" };
+            ProyectoPersonal ProyectoPersonal = new ProyectoPersonal() { ID = 45, Descripcion = "Book", FechaComienzo = DateTime.Parse("2019/02/12"), FechaFinalizacion = DateTime.Parse("2019/02/12")};
 
             //Guardamos un Proyecto Personal en bd
             TestIdentityContext.ProyectoPersonal.Add(ProyectoPersonal);
@@ -117,14 +117,14 @@ namespace MercadoIgnis.Tests.UnitTests
                 .UseInMemoryDatabase("InMemoryDb");
 
             IdentityContext TestIdentityContext = new IdentityContext(OptionsBuilder.Options);
-            ProyectoPersonal ProyectoPersonal = new ProyectoPersonal() { ID = 4, Descripcion = "Book", FechaComienzo = DateTime.Parse("2019/02/12"), FechaFinalizacion = DateTime.Parse("2019/02/12"), TipoDeProyecto = "Foto" };
+            ProyectoPersonal ProyectoPersonal = new ProyectoPersonal() { ID = 4, Descripcion = "Book", FechaComienzo = DateTime.Parse("2019/02/12"), FechaFinalizacion = DateTime.Parse("2019/02/12") };
 
             //Guardamos un Proyecto Personal en bd
             TestIdentityContext.ProyectoPersonal.Add(ProyectoPersonal);
             TestIdentityContext.SaveChanges();
 
             //Creo una instancia de Proyecto Personal para comparar más adelante
-            ProyectoPersonal ProyectoPersonalEsperado = new ProyectoPersonal() { ID = 4, Descripcion = "Camara", FechaComienzo = DateTime.Parse("2019/03/12"), FechaFinalizacion = DateTime.Parse("2019/04/12"), TipoDeProyecto = "camara" };
+            ProyectoPersonal ProyectoPersonalEsperado = new ProyectoPersonal() { ID = 4, Descripcion = "Camara", FechaComienzo = DateTime.Parse("2019/03/12"), FechaFinalizacion = DateTime.Parse("2019/04/12")};
 
             // Act
             //Creamos una pagina de tipo EditModel (de Proyectos Personales), la cual es la que se encarga de la logica 
@@ -138,7 +138,7 @@ namespace MercadoIgnis.Tests.UnitTests
             PageEditModel.ProyectoPersonal.Descripcion = ProyectoPersonalEsperado.Descripcion;
             PageEditModel.ProyectoPersonal.FechaComienzo = ProyectoPersonalEsperado.FechaComienzo;
             PageEditModel.ProyectoPersonal.FechaFinalizacion = ProyectoPersonalEsperado.FechaFinalizacion;
-            PageEditModel.ProyectoPersonal.TipoDeProyecto = ProyectoPersonalEsperado.TipoDeProyecto;
+            PageEditModel.ProyectoPersonal.Tipos = ProyectoPersonalEsperado.Tipos;
 
             //Simulamos un post que envíe el formulario de la pagina y por ende guarda los cambios de la edicion
             await PageEditModel.OnPostAsync();
@@ -158,8 +158,8 @@ namespace MercadoIgnis.Tests.UnitTests
                 ProyectoPersonalEsperado.FechaFinalizacion.ToString(),
                 ProyectoPersonalRecibida.FechaFinalizacion.ToString());
             Assert.Equal(
-                ProyectoPersonalEsperado.TipoDeProyecto.ToString(),
-                ProyectoPersonalRecibida.TipoDeProyecto.ToString());
+                ProyectoPersonalEsperado.Tipos.ToString(),
+                ProyectoPersonalRecibida.Tipos.ToString());
             //Si se ejecuta correctamente, significa que el programa modifica correctamente Proyectos Personales  
 
         }
