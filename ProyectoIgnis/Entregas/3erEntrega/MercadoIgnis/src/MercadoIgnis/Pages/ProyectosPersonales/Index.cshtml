@@ -2,10 +2,10 @@
 @model MercadoIgnis.Pages.ProyectosPersonales.IndexModel
 
 @{
-    ViewData["Title"] = "ProyectosPersonales";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Proyectos Personales</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-page="Create">Crear Nuevo</a>
@@ -23,7 +23,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].TipoDeProyecto)
+                @Html.DisplayNameFor(model => model.ProyectoPersonal[0].Tipos)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProyectoPersonal[0].Descripcion)
@@ -38,10 +38,10 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.ProyectoPersonal) {
+@foreach (var item in Model.ProyectoPersonal) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoDeProyecto)
+                @Html.DisplayFor(modelItem => item.Tipos)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
@@ -53,11 +53,11 @@
                 @Html.DisplayFor(modelItem => item.FechaFinalizacion)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
-    }
+}
     </tbody>
 </table>

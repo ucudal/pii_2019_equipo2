@@ -5,28 +5,52 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MercadoIgnis.Models;
 using MercadoIgnis.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authorization;
+using MercadoIgnis.Models;
+using static MercadoIgnis.Models.ProyectoPersonal;
 
-//Patron Expert
-//Patron Creator
-//CreateModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectosPersonales -por lo que CreateModel es un experto conrespecto a crear ProyectosPersonales-.
 namespace MercadoIgnis.Pages.ProyectosPersonales
 {
-    [Authorize(Roles = IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
     public class CreateModel : PageModel
     {
-        private readonly IdentityContext _context;
+        private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
-        public CreateModel(IdentityContext context)
+        public CreateModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public EnumTipoProyectoPersonal Tipos { get; set; }
+        public List<SelectListItem> ProyectosTipos { get; set; }
+        public void OnGet()
         {
-            return Page();
+            ProyectosTipos = new List<SelectListItem>();
+
+            ProyectosTipos.Add(new SelectListItem
+            {
+                Value = ((int)EnumTipoProyectoPersonal.Freelance).ToString(),
+                Text = EnumTipoProyectoPersonal.Freelance.ToString()
+            });
+            ProyectosTipos.Add(new SelectListItem
+            {
+                Value = ((int)EnumTipoProyectoPersonal.TrabajoDeClase).ToString(),
+                Text = EnumTipoProyectoPersonal.TrabajoDeClase.ToString()
+            });
+            ProyectosTipos.Add(new SelectListItem
+            {
+                Value = ((int)EnumTipoProyectoPersonal.ProyectoDeFinDeCurso).ToString(),
+                Text = EnumTipoProyectoPersonal.ProyectoDeFinDeCurso.ToString()
+            });
+            ProyectosTipos.Add(new SelectListItem
+            {
+                Value = ((int)EnumTipoProyectoPersonal.ProyectoDeGrado).ToString(),
+                Text = EnumTipoProyectoPersonal.ProyectoDeGrado.ToString()
+            });
+            ProyectosTipos.Add(new SelectListItem
+            {
+                Value = ((int)EnumTipoProyectoPersonal.Hobby).ToString(),
+                Text = EnumTipoProyectoPersonal.Hobby.ToString()
+            });
         }
 
         [BindProperty]

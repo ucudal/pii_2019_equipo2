@@ -26,7 +26,6 @@ namespace MercadoIgnis.Models
                         Descripcion = "Fotos en el Parque Batlle",
                         FechaComienzo = DateTime.Parse("2019-2-12"),
                         FechaFinalizacion = DateTime.Parse("2019-4-21"),
-                        TipoDeProyecto = "Foto",
                     }
 
                 );
@@ -37,7 +36,6 @@ namespace MercadoIgnis.Models
                         Descripcion = "Animación 3d",
                         FechaComienzo = DateTime.Parse("2019-2-16"),
                         FechaFinalizacion = DateTime.Parse("2019-2-19"),
-                        TipoDeProyecto = "Edicion 3d",
                     }
 
                 );

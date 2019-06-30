@@ -88,7 +88,7 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-            // public static string[] NonAdminRoleNames = new string[] { "Cliente", "Técnico" };
+            //public static string[] NonAdminRoleNames = new string[] { "Cliente", "Técnico" };
         }
 
         public void OnGet(string returnUrl = null)
@@ -108,10 +108,6 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                     UserName = Input.Email,
                     Email = Input.Email,
                 };
-
-                
-                
-
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 var roleToAdd = await _roleManager.FindByNameAsync(IdentityData.NonAdminRoleNames[this.Role]);

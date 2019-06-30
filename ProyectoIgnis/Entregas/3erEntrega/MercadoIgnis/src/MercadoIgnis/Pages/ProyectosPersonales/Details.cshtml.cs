@@ -5,20 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MercadoIgnis.Models;
 using MercadoIgnis.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authorization;
-//Patron Expert
-//Patron Creator
-//DetailsModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectosPersonales -por lo que DetailsModel es un experto conrespecto a crear ProyectosPersonales-.
+using MercadoIgnis.Models;
+
 namespace MercadoIgnis.Pages.ProyectosPersonales
 {
-    [Authorize(Roles = IdentityData.AuthAdminOTecnico)] // Solo los usuarios con rol administrador o tecnico pueden acceder a este controlador
     public class DetailsModel : PageModel
     {
-        private readonly IdentityContext _context;
+        private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
-        public DetailsModel(IdentityContext context)
+        public DetailsModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }

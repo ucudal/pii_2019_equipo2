@@ -2,10 +2,10 @@
 @model MercadoIgnis.Pages.ProyectosPersonales.EditModel
 
 @{
-    ViewData["Title"] = "Editar";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Editar</h1>
+<h1>Edit</h1>
 
 <h4>ProyectoPersonal</h4>
 <hr />
@@ -14,9 +14,9 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProyectoPersonal.TipoDeProyecto" class="control-label"></label>
-                <input asp-for="ProyectoPersonal.TipoDeProyecto" class="form-control" />
-                <span asp-validation-for="ProyectoPersonal.TipoDeProyecto" class="text-danger"></span>
+                <label asp-for="ProyectoPersonal.Tipos" class="control-label"></label>
+                <select asp-for="ProyectoPersonal.Tipos" class="form-control"></select>
+                <span asp-validation-for="ProyectoPersonal.Tipos" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="ProyectoPersonal.ID" />
             <div class="form-group">
@@ -35,17 +35,16 @@
                 <span asp-validation-for="ProyectoPersonal.FechaFinalizacion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Volver a la lista</a>
+    <a asp-page="./Index">Back to List</a>
 </div>
 
-@section Scripts 
-{
+@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
