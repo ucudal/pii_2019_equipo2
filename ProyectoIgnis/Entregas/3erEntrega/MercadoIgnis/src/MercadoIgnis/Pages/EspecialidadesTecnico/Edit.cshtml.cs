@@ -38,8 +38,8 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
             {
                 return NotFound();
             }
-           ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "ID");
-           ViewData["TecnicoID"] = new SelectList(_context.Tecnico, "ID", "ID");
+            ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "ID");
+            ViewData["TecnicoID"] = new SelectList(_context.Tecnico, "ID", "ID");
             return Page();
         }
 

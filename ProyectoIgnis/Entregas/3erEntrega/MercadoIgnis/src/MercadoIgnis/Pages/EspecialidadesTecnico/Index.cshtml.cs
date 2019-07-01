@@ -19,27 +19,28 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
             _context = context;
         }
 
-        public IList<EspecialidadesTecnicos> EspecialidadesTecnicos { get;set; }
+        public IList<EspecialidadesTecnicos> EspecialidadesTecnicos { get; set; }
 
         public async Task OnGetAsync()
         {
-            if(User.IsInRole("Técnico"))
+            if (User.IsInRole("Técnico"))
             {
                 //Si soy tecnico muestro solo mis Especialidades
                 EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
                     .Include(e => e.Especialidad)
                     .Include(e => e.Tecnico)
-                    .Where(t=>t.TecnicoID==ContextoSingleton.Instance.userManager.GetUserId(User))
+                    .Where(t => t.TecnicoID == ContextoSingleton.Instance.userManager.GetUserId(User))
                     .ToListAsync();
             }
-            else if(User.IsInRole("Administrador"))
+            else if (User.IsInRole("Administrador"))
             {
                 //Si soy administrador muestro todos los tecnicos con sus especialidades
                 EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
                     .Include(e => e.Especialidad)
-                    .Include(e => e.Tecnico)                    
+                    .Include(e => e.Tecnico)
                     .ToListAsync();
-            }else
+            }
+            else
             {
                 //Throw Exception
             }

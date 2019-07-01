@@ -15,9 +15,9 @@ namespace MercadoIgnis.Models
     public sealed class ContextoSingleton
     {
         private readonly static ContextoSingleton _instance = new ContextoSingleton();
-        public IdentityContext Contexto{get;set;}
-        public UserManager<ApplicationUser> userManager{get;set;}
-        public RoleManager<IdentityRole> roleManager{get;set;}
+        public IdentityContext Contexto { get; set; }
+        public UserManager<ApplicationUser> userManager { get; set; }
+        public RoleManager<IdentityRole> roleManager { get; set; }
         private ContextoSingleton()
         {
         }
@@ -29,7 +29,8 @@ namespace MercadoIgnis.Models
             }
         }
 
-        public void Initialize(IServiceProvider serviceProvider){
+        public void Initialize(IServiceProvider serviceProvider)
+        {
             Contexto = new IdentityContext(
                 serviceProvider.GetRequiredService<
                     DbContextOptions<IdentityContext>>());
@@ -38,6 +39,4 @@ namespace MercadoIgnis.Models
         }
 
     }
-
-
 }

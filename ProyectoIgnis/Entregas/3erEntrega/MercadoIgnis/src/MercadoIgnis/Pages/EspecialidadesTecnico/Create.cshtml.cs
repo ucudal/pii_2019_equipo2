@@ -21,8 +21,8 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
 
         public IActionResult OnGet()
         {
-        ViewData["EspecialidadID"] = new SelectList(_context.Especialidad,"ID","Area");
-        ViewData["TecnicoID"] = new SelectList(_context.Tecnico, "ID", "ID");
+            ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "Area");
+            ViewData["TecnicoID"] = new SelectList(_context.Tecnico, "ID", "ID");
             return Page();
         }
 
@@ -36,7 +36,7 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
                 return Page();
             }
 
-            EspecialidadesTecnicos.TecnicoID=ContextoSingleton.Instance.userManager.GetUserId(User);
+            EspecialidadesTecnicos.TecnicoID = ContextoSingleton.Instance.userManager.GetUserId(User);
             _context.EspecialidadesTecnicos.Add(EspecialidadesTecnicos);
             await _context.SaveChangesAsync();
 
