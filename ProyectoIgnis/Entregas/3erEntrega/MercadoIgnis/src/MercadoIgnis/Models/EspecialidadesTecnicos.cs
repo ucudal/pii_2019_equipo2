@@ -10,7 +10,7 @@ namespace MercadoIgnis.Models
         public int ID{get; set;}
         
         [ScaffoldColumn(false)]
-        public string TecnicoID {get; set;}
+        public int TecnicoID {get; set;}
         public int EspecialidadID {get; set;}
 
         public Tecnico Tecnico {get; set;}

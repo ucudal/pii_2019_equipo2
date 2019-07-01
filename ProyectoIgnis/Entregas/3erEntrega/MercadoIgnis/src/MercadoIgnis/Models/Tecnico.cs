@@ -10,7 +10,7 @@ namespace MercadoIgnis.Models
     {
          
        
-       
+        [Key]
         public int ID{get;set;}
 
         //Relacion con el ApplicationUser, en ID guardo el del Application user, no es autogenerado

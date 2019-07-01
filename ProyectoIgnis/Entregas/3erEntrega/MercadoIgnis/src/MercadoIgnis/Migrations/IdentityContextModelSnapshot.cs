@@ -121,15 +121,13 @@ namespace MercadoIgnis.Migrations
 
                     b.Property<int>("EspecialidadID");
 
-                    b.Property<string>("TecnicoID");
-
-                    b.Property<int?>("TecnicoID1");
+                    b.Property<int>("TecnicoID");
 
                     b.HasKey("ID");
 
                     b.HasIndex("EspecialidadID");
 
-                    b.HasIndex("TecnicoID1");
+                    b.HasIndex("TecnicoID");
 
                     b.ToTable("EspecialidadesTecnicos");
                 });
@@ -348,7 +346,8 @@ namespace MercadoIgnis.Migrations
 
                     b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
                         .WithMany("EspecialidadesTecnicos")
-                        .HasForeignKey("TecnicoID1");
+                        .HasForeignKey("TecnicoID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MercadoIgnis.Models.ProyectosIgnisClientes", b =>

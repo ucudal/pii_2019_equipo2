@@ -7,6 +7,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+using MercadoIgnis.Models;
 
 namespace MercadoIgnis.Models
 {
@@ -22,5 +27,22 @@ namespace MercadoIgnis.Models
             
             return Cliente.ID;
         }
+        //Devuelve el Id de tecnico (int) que se usa en las relaciones, usando el Id de ApplicationUser que es el que está acccesible en la variable de sesion User
+         public async Task<int> IdDeTecnicoConIdApplicationUser(string IdApplicationUser)
+        {
+            Tecnico Tecnico = await ContextoSingleton.Instance.Contexto.Tecnico
+                            .Where(a=> a.ApplicationUserId==IdApplicationUser)
+                            .FirstOrDefaultAsync();
+            
+            return Tecnico.ID;
+        }
+
+        
+
+        
+
+
+
+        
     }
 }

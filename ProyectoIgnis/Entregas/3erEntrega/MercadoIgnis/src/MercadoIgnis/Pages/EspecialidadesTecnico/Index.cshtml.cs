@@ -25,19 +25,27 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
         {
             if(User.IsInRole("Técnico"))
             {
+                //Obtengo el id Tecnico usando el Id de logueo (ApplicationUserId)
+                int IdTecnico = await new OperacionesUsuario().IdDeTecnicoConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
+
                 //Si soy tecnico muestro solo mis Especialidades
                 EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
                     .Include(e => e.Especialidad)
                     .Include(e => e.Tecnico)
-                    .Where(t=>t.TecnicoID==ContextoSingleton.Instance.userManager.GetUserId(User))
+                    .ThenInclude(a=>a.ApplicationUser)
+                    .Where(t=>t.TecnicoID==IdTecnico)
                     .ToListAsync();
+
+
+                
             }
             else if(User.IsInRole("Administrador"))
             {
                 //Si soy administrador muestro todos los tecnicos con sus especialidades
-                EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
+                 EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
                     .Include(e => e.Especialidad)
-                    .Include(e => e.Tecnico)                    
+                    .Include(e => e.Tecnico)
+                    .ThenInclude(a=>a.ApplicationUser)                    
                     .ToListAsync();
             }else
             {

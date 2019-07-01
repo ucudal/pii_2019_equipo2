@@ -311,9 +311,8 @@ namespace MercadoIgnis.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TecnicoID = table.Column<string>(nullable: true),
-                    EspecialidadID = table.Column<int>(nullable: false),
-                    TecnicoID1 = table.Column<int>(nullable: true)
+                    TecnicoID = table.Column<int>(nullable: false),
+                    EspecialidadID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -325,11 +324,11 @@ namespace MercadoIgnis.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EspecialidadesTecnicos_Tecnico_TecnicoID1",
-                        column: x => x.TecnicoID1,
+                        name: "FK_EspecialidadesTecnicos_Tecnico_TecnicoID",
+                        column: x => x.TecnicoID,
                         principalTable: "Tecnico",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -380,9 +379,9 @@ namespace MercadoIgnis.Migrations
                 column: "EspecialidadID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EspecialidadesTecnicos_TecnicoID1",
+                name: "IX_EspecialidadesTecnicos_TecnicoID",
                 table: "EspecialidadesTecnicos",
-                column: "TecnicoID1");
+                column: "TecnicoID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProyectosIgnisClientes_ClienteID",
