@@ -88,9 +88,14 @@ namespace MercadoIgnis.Migrations
 
             modelBuilder.Entity("MercadoIgnis.Models.Cliente", b =>
                 {
-                    b.Property<string>("ID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Cliente");
                 });
@@ -118,11 +123,13 @@ namespace MercadoIgnis.Migrations
 
                     b.Property<string>("TecnicoID");
 
+                    b.Property<int?>("TecnicoID1");
+
                     b.HasKey("ID");
 
                     b.HasIndex("EspecialidadID");
 
-                    b.HasIndex("TecnicoID");
+                    b.HasIndex("TecnicoID1");
 
                     b.ToTable("EspecialidadesTecnicos");
                 });
@@ -156,7 +163,7 @@ namespace MercadoIgnis.Migrations
 
                     b.Property<DateTime>("FechaFinalizacion");
 
-                    b.Property<string>("TipoDeProyecto");
+                    b.Property<int>("Tipos");
 
                     b.HasKey("ID");
 
@@ -168,7 +175,7 @@ namespace MercadoIgnis.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ClienteID");
+                    b.Property<int>("ClienteID");
 
                     b.Property<int>("ProyectoIgnisID");
 
@@ -202,11 +209,14 @@ namespace MercadoIgnis.Migrations
 
             modelBuilder.Entity("MercadoIgnis.Models.Tecnico", b =>
                 {
-                    b.Property<string>("ID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("EsEgresado");
+                    b.Property<string>("ApplicationUserId");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Tecnico");
                 });
@@ -322,6 +332,13 @@ namespace MercadoIgnis.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("MercadoIgnis.Models.Cliente", b =>
+                {
+                    b.HasOne("MercadoIgnis.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("MercadoIgnis.Models.EspecialidadesTecnicos", b =>
                 {
                     b.HasOne("MercadoIgnis.Models.Especialidad", "Especialidad")
@@ -331,14 +348,15 @@ namespace MercadoIgnis.Migrations
 
                     b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
                         .WithMany("EspecialidadesTecnicos")
-                        .HasForeignKey("TecnicoID");
+                        .HasForeignKey("TecnicoID1");
                 });
 
             modelBuilder.Entity("MercadoIgnis.Models.ProyectosIgnisClientes", b =>
                 {
                     b.HasOne("MercadoIgnis.Models.Cliente", "Cliente")
                         .WithMany("ProyectosIgnisClientes")
-                        .HasForeignKey("ClienteID");
+                        .HasForeignKey("ClienteID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MercadoIgnis.Models.ProyectoIgnis", "ProyectoIgnis")
                         .WithOne("ProyectosIgnisClientes")
@@ -357,6 +375,13 @@ namespace MercadoIgnis.Migrations
                         .WithMany("Puestos")
                         .HasForeignKey("ProyectoIgnisID")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.Tecnico", b =>
+                {
+                    b.HasOne("MercadoIgnis.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

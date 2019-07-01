@@ -10,8 +10,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace MercadoIgnis.Models
 {
-    //Mantiene una referencia al contexto, al usermanager y a rolemanager que pueden ser usadas desde cualquier parte de la aplicacion para hacer consultas en la bd, 
-    //se inicializa en el Program.
+    //Mantiene una referencia única a la instancia del contexto, al usermanager y a rolemanager que pueden ser usadas desde cualquier parte de la aplicacion sin usar dependency injection 
+    //para hacer consultas en la bd, o usar la funcionalidades de user y role manager. 
+    //Se inicializa pasandole el serviceProvider en el Program.
     public sealed class ContextoSingleton
     {
         private readonly static ContextoSingleton _instance = new ContextoSingleton();

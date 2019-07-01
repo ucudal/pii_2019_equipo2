@@ -39,7 +39,9 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
 
             //Solo puede hacerse como cliente, manejar excepciones!
             _context.ProyectoIgnis.Add(ProyectoIgnis); //Agrego el proyectoignis nuevo
-            _context.ProyectosIgnisClientes.Add(new ProyectosIgnisClientes(ContextoSingleton.Instance.userManager.GetUserId(User),ProyectoIgnis.ID)); //Agrego en la relación el cliente logueado, con el id del proyecto ignis recien creado
+            //Agrego en la relación el Idcliente logueado, con el id del proyecto ignis recien creado
+            int IdCliente = await new OperacionesUsuario().IdDeClienteConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
+            _context.ProyectosIgnisClientes.Add(new ProyectosIgnisClientes(IdCliente,ProyectoIgnis.ID)); 
             await _context.SaveChangesAsync();//guardo en bd
 
             return RedirectToPage("./Index");

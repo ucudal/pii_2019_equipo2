@@ -9,11 +9,15 @@ namespace MercadoIgnis.Models
     public class Tecnico 
     {
          
+       
+       
+        public int ID{get;set;}
+
         //Relacion con el ApplicationUser, en ID guardo el del Application user, no es autogenerado
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string ID{get;set;}
-        public bool EsEgresado{ get; set; }
-        //public ICollection<Proyecto> Proyectos { get; set; } ver si se precisa
+        public string ApplicationUserId{get;set;}
+       
+        
+        public ApplicationUser ApplicationUser{get;set;}
         public ICollection<EspecialidadesTecnicos> EspecialidadesTecnicos { get; set; }
         
     }

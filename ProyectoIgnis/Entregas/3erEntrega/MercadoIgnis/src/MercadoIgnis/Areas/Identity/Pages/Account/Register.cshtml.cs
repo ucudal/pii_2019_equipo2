@@ -139,7 +139,7 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                         
                         var cliente = new Cliente
                         {
-                            ID = user.Id
+                            ApplicationUserId = user.Id
                            
                         };
                         
@@ -154,7 +154,7 @@ namespace MercadoIgnis.Areas.Identity.Pages.Account
                         
                         var tecnico = new Tecnico
                         {
-                            ID = user.Id
+                            ApplicationUserId = user.Id
                            
                         };
                         

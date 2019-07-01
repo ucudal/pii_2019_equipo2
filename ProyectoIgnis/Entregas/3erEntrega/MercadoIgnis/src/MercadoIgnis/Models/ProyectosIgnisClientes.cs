@@ -8,12 +8,12 @@ namespace MercadoIgnis.Models
     {
         //Genera la relacion n a n entre ProyectosIgnis y Clientes   
         public int ID{get; set;}
-        public ProyectosIgnisClientes(string clienteID, int proyectoIgnisID)
+        public ProyectosIgnisClientes(int clienteID, int proyectoIgnisID)
         {
                 ClienteID=clienteID;
                 ProyectoIgnisID=proyectoIgnisID;
         }
-        public string ClienteID {get; set;}
+        public int ClienteID {get; set;}
         public int ProyectoIgnisID {get; set;}
 
         public Cliente Cliente {get; set;}
