@@ -156,7 +156,7 @@ namespace MercadoIgnis.Migrations
 
                     b.Property<DateTime>("FechaFinalizacion");
 
-                    b.Property<string>("TipoDeProyecto");
+                    b.Property<int>("Tipos");
 
                     b.HasKey("ID");
 

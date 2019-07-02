@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190630201206_InitialCreateIdentity")]
+    [Migration("20190630234751_InitialCreateIdentity")]
     partial class InitialCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,7 +158,7 @@ namespace MercadoIgnis.Migrations
 
                     b.Property<DateTime>("FechaFinalizacion");
 
-                    b.Property<string>("TipoDeProyecto");
+                    b.Property<int>("Tipos");
 
                     b.HasKey("ID");
 

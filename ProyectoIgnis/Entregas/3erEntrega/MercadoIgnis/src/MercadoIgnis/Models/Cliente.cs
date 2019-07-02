@@ -6,17 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MercadoIgnis.Models
 {
-    public class Cliente 
-    
+    public class Cliente
     {
-        
         //Relacion con el ApplicationUser, en ID guardo el del Application user, no es autogenerado
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string ID{get;set;}
-        
-        
-
+        public string ID { get; set; }
         public ICollection<ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
-        
     }
 }

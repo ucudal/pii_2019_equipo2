@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using MercadoIgnis.Areas.Identity.Data;
+using static MercadoIgnis.Models.ProyectoIgnis;
 //Patron Expert
 //Patron Creator
 //EditModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectoIgnis -por lo que EditModel es un experto conrespecto a crear ProyectoIgnis-.
@@ -27,6 +28,28 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            ProyectosEstado = new List<SelectListItem>();
+
+            ProyectosEstado.Add(new SelectListItem
+            {
+                Value = ((int)EnumEstadoProyecto.EnSeleccion).ToString(),
+                Text = EnumEstadoProyecto.EnSeleccion.ToString()
+            });
+            ProyectosEstado.Add(new SelectListItem
+            {
+                Value = ((int)EnumEstadoProyecto.EnProceso).ToString(),
+                Text = EnumEstadoProyecto.EnProceso.ToString()
+            });
+            ProyectosEstado.Add(new SelectListItem
+            {
+                Value = ((int)EnumEstadoProyecto.Finalizado).ToString(),
+                Text = EnumEstadoProyecto.Finalizado.ToString()
+            });
+            ProyectosEstado.Add(new SelectListItem
+            {
+                Value = ((int)EnumEstadoProyecto.Cancelado).ToString(),
+                Text = EnumEstadoProyecto.Cancelado.ToString()
+            });
             if (id == null)
             {
                 return NotFound();
@@ -40,7 +63,8 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
             }
             return Page();
         }
-
+        public EnumEstadoProyecto Estado { get; set; }
+        public List<SelectListItem> ProyectosEstado { get; set; }
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

@@ -113,7 +113,7 @@ namespace MercadoIgnis.Migrations
                     Descripcion = table.Column<string>(nullable: true),
                     FechaComienzo = table.Column<DateTime>(nullable: false),
                     FechaFinalizacion = table.Column<DateTime>(nullable: false),
-                    TipoDeProyecto = table.Column<string>(nullable: true)
+                    Tipos = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
