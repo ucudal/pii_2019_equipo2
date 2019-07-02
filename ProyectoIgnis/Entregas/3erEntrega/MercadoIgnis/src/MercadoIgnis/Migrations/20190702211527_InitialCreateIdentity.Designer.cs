@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190701233504_InitialCreateIdentity")]
+    [Migration("20190702211527_InitialCreateIdentity")]
     partial class InitialCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -227,6 +227,24 @@ namespace MercadoIgnis.Migrations
                     b.ToTable("Tecnico");
                 });
 
+            modelBuilder.Entity("MercadoIgnis.Models.TecnicosSugeridosPuestos", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("PuestoID");
+
+                    b.Property<int>("TecnicoID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PuestoID");
+
+                    b.HasIndex("TecnicoID");
+
+                    b.ToTable("TecnicosSugeridosPuestos");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -393,6 +411,19 @@ namespace MercadoIgnis.Migrations
                     b.HasOne("MercadoIgnis.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.TecnicosSugeridosPuestos", b =>
+                {
+                    b.HasOne("MercadoIgnis.Models.Puesto", "Puesto")
+                        .WithMany("TecnicosSugeridosPuesto")
+                        .HasForeignKey("PuestoID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
+                        .WithMany()
+                        .HasForeignKey("TecnicoID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

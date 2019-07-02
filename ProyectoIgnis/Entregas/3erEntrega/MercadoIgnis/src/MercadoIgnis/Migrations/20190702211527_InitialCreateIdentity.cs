@@ -339,6 +339,32 @@ namespace MercadoIgnis.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TecnicosSugeridosPuestos",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TecnicoID = table.Column<int>(nullable: false),
+                    PuestoID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TecnicosSugeridosPuestos", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_TecnicosSugeridosPuestos_Puesto_PuestoID",
+                        column: x => x.PuestoID,
+                        principalTable: "Puesto",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TecnicosSugeridosPuestos_Tecnico_TecnicoID",
+                        column: x => x.TecnicoID,
+                        principalTable: "Tecnico",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "ApplicationUser",
@@ -421,6 +447,16 @@ namespace MercadoIgnis.Migrations
                 name: "IX_Tecnico_ApplicationUserId",
                 table: "Tecnico",
                 column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TecnicosSugeridosPuestos_PuestoID",
+                table: "TecnicosSugeridosPuestos",
+                column: "PuestoID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TecnicosSugeridosPuestos_TecnicoID",
+                table: "TecnicosSugeridosPuestos",
+                column: "TecnicoID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -453,13 +489,16 @@ namespace MercadoIgnis.Migrations
                 name: "ProyectosIgnisClientes");
 
             migrationBuilder.DropTable(
-                name: "Puesto");
+                name: "TecnicosSugeridosPuestos");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Cliente");
+
+            migrationBuilder.DropTable(
+                name: "Puesto");
 
             migrationBuilder.DropTable(
                 name: "Especialidad");
