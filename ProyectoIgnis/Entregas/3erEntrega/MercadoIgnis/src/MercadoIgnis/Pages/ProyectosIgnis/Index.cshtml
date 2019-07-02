@@ -108,6 +108,10 @@
                       @Html.ActionLink("Ver Tecnicos Sugeridos", "OnGetAsync",
                                   new { PuestoID = item.ID })
                     }
+                    else
+                    {
+                         <a asp-page="../TecnicosSugeridos/Create" asp-route-id="@item.ID">Sugerir Tecnicos</a> 
+                    }
                     
                 </td>
             </tr>
