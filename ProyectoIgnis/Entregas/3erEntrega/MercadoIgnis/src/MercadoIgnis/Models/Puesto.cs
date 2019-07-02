@@ -6,15 +6,34 @@ namespace MercadoIgnis.Models
 {
     public class Puesto
     {
+        public enum EnumEstadoPuesto
+        {
+            ALaEsperaDeTecnicos,
+            ConTecnicosSugeridos,
+            ALaEsperaDeConfirmacion,
+            Ocupado
+        };
+
         public int ID { get; set; }
 
         [ScaffoldColumn(false)]
         public int EspecialidadID { get; set; }
-        public Especialidad Especialidad { get; set; } //Se carga con el ID Especialidad
+        public Especialidad Especialidad { get; set; } 
 
         [ScaffoldColumn(false)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public ProyectoIgnis ProyectoIgnis { get; set; }
         public int ProyectoIgnisID { get; set; }
+
+        public EnumEstadoPuesto Estado {get;set;}
+
+        //Tecnico asignado
+        public int? TecnicoID{get;set;} //opcional para que se pueda crear un Puesto sin tecnico asignado
+        public Tecnico Tecnico{get;set;}
+
+        //Tecnicos Sugeridos
+        public ICollection<TecnicosSugeridosPuestos> TecnicosSugeridosPuesto { get; set; }
+
+
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190701223710_InitialCreateIdentity")]
+    [Migration("20190701233504_InitialCreateIdentity")]
     partial class InitialCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -196,13 +196,19 @@ namespace MercadoIgnis.Migrations
 
                     b.Property<int>("EspecialidadID");
 
+                    b.Property<int>("Estado");
+
                     b.Property<int>("ProyectoIgnisID");
+
+                    b.Property<int?>("TecnicoID");
 
                     b.HasKey("ID");
 
                     b.HasIndex("EspecialidadID");
 
                     b.HasIndex("ProyectoIgnisID");
+
+                    b.HasIndex("TecnicoID");
 
                     b.ToTable("Puesto");
                 });
@@ -376,6 +382,10 @@ namespace MercadoIgnis.Migrations
                         .WithMany("Puestos")
                         .HasForeignKey("ProyectoIgnisID")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
+                        .WithMany()
+                        .HasForeignKey("TecnicoID");
                 });
 
             modelBuilder.Entity("MercadoIgnis.Models.Tecnico", b =>

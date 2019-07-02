@@ -55,7 +55,7 @@ namespace MercadoIgnis.Pages.Puestos
             _context.Puesto.Add(Puesto);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../ProyectosIgnis/Index");
         }
     }
 }

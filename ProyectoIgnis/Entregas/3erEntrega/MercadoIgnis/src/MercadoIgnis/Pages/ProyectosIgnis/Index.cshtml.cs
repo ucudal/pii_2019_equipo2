@@ -20,9 +20,13 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         {
             _context = context;
         }
-        public IEnumerable<ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
+        public int ProyectoIgnisID{get;set;}
+        public int PuestoID{get;set;}
+        public IEnumerable<ProyectosIgnisClientes> ProyectosIgnisClientes {get; set;}
 
-        public IList<ProyectoIgnis> ProyectoIgnis { get; set; }
+        //Usadas para listar
+        public IList<ProyectoIgnis> ProyectoIgnis {get; set;}
+        public IList<Puesto> PuestosProyecto {get;set;}
 
 
         [BindProperty]
@@ -30,7 +34,7 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         public IEnumerable<ProyectoIgnis> Proyectos { get; set; }
 
         
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? id, int? actorID)
         {
             if (User.IsInRole("Cliente"))
             {
@@ -66,6 +70,21 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
             {
                 //throw exception
             }
+            //Si tengo algun proyecto seleccionado, muestro los puestos
+            if (id != null)
+            {
+                ProyectoIgnisID = id.Value;
+                //Selecciono los puestos de ese proyecto
+                PuestosProyecto = await _context.Puesto
+                .Include(e=>e.Especialidad)
+                .Where(p=>p.ProyectoIgnisID==id.Value).              
+                ToListAsync();
+                
+                
+            }
+
+
+
         }
     }
 }

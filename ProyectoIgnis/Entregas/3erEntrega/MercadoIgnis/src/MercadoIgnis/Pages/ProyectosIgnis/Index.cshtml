@@ -1,4 +1,4 @@
-@page
+@page "{id:int?}"
 @model MercadoIgnis.Pages.ProyectosIgnis.IndexModel
 
 @{
@@ -33,7 +33,13 @@
     </thead>
     <tbody>
     @foreach (var item in Model.ProyectoIgnis) {
-        <tr>
+
+        string selectedRow = "";
+            if (item.ID == Model.ProyectoIgnisID)
+            {
+                selectedRow = "table-success";
+            }
+        <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
@@ -51,6 +57,7 @@
                
             </td>
             <td>
+                <a asp-page="./Index" asp-route-id="@item.ID">Seleccionar</a> |
                 <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> |
                 <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
@@ -60,3 +67,50 @@
     }
     </tbody>
 </table>
+
+@if (Model.PuestosProyecto != null)
+{
+    <h3>Puestos del Proyecto</h3>
+    <table class="table">
+        <tr>            
+            <th>Especialidad</th>
+            <th>Estado</th>
+            <th>Tecnico Asignado</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.PuestosProyecto)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.PuestoID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @item.Especialidad.Area
+                </td>
+                <td>
+                    @item.Estado
+                </td>
+                <td>@if(item.Tecnico != null)
+                    {
+                      @item.Tecnico
+                    }
+                    else
+                    {
+                        <a> No asignado aún </a>
+                    }
+                    
+                </td>
+                <td>@if(item.TecnicosSugeridosPuesto != null)
+                    {
+                      @Html.ActionLink("Ver Tecnicos Sugeridos", "OnGetAsync",
+                                  new { PuestoID = item.ID })
+                    }
+                    
+                </td>
+            </tr>
+        }
+    </table>
+}

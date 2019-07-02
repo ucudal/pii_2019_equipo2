@@ -254,32 +254,6 @@ namespace MercadoIgnis.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Puesto",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    EspecialidadID = table.Column<int>(nullable: false),
-                    ProyectoIgnisID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Puesto", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Puesto_Especialidad_EspecialidadID",
-                        column: x => x.EspecialidadID,
-                        principalTable: "Especialidad",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Puesto_ProyectoIgnis_ProyectoIgnisID",
-                        column: x => x.ProyectoIgnisID,
-                        principalTable: "ProyectoIgnis",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ProyectosIgnisClientes",
                 columns: table => new
                 {
@@ -329,6 +303,40 @@ namespace MercadoIgnis.Migrations
                         principalTable: "Tecnico",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Puesto",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EspecialidadID = table.Column<int>(nullable: false),
+                    ProyectoIgnisID = table.Column<int>(nullable: false),
+                    Estado = table.Column<int>(nullable: false),
+                    TecnicoID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Puesto", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Puesto_Especialidad_EspecialidadID",
+                        column: x => x.EspecialidadID,
+                        principalTable: "Especialidad",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Puesto_ProyectoIgnis_ProyectoIgnisID",
+                        column: x => x.ProyectoIgnisID,
+                        principalTable: "ProyectoIgnis",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Puesto_Tecnico_TecnicoID",
+                        column: x => x.TecnicoID,
+                        principalTable: "Tecnico",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -405,6 +413,11 @@ namespace MercadoIgnis.Migrations
                 column: "ProyectoIgnisID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Puesto_TecnicoID",
+                table: "Puesto",
+                column: "TecnicoID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tecnico_ApplicationUserId",
                 table: "Tecnico",
                 column: "ApplicationUserId");
@@ -446,9 +459,6 @@ namespace MercadoIgnis.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Tecnico");
-
-            migrationBuilder.DropTable(
                 name: "Cliente");
 
             migrationBuilder.DropTable(
@@ -456,6 +466,9 @@ namespace MercadoIgnis.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProyectoIgnis");
+
+            migrationBuilder.DropTable(
+                name: "Tecnico");
 
             migrationBuilder.DropTable(
                 name: "ApplicationUser");
