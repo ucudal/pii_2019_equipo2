@@ -18,6 +18,6 @@ namespace MercadoIgnis.Models
         [Display(Name = "Fecha Finalización")]
         [DataType(DataType.Date)]
         public DateTime FechaFinalizacion { get; set; }
-        
+
     }
 }

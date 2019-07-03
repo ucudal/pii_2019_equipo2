@@ -28,11 +28,7 @@ namespace MercadoIgnis.Pages.Puestos
             }
             else
             {
-
-
                 ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "Area");
-
-
                 Console.WriteLine($"El valor de id onget:{id}");
 
             }

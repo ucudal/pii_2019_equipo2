@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MercadoIgnis.Areas.Identity.Data;
 namespace MercadoIgnis.Models
 {
-    public class EspecialidadesTecnicos 
+    public class EspecialidadesTecnicos
     {
         //Genera la relacion n a n entre Especialidades y Tecnicos
         public int ID{get; set;}
@@ -20,6 +20,6 @@ namespace MercadoIgnis.Models
        
        
 
-
+        
     }
 }
