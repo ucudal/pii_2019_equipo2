@@ -60,7 +60,6 @@
                 <a asp-page="./Index" asp-route-id="@item.ID">Seleccionar</a> |
                 <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> |
                 <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
             </td>
         </tr>
@@ -81,6 +80,7 @@
 
         @foreach (var item in Model.PuestosProyecto)
         {
+            
             string selectedRow = "";
             if (item.ID == Model.PuestoID)
             {
@@ -110,7 +110,7 @@
                     }
                     else
                     {
-                         <a asp-page="../TecnicosSugeridos/Create" asp-route-id="@item.ID">Sugerir Tecnicos</a> 
+                         <a asp-page="../TecnicosSugeridosPuesto/Index" asp-route-idEsp="@item.Especialidad.ID" asp-route-id="@item.ID">Sugerir Tecnicos</a> 
                     }
                     
                 </td>

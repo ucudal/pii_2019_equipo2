@@ -19,16 +19,16 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
             _context = context;
         }
 
-        
-        [BindProperty] 
+
+        [BindProperty]
         public Puesto Puesto { get; set; }
 
         public IEnumerable<Tecnico> Tecnico { get; set; }
 
         public IEnumerable<Tecnico> TodosTecnicos { get; set; }
 
-        
-        public async Task<IActionResult> OnGetAsync(int? id)
+
+        public async Task<IActionResult> OnGetAsync(int? id, int? idEsp)
         {
             if (id == null)
             {
@@ -41,9 +41,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                 .Where(m => m.ID == id)
                 .Include(c => c.TecnicosSugeridosPuesto)
                     .ThenInclude(a => a.Tecnico)
-                    .ThenInclude(t=>t.ApplicationUser)
-                    //.Include(e=>e.EspecialidadesTecnicos)
-                    //.ThenInclude(r=>r.Especialidad)
+                    .ThenInclude(t => t.ApplicationUser)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
 
@@ -55,15 +53,16 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
             // Populate the list of Tecnicos in the viewmodel with the Tecnicos of the Puesto.
             this.Tecnico = Puesto.TecnicosSugeridosPuesto
                 .Select(a => a.Tecnico);
-                
+
+
 
             // Populate the list of all other Tecnicos with all Tecnicos not included in the Puesto's Tecnicos and
             // included in the search filter.
             this.TodosTecnicos = await _context.Tecnico
-                .Include(t=>t.ApplicationUser)
-                .Where(a =>!Tecnico.Contains(a))
+                .Include(e => e.EspecialidadesTecnicos)
+                .Include(t => t.ApplicationUser)
+                .Where(a => !Tecnico.Contains(a))
                 .ToListAsync();
-
             return Page();
         }
 
@@ -79,7 +78,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                     .ThenInclude(a => a.Tecnico)
                 .FirstOrDefaultAsync(m => m.ID == id);
             {
-                
+
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -141,20 +140,21 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                 .FirstOrDefaultAsync(m => m.ID == Puesto.ID);
 
             await TryUpdateModelAsync<Puesto>(PuestoToUpdate);
-            Console.WriteLine("Entre0");
+
 
             if (TecnicoToAddID != null)
             {
-                Console.WriteLine("Entre");
                 Tecnico TecnicoToAdd = await _context.Tecnico.Where(a => a.ID == TecnicoToAddID).FirstOrDefaultAsync();
                 if (TecnicoToAdd != null)
                 {
-                    Console.WriteLine("Entre2");
-                    var appereanceToAdd = new TecnicoSugeridoPuesto() {
+
+                    var appereanceToAdd = new TecnicoSugeridoPuesto()
+                    {
                         TecnicoID = TecnicoToAddID.Value,
                         Tecnico = TecnicoToAdd,
                         PuestoID = PuestoToUpdate.ID,
-                        Puesto = PuestoToUpdate };
+                        Puesto = PuestoToUpdate
+                    };
                     PuestoToUpdate.TecnicosSugeridosPuesto.Add(appereanceToAdd);
                 }
             }
@@ -182,6 +182,6 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
         {
             return _context.Puesto.Any(e => e.ID == id);
         }
-        
+
     }
 }

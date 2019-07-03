@@ -1,38 +1,36 @@
-@page "{id:int?}"
+@page "{id:int?}/{idEsp:int?}"
 @model MercadoIgnis.Pages.TecnicosSugeridosPuesto.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Sugerir Tecnicos a Puesto</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+
 <div class="row">
     <div class="col-md-8">
         @if (Model.Tecnico != null)
         {
-            <h4>Cast</h4>
+            <h4>Tecnicos Sugeridos a este puesto</h4>
             <table class="table">
                 <tr>
-                    <th></th>
-                    <th>Name</th>
+                    <th>Nombre</th>
+                    <th>Accion</th>
                 </tr>
 
                 @foreach (var item in Model.Tecnico)
                 {
                     string TecnicoToDeleteID = item.ID.ToString();
-                    <tr>
+                    <tr> 
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
+                        </td>
                         <td>
                             <form method="post" asp-page-handler="DeleteTecnico"
                                 asp-route-id="@Model.Puesto.ID" asp-route-TecnicoToDeleteID="@TecnicoToDeleteID">
-                                <button class="btn btn-default">Delete</button>
+                                <button class="btn btn-default">Quitar</button>
                             </form>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
                         </td>
                     </tr>
                 }
@@ -46,11 +44,11 @@
 
         @if (Model.TodosTecnicos != null)
         {
-            <h4>Other Tecnicos</h4>
+            <h4>Otros Tecnicos con la especialidad necesaria</h4>
             <table class="table">
                 <tr>
-                    <th></th>
-                    <th>Name</th>
+                    <th>Nombre</th>
+                    <th>Accion</th>
                 </tr>
 
                 @foreach (var item in Model.TodosTecnicos)
@@ -58,13 +56,13 @@
                     string TecnicoToAddID = item.ID.ToString();
                     <tr>
                         <td>
-                            <form method="post" asp-page-handler="AddTecnico"
-                                asp-route-id="@Model.Puesto.ID" asp-route-TecnicoToAddID="@TecnicoToAddID">
-                                <button class="btn btn-default">Add</button>
-                            </form>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
+                            <form method="post" asp-page-handler="AddTecnico"
+                                asp-route-id="@Model.Puesto.ID" asp-route-TecnicoToAddID="@TecnicoToAddID">
+                                <button class="btn btn-default">Agregar</button>
+                            </form>
                         </td>
                     </tr>
                 }
@@ -74,7 +72,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="../ProyectosIgnis/Index" asp-route-id="@Model.Puesto.ID">Volver al proyecto</a>
 </div>
 
 @section Scripts {
