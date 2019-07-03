@@ -225,7 +225,7 @@ namespace MercadoIgnis.Migrations
                     b.ToTable("Tecnico");
                 });
 
-            modelBuilder.Entity("MercadoIgnis.Models.TecnicosSugeridosPuestos", b =>
+            modelBuilder.Entity("MercadoIgnis.Models.TecnicoSugeridoPuesto", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
@@ -240,7 +240,7 @@ namespace MercadoIgnis.Migrations
 
                     b.HasIndex("TecnicoID");
 
-                    b.ToTable("TecnicosSugeridosPuestos");
+                    b.ToTable("TecnicoSugeridoPuesto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -411,7 +411,7 @@ namespace MercadoIgnis.Migrations
                         .HasForeignKey("ApplicationUserId");
                 });
 
-            modelBuilder.Entity("MercadoIgnis.Models.TecnicosSugeridosPuestos", b =>
+            modelBuilder.Entity("MercadoIgnis.Models.TecnicoSugeridoPuesto", b =>
                 {
                     b.HasOne("MercadoIgnis.Models.Puesto", "Puesto")
                         .WithMany("TecnicosSugeridosPuesto")
