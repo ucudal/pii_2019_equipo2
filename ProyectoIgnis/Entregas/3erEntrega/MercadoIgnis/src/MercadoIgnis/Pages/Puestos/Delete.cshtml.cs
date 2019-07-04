@@ -41,6 +41,7 @@ namespace MercadoIgnis.Pages.Puestos
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            
             if (id == null)
             {
                 return NotFound();
