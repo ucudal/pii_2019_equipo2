@@ -2,17 +2,18 @@
 @model MercadoIgnis.Pages.TecnicosSugeridosPuesto.EnviarSolicitudesTecnicosModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Enviar Solicitudes a Tecnicos";
 }
 
-<h1>Enviar Solicitudes a Tecnicos</h1>
+<h1>Enviar Solicitudes a Tecnicos Sugeridos</h1>
 
 
 <div class="row">
     <div class="col-md-8">
         @if (Model.Tecnico != null)
         {
-            <h4>Tecnicos Sugeridos a este puesto</h4>
+            <h4>Se enviaran notificaciones para unirse a los siguientes tecnicos</h4>
+            <h5>El primero en aceptar la solicitud será asignado al puesto</h5>
             <table class="table">
                 <tr>
                     <th>Nombre</th>
@@ -44,7 +45,7 @@
 
         @if (Model.TodosTecnicos != null)
         {
-            <h4>Otros Tecnicos con la especialidad necesaria</h4>
+            <h4>Seleccione los tecnicos para enviarles una solicitud</h4>
             <table class="table">
                 <tr>
                     <th>Nombre</th>
