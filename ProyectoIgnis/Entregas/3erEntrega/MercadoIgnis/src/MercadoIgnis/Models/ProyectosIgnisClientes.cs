@@ -24,5 +24,7 @@ namespace MercadoIgnis.Models
        
 
 
+        public Cliente Cliente { get; set; }
+        public ProyectoIgnis ProyectoIgnis { get; set; }
     }
 }
