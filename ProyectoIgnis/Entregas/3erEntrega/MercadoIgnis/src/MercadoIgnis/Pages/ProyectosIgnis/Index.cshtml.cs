@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using MercadoIgnis.Areas.Identity.Data;
+
 //Patron Expert
 //Patron Creator
 //IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectoIgnis -por lo que IndexModel es un experto conrespecto a crear ProyectoIgnis-.
@@ -20,80 +21,49 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         {
             _context = context;
         }
-        public IEnumerable<ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
+        public int ProyectoIgnisID{get;set;}
+        public int PuestoID{get;set;}
+        public IEnumerable<ProyectosIgnisClientes> ProyectosIgnisClientes {get; set;}
 
-        public IList<ProyectoIgnis> ProyectoIgnis { get; set; }
-
-
+        //Usadas para listar
+        public IList<ProyectoIgnis> ProyectoIgnis {get; set;}
+        public IList<Puesto> PuestosProyecto {get;set;}
+        
         [BindProperty]
         public Cliente Cliente { get; set; }
         public IEnumerable<ProyectoIgnis> Proyectos { get; set; }
 
-        public class ProyectosConNombreClientes
+        
+        public async Task OnGetAsync(int? id, int? actorID)
         {
-            public ProyectoIgnis Proyecto { get; set; }
-            public string NombrePropietario { get; set; }
-        }
-        public IList<ProyectosConNombreClientes> ListaProyectosConNombreCliente { get; set; }
-
-        public async Task OnGetAsync()
-        {
+            
             if (User.IsInRole("Cliente"))
             {
 
-                //Listo todos los proyectos, incluyo la relacion para traer el id del propietario
+                //Listo todos los proyectos del cliente, incluyo la relacion para traer el nombre del cliente de ApplicationUser
+                //Obtengo el id Cliente usando el Id de logueo (ApplicationUserId)
+                int IdCliente = await new OperacionesUsuario().IdDeClienteConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
+
                 ProyectoIgnis = await _context.ProyectoIgnis.
                 Include(l => l.ProyectosIgnisClientes).
-                Where(m => m.ProyectosIgnisClientes.ClienteID == ContextoSingleton.Instance.userManager.GetUserId(User)).
+                ThenInclude(c => c.Cliente).
+                ThenInclude(a => a.ApplicationUser).
+                Where(m => m.ProyectosIgnisClientes.ClienteID == IdCliente).
                 ToListAsync();
 
-
-                //Traigo la info de ApplicationUser para cada cliente
-                ListaProyectosConNombreCliente = new List<ProyectosConNombreClientes>();
-
-                foreach (ProyectoIgnis p in this.ProyectoIgnis)
-                {
-                    ProyectosConNombreClientes proyectoConNombre = new ProyectosConNombreClientes();
-                    proyectoConNombre.Proyecto = p;
-
-                    proyectoConNombre.NombrePropietario = _context.ApplicationUsers
-                        .Where(m => m.Id == p.ProyectosIgnisClientes.ClienteID)
-                        .FirstOrDefaultAsync().Result.Name;
-
-                    if (proyectoConNombre != null)
-                    {
-                        ListaProyectosConNombreCliente.Add(proyectoConNombre);
-                    }
-                }
+                
             }
             else if (User.IsInRole("Administrador"))
             {
-                //Listo todos los proyectos, incluyo la relacion para traer el id del propietario
+                //Listo todos los proyectos del sistema, incluyo la relacion para traer el nombre de los clientes de ApplicationUser
                 ProyectoIgnis = await _context.ProyectoIgnis.
                 Include(l => l.ProyectosIgnisClientes).
+                ThenInclude(c => c.Cliente).
+                ThenInclude(a => a.ApplicationUser).                
                 ToListAsync();
 
-
-                //Traigo la info de ApplicationUser para cada cliente
-                ListaProyectosConNombreCliente = new List<ProyectosConNombreClientes>();
-
-                foreach (ProyectoIgnis p in this.ProyectoIgnis)
-                {
-                    ProyectosConNombreClientes proyectoConNombre = new ProyectosConNombreClientes();
-                    proyectoConNombre.Proyecto = p;
-
-                    proyectoConNombre.NombrePropietario = _context.ApplicationUsers
-                    .Where(m => m.Id == p.ProyectosIgnisClientes.ClienteID)
-                    .FirstOrDefaultAsync().Result.Name;
-
-                    if (proyectoConNombre != null)
-                    {
-                        ListaProyectosConNombreCliente.Add(proyectoConNombre);
-                    }
-
-                }
-
             }
+            
             else if (User.IsInRole("Tecnico"))
             {
                 //Traer los proyectos ignis del tecnico
@@ -102,6 +72,21 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
             {
                 //throw exception
             }
+            //Si tengo algun proyecto seleccionado, muestro los puestos
+            if (id != null)
+            {
+                ProyectoIgnisID = id.Value;
+                //Selecciono los puestos de ese proyecto
+                PuestosProyecto = await _context.Puesto
+                .Include(e=>e.Especialidad)
+                .Where(p=>p.ProyectoIgnisID==id.Value).              
+                ToListAsync();
+                
+                
+            }
+
+
+
         }
     }
 }

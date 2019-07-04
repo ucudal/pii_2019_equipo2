@@ -25,6 +25,7 @@ namespace MercadoIgnis.Pages.Calificaciones
 
         public async Task OnGetAsync()
         {
+            Check.Precondition(Calificacion !=null);
             Calificacion = await _context.Calificacion.ToListAsync();
         }
     }

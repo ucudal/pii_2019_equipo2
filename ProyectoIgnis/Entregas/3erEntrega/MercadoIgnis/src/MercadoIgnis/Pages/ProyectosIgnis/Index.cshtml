@@ -1,6 +1,6 @@
-@page
+@page "{id:int?}"
 @model MercadoIgnis.Pages.ProyectosIgnis.IndexModel
-
+@using MercadoIgnis.Areas.Identity.Data
 @{
     ViewData["Title"] = "Index";
 }
@@ -32,31 +32,93 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.ListaProyectosConNombreCliente) {
-        <tr>
+    @foreach (var item in Model.ProyectoIgnis) {
+
+        string selectedRow = "";
+            if (item.ID == Model.ProyectoIgnisID)
+            {
+                selectedRow = "table-success";
+            }
+        <tr class="@selectedRow">
             <td>
-                @Html.DisplayFor(modelItem => item.Proyecto.Descripcion)
+                @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Proyecto.FechaComienzo)
+                @Html.DisplayFor(modelItem => item.FechaComienzo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Proyecto.FechaFinalizacion)
+                @Html.DisplayFor(modelItem => item.FechaFinalizacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Proyecto.Estado)
+                @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-               @Html.DisplayFor(modelItem => item.NombrePropietario)
+               @Html.DisplayFor(modelItem => item.ProyectosIgnisClientes.Cliente.ApplicationUser.Name)
                
             </td>
             <td>
-                <a asp-page="../Puestos/Create" asp-route-id="@item.Proyecto.ID">Agregar Puesto</a> |
-                <a asp-page="./Edit" asp-route-id="@item.Proyecto.ID">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Proyecto.ID">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Proyecto.ID">Borrar</a>
+                <a asp-page="./Index" asp-route-id="@item.ID">Seleccionar</a> |
+                <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> |
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
             </td>
         </tr>
     }
     </tbody>
 </table>
+
+@if (Model.PuestosProyecto != null)
+{
+    <h3>Puestos del Proyecto</h3>
+    <table class="table">
+        <tr>            
+            <th>Especialidad</th>
+            <th>Estado</th>
+            <th>Tecnico Asignado</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.PuestosProyecto)
+        {
+            
+            string selectedRow = "";
+            if (item.ID == Model.PuestoID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @item.Especialidad.Area
+                </td>
+                <td>
+                    @item.Estado
+                </td>
+                <td>@if(item.Tecnico != null)
+                    {
+                      @item.Tecnico
+                    }
+                    else
+                    {
+                        <a> No asignado aún </a>
+                    }
+                    
+                </td>
+                
+              
+                <td>@if((User.IsInRole(IdentityData.ClienteRoleName))&&(item.Estado.ToString() == "ConTecnicosSugeridos"))
+                    {
+                     <a asp-page="../TecnicosSugeridosPuesto/EnviarSolicitudesTecnicos" asp-route-idEsp="@item.Especialidad.ID" asp-route-id="@item.ID">Elegir Tecnico para Puesto</a>
+                    }
+                    else if((User.IsInRole(IdentityData.AdminRoleName))&&(item.Estado.ToString() == "ALaEsperaDeTecnicos"))
+                    {
+                         <a asp-page="../TecnicosSugeridosPuesto/SugerirTecnicosPuesto" asp-route-idEsp="@item.Especialidad.ID" asp-route-id="@item.ID">Sugerir Tecnicos</a> 
+                    }
+                    
+                </td>
+                <td>
+                         <a asp-page="../Puestos/Delete" asp-route-id="@item.ID">Quitar</a>                     
+                </td>
+            </tr>
+        }
+    </table>
+}

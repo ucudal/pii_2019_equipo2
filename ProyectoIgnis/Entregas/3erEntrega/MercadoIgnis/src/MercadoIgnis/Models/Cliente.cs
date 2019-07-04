@@ -8,9 +8,16 @@ namespace MercadoIgnis.Models
 {
     public class Cliente
     {
+        
+        [Key]
+        public int ID{get;set;}
+
         //Relacion con el ApplicationUser, en ID guardo el del Application user, no es autogenerado
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string ID { get; set; }
+        public string ApplicationUserId{get;set;}
+       
+        
+        public ApplicationUser ApplicationUser{get;set;}
+
         public ICollection<ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
     }
 }

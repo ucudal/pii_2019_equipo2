@@ -36,7 +36,9 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
                 return Page();
             }
 
-            EspecialidadesTecnicos.TecnicoID = ContextoSingleton.Instance.userManager.GetUserId(User);
+            //Obtengo el idTecnico usando la variable de sesion User
+            int IdTecnico = await new OperacionesUsuario().IdDeTecnicoConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
+            EspecialidadesTecnicos.TecnicoID=IdTecnico;
             _context.EspecialidadesTecnicos.Add(EspecialidadesTecnicos);
             await _context.SaveChangesAsync();
 

@@ -4,22 +4,22 @@ using System.Collections.Generic;
 using MercadoIgnis.Areas.Identity.Data;
 namespace MercadoIgnis.Models
 {
-    public class EspecialidadesTecnicos
+    public class TecnicoSugeridoPuesto 
     {
-        //Genera la relacion n a n entre Especialidades y Tecnicos
+        //Genera la relacion n a n entre Tecnicos y Puestos
         public int ID{get; set;}
         
         [ScaffoldColumn(false)]
         public int TecnicoID {get; set;}
-        public int EspecialidadID {get; set;}
+        public int PuestoID {get; set;}
 
         public Tecnico Tecnico {get; set;}
-        public Especialidad Especialidad {get; set;}
+        public Puesto Puesto {get; set;}
 
 
        
        
 
-        
+
     }
 }
