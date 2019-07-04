@@ -10,11 +10,11 @@ using MercadoIgnis.Models;
 
 namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
 {
-    public class IndexModel : PageModel
+    public class SugerirTecnicosPuestoModel : PageModel
     {
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
-        public IndexModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)
+        public SugerirTecnicosPuestoModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
@@ -128,7 +128,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                     throw;
                 }
             }
-
+            ControlarCambioEstado(id);
             return Redirect(Request.Path + $"?id={id}");
         }
 
@@ -156,6 +156,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                         Puesto = PuestoToUpdate
                     };
                     PuestoToUpdate.TecnicosSugeridosPuesto.Add(appereanceToAdd);
+                    
                 }
             }
 
@@ -174,8 +175,27 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                     throw;
                 }
             }
-
+           
+            ControlarCambioEstado(Puesto.ID);
             return Redirect(Request.Path + $"?id={id}");
+        }
+
+
+        public async void ControlarCambioEstado(int id)
+        {
+             Puesto PuestoToUpdate = await _context.Puesto
+                .Where(m => m.ID == id)
+                .Include(c => c.TecnicosSugeridosPuesto)
+                .FirstOrDefaultAsync();
+            if(PuestoToUpdate.TecnicosSugeridosPuesto.Any())
+            {
+                PuestoToUpdate.Estado=Puesto.EnumEstadoPuesto.ConTecnicosSugeridos;
+            }else
+            {
+                 PuestoToUpdate.Estado=Puesto.EnumEstadoPuesto.ALaEsperaDeTecnicos;
+            }
+           
+            await _context.SaveChangesAsync();
         }
 
         private bool PuestoExists(int id)

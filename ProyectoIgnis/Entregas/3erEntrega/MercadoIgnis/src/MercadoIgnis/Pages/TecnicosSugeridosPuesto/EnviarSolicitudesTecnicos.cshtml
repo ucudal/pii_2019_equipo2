@@ -1,11 +1,11 @@
 @page "{id:int?}/{idEsp:int?}"
-@model MercadoIgnis.Pages.TecnicosSugeridosPuesto.IndexModel
+@model MercadoIgnis.Pages.TecnicosSugeridosPuesto.EnviarSolicitudesTecnicosModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Sugerir Tecnicos a Puesto</h1>
+<h1>Enviar Solicitudes a Tecnicos</h1>
 
 
 <div class="row">
@@ -29,7 +29,7 @@
                         <td>
                             <form method="post" asp-page-handler="DeleteTecnico"
                                 asp-route-id="@Model.Puesto.ID" asp-route-TecnicoToDeleteID="@TecnicoToDeleteID">
-                                <button class="btn btn-default">Quitar</button>
+                                <button class="btn btn-default">Anular Solicitud</button>
                             </form>
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
                         <td>
                             <form method="post" asp-page-handler="AddTecnico"
                                 asp-route-id="@Model.Puesto.ID" asp-route-TecnicoToAddID="@TecnicoToAddID">
-                                <button class="btn btn-default">Agregar</button>
+                                <button class="btn btn-default">Enviar Solicitud</button>
                             </form>
                         </td>
                     </tr>
@@ -72,7 +72,7 @@
 </div>
 
 <div>
-    <a asp-page="../ProyectosIgnis/Index" asp-route-id="@Model.Puesto.ID">Volver al proyecto</a>
+    <a asp-page="../ProyectosIgnis/Index" asp-route-id="@Model.Puesto.ProyectoIgnisID">Volver al proyecto</a>
 </div>
 
 @section Scripts {
