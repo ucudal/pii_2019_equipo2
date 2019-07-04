@@ -25,7 +25,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
 
         public IEnumerable<Tecnico> Tecnico { get; set; }
 
-        public IEnumerable<Tecnico> TodosTecnicos { get; set; }
+        public List<Tecnico> TodosTecnicos { get; set; }
 
 
         public async Task<IActionResult> OnGetAsync(int? id, int? idEsp)
@@ -58,11 +58,27 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
 
             // Populate the list of all other Tecnicos with all Tecnicos not included in the Puesto's Tecnicos and
             // included in the search filter.
-            this.TodosTecnicos = await _context.Tecnico
+            // Populate the list of all other Tecnicos with all Tecnicos not included in the Puesto's Tecnicos 
+            var Tecnicos = await _context.Tecnico
                 .Include(e => e.EspecialidadesTecnicos)
                 .Include(t => t.ApplicationUser)
                 .Where(a => !Tecnico.Contains(a))
                 .ToListAsync();
+            
+            TodosTecnicos = new List<Tecnico>();
+            foreach(Tecnico t in Tecnicos)
+            {
+                _context.EspecialidadesTecnicos.Where(s=>s.TecnicoID==t.ID).Load();
+                foreach(EspecialidadesTecnicos s in t.EspecialidadesTecnicos)
+                {
+                    if(s.EspecialidadID==idEsp)
+                    {
+                        TodosTecnicos.Add(t);
+                    }
+                    
+
+                }
+            }
             return Page();
         }
 
