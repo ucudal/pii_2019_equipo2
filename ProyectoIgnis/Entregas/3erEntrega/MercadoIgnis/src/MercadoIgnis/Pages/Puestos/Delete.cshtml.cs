@@ -39,14 +39,8 @@ namespace MercadoIgnis.Pages.Puestos
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             Puesto = await _context.Puesto.FindAsync(id);
 
             if (Puesto != null)
@@ -55,7 +49,7 @@ namespace MercadoIgnis.Pages.Puestos
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+           return RedirectToPage("../ProyectosIgnis/Index",new{id=Puesto.ProyectoIgnisID});
         }
     }
 }

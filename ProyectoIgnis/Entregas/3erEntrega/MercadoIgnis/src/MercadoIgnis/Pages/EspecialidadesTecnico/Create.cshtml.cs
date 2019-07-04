@@ -21,8 +21,8 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
 
         public IActionResult OnGet()
         {
-        ViewData["EspecialidadID"] = new SelectList(_context.Especialidad,"ID","Area");
-        ViewData["TecnicoID"] = new SelectList(_context.Tecnico, "ID", "ID");
+            ViewData["EspecialidadID"] = new SelectList(_context.Especialidad, "ID", "Area");
+            ViewData["TecnicoID"] = new SelectList(_context.Tecnico, "ID", "ID");
             return Page();
         }
 

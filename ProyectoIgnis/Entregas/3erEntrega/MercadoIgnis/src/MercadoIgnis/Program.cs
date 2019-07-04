@@ -28,9 +28,10 @@ namespace MercadoIgnis
                     var context = services.
                         GetRequiredService<IdentityContext>();
                     context.Database.Migrate();
+                    ContextoSingleton.Instance.Initialize(services);
                     SeedIdentityData.Initialize(services);
                     SeedData.Initialize(services);
-                    ContextoSingleton.Instance.Initialize(services);
+                    
                     
                 }
                 catch (Exception ex)

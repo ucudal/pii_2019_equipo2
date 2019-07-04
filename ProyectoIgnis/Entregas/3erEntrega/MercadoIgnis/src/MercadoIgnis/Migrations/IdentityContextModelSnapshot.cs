@@ -225,6 +225,42 @@ namespace MercadoIgnis.Migrations
                     b.ToTable("Tecnico");
                 });
 
+            modelBuilder.Entity("MercadoIgnis.Models.TecnicoSolicitudPuesto", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("PuestoID");
+
+                    b.Property<int>("TecnicoID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PuestoID");
+
+                    b.HasIndex("TecnicoID");
+
+                    b.ToTable("TecnicoSolicitudPuesto");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.TecnicoSugeridoPuesto", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("PuestoID");
+
+                    b.Property<int>("TecnicoID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PuestoID");
+
+                    b.HasIndex("TecnicoID");
+
+                    b.ToTable("TecnicoSugeridoPuesto");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -391,6 +427,32 @@ namespace MercadoIgnis.Migrations
                     b.HasOne("MercadoIgnis.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.TecnicoSolicitudPuesto", b =>
+                {
+                    b.HasOne("MercadoIgnis.Models.Puesto", "Puesto")
+                        .WithMany("TecnicosSolicitudesPuesto")
+                        .HasForeignKey("PuestoID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
+                        .WithMany()
+                        .HasForeignKey("TecnicoID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MercadoIgnis.Models.TecnicoSugeridoPuesto", b =>
+                {
+                    b.HasOne("MercadoIgnis.Models.Puesto", "Puesto")
+                        .WithMany("TecnicosSugeridosPuesto")
+                        .HasForeignKey("PuestoID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
+                        .WithMany("TecnicosSugeridoPuesto")
+                        .HasForeignKey("TecnicoID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

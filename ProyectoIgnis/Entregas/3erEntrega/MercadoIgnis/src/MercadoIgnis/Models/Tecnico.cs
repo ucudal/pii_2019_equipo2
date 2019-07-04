@@ -19,6 +19,9 @@ namespace MercadoIgnis.Models
         
         public ApplicationUser ApplicationUser{get;set;}
         public ICollection<EspecialidadesTecnicos> EspecialidadesTecnicos { get; set; }
+
+        public ICollection<TecnicoSugeridoPuesto> TecnicosSugeridoPuesto { get; set; }
+         public ICollection<TecnicoSolicitudPuesto> TecnicosSolicitudPuesto { get; set; }
         
     }
 }

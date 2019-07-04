@@ -19,11 +19,11 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
             _context = context;
         }
 
-        public IList<EspecialidadesTecnicos> EspecialidadesTecnicos { get;set; }
+        public IList<EspecialidadesTecnicos> EspecialidadesTecnicos { get; set; }
 
         public async Task OnGetAsync()
         {
-            if(User.IsInRole("Técnico"))
+            if (User.IsInRole("Técnico"))
             {
                 //Obtengo el id Tecnico usando el Id de logueo (ApplicationUserId)
                 int IdTecnico = await new OperacionesUsuario().IdDeTecnicoConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
@@ -39,7 +39,7 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
 
                 
             }
-            else if(User.IsInRole("Administrador"))
+            else if (User.IsInRole("Administrador"))
             {
                 //Si soy administrador muestro todos los tecnicos con sus especialidades
                  EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
@@ -47,7 +47,8 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
                     .Include(e => e.Tecnico)
                     .ThenInclude(a=>a.ApplicationUser)                    
                     .ToListAsync();
-            }else
+            }
+            else
             {
                 //Throw Exception
             }

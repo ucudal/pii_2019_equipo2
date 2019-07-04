@@ -6,8 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MercadoIgnis.Models
 {
-    public class Cliente 
-    
+    public class Cliente
     {
         
         [Key]
@@ -20,6 +19,5 @@ namespace MercadoIgnis.Models
         public ApplicationUser ApplicationUser{get;set;}
 
         public ICollection<ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
-        
     }
 }

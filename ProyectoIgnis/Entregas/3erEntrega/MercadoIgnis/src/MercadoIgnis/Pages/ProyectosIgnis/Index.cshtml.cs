@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MercadoIgnis.Models;
 using MercadoIgnis.Areas.Identity.Data;
+
 //Patron Expert
 //Patron Creator
 //IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectoIgnis -por lo que IndexModel es un experto conrespecto a crear ProyectoIgnis-.
@@ -27,8 +28,7 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         //Usadas para listar
         public IList<ProyectoIgnis> ProyectoIgnis {get; set;}
         public IList<Puesto> PuestosProyecto {get;set;}
-
-
+        
         [BindProperty]
         public Cliente Cliente { get; set; }
         public IEnumerable<ProyectoIgnis> Proyectos { get; set; }
@@ -36,6 +36,7 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         
         public async Task OnGetAsync(int? id, int? actorID)
         {
+            
             if (User.IsInRole("Cliente"))
             {
 
@@ -62,6 +63,7 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                 ToListAsync();
 
             }
+            
             else if (User.IsInRole("Tecnico"))
             {
                 //Traer los proyectos ignis del tecnico

@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using MercadoIgnis.Areas.Identity.Data;
 namespace MercadoIgnis.Models
 {
-    public class ProyectosIgnisClientes 
+    public class ProyectosIgnisClientes
     {
         //Genera la relacion n a n entre ProyectosIgnis y Clientes   
         public int ID{get; set;}
         public ProyectosIgnisClientes(int clienteID, int proyectoIgnisID)
         {
-                ClienteID=clienteID;
-                ProyectoIgnisID=proyectoIgnisID;
+            ClienteID = clienteID;
+            ProyectoIgnisID = proyectoIgnisID;
         }
         public int ClienteID {get; set;}
         public int ProyectoIgnisID {get; set;}

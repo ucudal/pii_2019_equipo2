@@ -1,6 +1,6 @@
 @page "{id:int?}"
 @model MercadoIgnis.Pages.ProyectosIgnis.IndexModel
-
+@using MercadoIgnis.Areas.Identity.Data
 @{
     ViewData["Title"] = "Index";
 }
@@ -60,7 +60,6 @@
                 <a asp-page="./Index" asp-route-id="@item.ID">Seleccionar</a> |
                 <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> |
                 <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
             </td>
         </tr>
@@ -81,6 +80,7 @@
 
         @foreach (var item in Model.PuestosProyecto)
         {
+            
             string selectedRow = "";
             if (item.ID == Model.PuestoID)
             {
@@ -103,16 +103,20 @@
                     }
                     
                 </td>
-                <td>@if(item.TecnicosSugeridosPuesto != null)
+                
+              
+                <td>@if((User.IsInRole(IdentityData.ClienteRoleName))&&(item.Estado.ToString() == "ConTecnicosSugeridos"))
                     {
-                      @Html.ActionLink("Ver Tecnicos Sugeridos", "OnGetAsync",
-                                  new { PuestoID = item.ID })
+                     <a asp-page="../TecnicosSugeridosPuesto/EnviarSolicitudesTecnicos" asp-route-idEsp="@item.Especialidad.ID" asp-route-id="@item.ID">Elegir Tecnico para Puesto</a>
                     }
-                    else
+                    else if((User.IsInRole(IdentityData.AdminRoleName))&&(item.Estado.ToString() == "ALaEsperaDeTecnicos"))
                     {
-                         <a asp-page="../TecnicosSugeridos/Create" asp-route-id="@item.ID">Sugerir Tecnicos</a> 
+                         <a asp-page="../TecnicosSugeridosPuesto/SugerirTecnicosPuesto" asp-route-idEsp="@item.Especialidad.ID" asp-route-id="@item.ID">Sugerir Tecnicos</a> 
                     }
                     
+                </td>
+                <td>
+                         <a asp-page="../Puestos/Delete" asp-route-id="@item.ID">Quitar</a>                     
                 </td>
             </tr>
         }

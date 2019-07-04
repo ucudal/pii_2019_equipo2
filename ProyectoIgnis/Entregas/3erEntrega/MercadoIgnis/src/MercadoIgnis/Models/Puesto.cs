@@ -32,7 +32,9 @@ namespace MercadoIgnis.Models
         public Tecnico Tecnico{get;set;}
 
         //Tecnicos Sugeridos
-        public ICollection<TecnicosSugeridosPuestos> TecnicosSugeridosPuesto { get; set; }
+        public ICollection<TecnicoSugeridoPuesto> TecnicosSugeridosPuesto { get; set; }
+
+        public ICollection<TecnicoSolicitudPuesto> TecnicosSolicitudesPuesto { get; set; }
 
 
     }

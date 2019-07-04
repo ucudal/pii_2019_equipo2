@@ -1,0 +1,81 @@
+@page "{id:int?}/{idEsp:int?}"
+@model MercadoIgnis.Pages.TecnicosSugeridosPuesto.EnviarSolicitudesTecnicosModel
+
+@{
+    ViewData["Title"] = "Enviar Solicitudes a Tecnicos";
+}
+
+<h1>Enviar Solicitudes a Tecnicos Sugeridos</h1>
+
+
+<div class="row">
+    <div class="col-md-8">
+        @if (Model.Tecnico != null)
+        {
+            <h4>Se enviaran notificaciones para unirse a los siguientes tecnicos</h4>
+            <h5>El primero en aceptar la solicitud será asignado al puesto</h5>
+            <table class="table">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Accion</th>
+                </tr>
+
+                @foreach (var item in Model.Tecnico)
+                {
+                    string TecnicoToDeleteID = item.ID.ToString();
+                    <tr> 
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
+                        </td>
+                        <td>
+                            <form method="post" asp-page-handler="DeleteTecnico"
+                                asp-route-id="@Model.Puesto.ID" asp-route-TecnicoToDeleteID="@TecnicoToDeleteID">
+                                <button class="btn btn-default">Anular Solicitud</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+
+        @if (Model.TodosTecnicos != null)
+        {
+            <h4>Seleccione los tecnicos para enviarles una solicitud</h4>
+            <table class="table">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Accion</th>
+                </tr>
+
+                @foreach (var item in Model.TodosTecnicos)
+                {
+                    string TecnicoToAddID = item.ID.ToString();
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
+                        </td>
+                        <td>
+                            <form method="post" asp-page-handler="AddTecnico"
+                                asp-route-id="@Model.Puesto.ID" asp-route-TecnicoToAddID="@TecnicoToAddID">
+                                <button class="btn btn-default">Enviar Solicitud</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-page="../ProyectosIgnis/Index" asp-route-id="@Model.Puesto.ProyectoIgnisID">Volver al proyecto</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
