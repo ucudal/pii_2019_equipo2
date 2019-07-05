@@ -73,9 +73,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                     {
                         TodosTecnicos.Add(t);
                     }
-
-
-                    }
+                    
                 }
                 
             }
