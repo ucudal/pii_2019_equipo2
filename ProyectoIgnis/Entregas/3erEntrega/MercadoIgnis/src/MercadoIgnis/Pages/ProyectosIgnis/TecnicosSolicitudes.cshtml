@@ -99,13 +99,15 @@
                     
                 </td>
                 
-              
+              @if(item.Estado.ToString() != "Ocupado" )
+              {
                 <td>
                     <a asp-page="./TecnicosSolicitudes" asp-route-idPuesto="@item.ID" asp-route-accion="1">Aceptar Solicitud</a> 
                 </td>
                 <td>
                        <a asp-page="./TecnicosSolicitudes" asp-route-idPuesto="@item.ID" asp-route-accion="0">Denegar Solicitud</a>                     
                 </td>
+              }
             </tr>
         }
     </table>
