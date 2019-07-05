@@ -5,6 +5,9 @@ namespace MercadoIgnis.Models
 {
     public abstract class Proyecto
     {
+        //Proyecto es supertipo de Proyecto Ignis y Proyecto Personal
+        //Este es el modelo de los proyectos
+        // Principio de inversion de dependencia. Esta clase es una abstraccion, los detalles dependen de esta, esta clase no depende de los detalles
         public int ID { get; set; }
 
         [Display(Name = "Descripcion")]

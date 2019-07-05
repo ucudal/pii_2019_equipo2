@@ -12,6 +12,7 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
 {
     public class CreateModel : PageModel
     {
+        //Create Model: en esta pagina de Especialidades de los tecnicos, crea las mismas
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
         public CreateModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)

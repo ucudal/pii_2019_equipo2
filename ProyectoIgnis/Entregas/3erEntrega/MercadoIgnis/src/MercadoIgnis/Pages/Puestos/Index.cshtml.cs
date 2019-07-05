@@ -13,6 +13,7 @@ namespace MercadoIgnis.Pages.Puestos
 {
     public class IndexModel : PageModel
     {
+        //Index Model: en esta pagina de Puestos, te carga la vista principal
         private readonly IdentityContext _context;
 
         public IndexModel(IdentityContext context)

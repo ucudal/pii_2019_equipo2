@@ -15,6 +15,7 @@ namespace MercadoIgnis.Pages.Calificaciones
 {
     public class EditModel : PageModel
     {
+        //Edit Model: en esta pagina de Calificaciones, edita las mismas
         private readonly IdentityContext _context;
 
         public EditModel(IdentityContext context)

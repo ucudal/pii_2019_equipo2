@@ -18,6 +18,7 @@ namespace MercadoIgnis.Pages.Especialidades
     [Authorize(Roles = IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class DeleteModel : PageModel
     {
+        //Delete Model: En esta pagina de Especialidades, elimina las mismas
         private readonly IdentityContext _context;
 
         public DeleteModel(IdentityContext context)

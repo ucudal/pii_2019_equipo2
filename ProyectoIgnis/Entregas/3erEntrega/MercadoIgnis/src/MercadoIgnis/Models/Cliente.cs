@@ -8,7 +8,7 @@ namespace MercadoIgnis.Models
 {
     public class Cliente
     {
-        
+        //Este es el modelo de los Clientes
         [Key]
         public int ID{get;set;}
 
@@ -17,7 +17,7 @@ namespace MercadoIgnis.Models
        
         
         public ApplicationUser ApplicationUser{get;set;}
-
+        //Colleccion de ProyectosIgnisClientes
         public ICollection<ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
     }
 }

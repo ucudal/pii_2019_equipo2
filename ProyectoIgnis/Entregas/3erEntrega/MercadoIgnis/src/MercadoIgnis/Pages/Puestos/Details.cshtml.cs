@@ -12,6 +12,7 @@ namespace MercadoIgnis.Pages.Puestos
 {
     public class DetailsModel : PageModel
     {
+        //Details Model: en esta pagina de Puestos, ve los detalles las mismas
         private readonly IdentityContext _context;
 
         public DetailsModel(IdentityContext context)

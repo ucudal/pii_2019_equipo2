@@ -12,6 +12,7 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
 {
     public class IndexModel : PageModel
     {
+        //Index Model: en esta pagina de Especialidades de tecnicos, te carga la vista principal
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
         public IndexModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)

@@ -8,6 +8,7 @@ namespace MercadoIgnis.Models
 {
     public class Tecnico 
     {
+        //Este es el modelo de los tecnicos
          
        
         [Key]

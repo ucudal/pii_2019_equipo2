@@ -6,7 +6,10 @@ namespace MercadoIgnis.Models
 {
     public class TecnicoSugeridoPuesto 
     {
+        //Este es el modelo de los Tecnicos sugeridos a puestos
         //Genera la relacion n a n entre Tecnicos y Puestos
+        //Se usa el principio de responsablidad unica la unica responsabilidad que tiene esta clase es la de relaccionar un tecnico sugerido a un puesto
+
         public int ID{get; set;}
         
         [ScaffoldColumn(false)]

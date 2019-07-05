@@ -13,6 +13,7 @@ namespace MercadoIgnis.Pages.Puestos
 {
     public class EditModel : PageModel
     {
+        //Edit Model: en esta pagina de Puestos, edita las mismas
         private readonly IdentityContext _context;
 
         public EditModel(IdentityContext context)

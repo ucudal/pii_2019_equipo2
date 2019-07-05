@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MercadoIgnis.Pages.Especialidades
 {
+    //Details Model: en esta pagina de Especialidades, ve los detalles las mismas
     [Authorize(Roles = IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class DetailsModel : PageModel
     {

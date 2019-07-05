@@ -6,6 +6,7 @@ namespace MercadoIgnis.Models
 {
     public class Puesto
     {
+        //Este es el modelo de Puestos
         public enum EnumEstadoPuesto
         {
             ALaEsperaDeTecnicos,
@@ -31,9 +32,9 @@ namespace MercadoIgnis.Models
         public int? TecnicoID{get;set;} //opcional para que se pueda crear un Puesto sin tecnico asignado
         public Tecnico Tecnico{get;set;}
 
-        //Tecnicos Sugeridos
+        //Collecion de Tecnicos Sugeridos
         public ICollection<TecnicoSugeridoPuesto> TecnicosSugeridosPuesto { get; set; }
-
+        //Coleccion de Tecnicos Solicitados
         public ICollection<TecnicoSolicitudPuesto> TecnicosSolicitudesPuesto { get; set; }
 
 

@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MercadoIgnis.Areas.Identity.Data
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
+    //Principio de responsabilidad unica- La unica razon de cambio es para modificarse a si mismo
     public class ApplicationUser : IdentityUser
     {
         [PersonalData]
