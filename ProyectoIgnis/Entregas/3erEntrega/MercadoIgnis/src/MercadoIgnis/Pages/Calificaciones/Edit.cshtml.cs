@@ -19,6 +19,7 @@ namespace MercadoIgnis.Pages.Calificaciones
 
         public EditModel(IdentityContext context)
         {
+            
             _context = context;
         }
 
@@ -31,7 +32,7 @@ namespace MercadoIgnis.Pages.Calificaciones
             {
                 return NotFound();
             }
-
+            
             Calificacion = await _context.Calificacion.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Calificacion == null)
@@ -48,7 +49,7 @@ namespace MercadoIgnis.Pages.Calificaciones
             {
                 return Page();
             }
-
+            
             _context.Attach(Calificacion).State = EntityState.Modified;
 
             try
@@ -73,6 +74,7 @@ namespace MercadoIgnis.Pages.Calificaciones
 
         private bool CalificacionExists(int id)
         {
+            Check.Precondition(id >0);
             return _context.Calificacion.Any(e => e.ID == id);
         }
     }

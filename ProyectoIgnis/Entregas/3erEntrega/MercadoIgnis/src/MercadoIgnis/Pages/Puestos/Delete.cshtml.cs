@@ -41,7 +41,6 @@ namespace MercadoIgnis.Pages.Puestos
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-           
             Puesto = await _context.Puesto.FindAsync(id);
 
             if (Puesto != null)
