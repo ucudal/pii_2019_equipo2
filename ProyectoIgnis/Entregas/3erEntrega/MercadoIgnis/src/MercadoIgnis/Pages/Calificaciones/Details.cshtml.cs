@@ -30,9 +30,8 @@ namespace MercadoIgnis.Pages.Calificaciones
             {
                 return NotFound();
             }
-            Check.Precondition(id != null);
+
             Calificacion = await _context.Calificacion.FirstOrDefaultAsync(m => m.ID == id);
-            Check.Postcondition(Calificacion != null);
 
             if (Calificacion == null)
             {

@@ -27,8 +27,8 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         public IEnumerable<ProyectosIgnisClientes> ProyectosIgnisClientes {get; set;}
 
         //Usadas para listar
-        public IList<ProyectoIgnis> ProyectoIgnis {get; set;}
-        public IList<Puesto> PuestosProyecto {get;set;}
+        public List<ProyectoIgnis> ProyectoIgnis {get; set;}
+        public List<Puesto> PuestosProyecto {get;set;}
         
         [BindProperty]
         public Cliente Cliente { get; set; }
@@ -52,6 +52,21 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                 Where(m => m.ProyectosIgnisClientes.ClienteID == IdCliente).
                 ToListAsync();
 
+                //Si tengo algun proyecto seleccionado, muestro los puestos
+                if (id != null)
+                {
+                    ProyectoIgnisID = id.Value;
+                    //Selecciono los puestos de ese proyecto
+                    PuestosProyecto = await _context.Puesto
+                    .Include(e=>e.Especialidad)
+                    .Include(t=>t.Tecnico)
+                    .ThenInclude(a=>a.ApplicationUser)
+                    .Where(p=>p.ProyectoIgnisID==id.Value).              
+                    ToListAsync();
+                    
+                    
+                }
+
                 
             }
             else if (User.IsInRole("Administrador"))
@@ -63,28 +78,74 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                 ThenInclude(a => a.ApplicationUser).                
                 ToListAsync();
 
+                //Si tengo algun proyecto seleccionado, muestro los puestos
+                if (id != null)
+                {
+                    ProyectoIgnisID = id.Value;
+                    //Selecciono los puestos de ese proyecto
+                    PuestosProyecto = await _context.Puesto
+                    .Include(e=>e.Especialidad)
+                    .Include(t=>t.Tecnico)
+                    .ThenInclude(a=>a.ApplicationUser)
+                    .Where(p=>p.ProyectoIgnisID==id.Value).              
+                    ToListAsync();
+                    
+                }
+
             }
             
-            else if (User.IsInRole("Tecnico"))
+            else if (User.IsInRole("Técnico"))
             {
-                //Traer los proyectos ignis del tecnico
+                //Listo todos los proyectos del tecnico, incluyo la relacion para traer el nombre del cliente de ApplicationUser
+                //Obtengo el id Tecnico usando el Id de logueo (ApplicationUserId)
+                int IdTecnico = await new OperacionesUsuario().IdDeTecnicoConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
+
+                //Todos los proyectos con sus puestos, solicitudes de tecnicos y tecnicos
+                var ProyectosIgnisGral = await _context.ProyectoIgnis.
+                Include(l => l.Puestos).
+                ThenInclude(a => a.Tecnico).
+                ThenInclude(a => a.ApplicationUser).
+                Where(p=>p.Estado == Models.ProyectoIgnis.EnumEstadoProyecto.Finalizado).
+                ToListAsync();
+                ProyectoIgnis = new List<ProyectoIgnis>();
+                PuestosProyecto = new List<Puesto>();
+
+                var Especialidades =await _context.Especialidad.ToListAsync();
+
+                foreach(ProyectoIgnis t in ProyectosIgnisGral)
+                {
+                    //_context.TecnicoSolicitudesPuesto.Where(s => s.TecnicoID == t.ID).Load();
+                    if (t.Puestos != null)
+                    {
+                        foreach (Puesto p in t.Puestos)
+                        {
+                            if(p.TecnicoID==IdTecnico)
+                            {   
+                                if(ProyectoIgnis.Find(a=>a.ID == t.ID) == null)
+                                {
+                                    ProyectoIgnis.Add(t);
+                                }
+                            }
+                                            
+                                    
+
+
+                        }
+                    }
+
+                }
+
+              
+
+
+
+
             }
             else
             {
                 //throw exception
             }
-            //Si tengo algun proyecto seleccionado, muestro los puestos
-            if (id != null)
-            {
-                ProyectoIgnisID = id.Value;
-                //Selecciono los puestos de ese proyecto
-                PuestosProyecto = await _context.Puesto
-                .Include(e=>e.Especialidad)
-                .Where(p=>p.ProyectoIgnisID==id.Value).              
-                ToListAsync();
-                
-                
-            }
+            
 
 
 
