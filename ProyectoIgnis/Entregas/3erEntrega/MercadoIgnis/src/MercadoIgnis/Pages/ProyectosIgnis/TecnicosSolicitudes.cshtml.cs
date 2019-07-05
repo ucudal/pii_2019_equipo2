@@ -13,11 +13,11 @@ using MercadoIgnis.Areas.Identity.Data;
 //IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectoIgnis -por lo que IndexModel es un experto conrespecto a crear ProyectoIgnis-.
 namespace MercadoIgnis.Pages.ProyectosIgnis
 {
-    public class IndexModel : PageModel
+    public class TecnicosSolicitudesModel : PageModel
     {
         private readonly IdentityContext _context;
 
-        public IndexModel(IdentityContext context)
+        public TecnicosSolicitudesModel(IdentityContext context)
         {
             _context = context;
         }
@@ -34,67 +34,34 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         public IEnumerable<ProyectoIgnis> Proyectos { get; set; }
 
         
-        public async Task OnGetAsync(int? id, int? actorID)
+        public async Task OnGetAsync(int? id, int? accion, int? idPuesto)
         {
-            
-            if (User.IsInRole("Cliente"))
+        
+            if (User.IsInRole("Técnico"))
             {
-
-                //Listo todos los proyectos del cliente, incluyo la relacion para traer el nombre del cliente de ApplicationUser
-                //Obtengo el id Cliente usando el Id de logueo (ApplicationUserId)
-                int IdCliente = await new OperacionesUsuario().IdDeClienteConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
-
-                ProyectoIgnis = await _context.ProyectoIgnis.
-                Include(l => l.ProyectosIgnisClientes).
-                ThenInclude(c => c.Cliente).
-                ThenInclude(a => a.ApplicationUser).
-                Where(m => m.ProyectosIgnisClientes.ClienteID == IdCliente).
-                ToListAsync();
-
-                //Si tengo algun proyecto seleccionado, muestro los puestos
-                if (id != null)
-                {
-                    ProyectoIgnisID = id.Value;
-                    //Selecciono los puestos de ese proyecto
-                    PuestosProyecto = await _context.Puesto
-                    .Include(e=>e.Especialidad)
-                    .Include(t=>t.Tecnico)
-                    .ThenInclude(a=>a.ApplicationUser)
-                    .Where(p=>p.ProyectoIgnisID==id.Value).              
-                    ToListAsync();
-                    
-                    
-                }
-
                 
-            }
-            else if (User.IsInRole("Administrador"))
-            {
-                //Listo todos los proyectos del sistema, incluyo la relacion para traer el nombre de los clientes de ApplicationUser
-                ProyectoIgnis = await _context.ProyectoIgnis.
-                Include(l => l.ProyectosIgnisClientes).
-                ThenInclude(c => c.Cliente).
-                ThenInclude(a => a.ApplicationUser).                
-                ToListAsync();
-
-                //Si tengo algun proyecto seleccionado, muestro los puestos
-                if (id != null)
+                //Aceptar o Denegar Solicitudes
+                //Accion 1 acepta
+                //Accion 0 deniega (la elimina de la relacion)
+                int TecnicoID = await new OperacionesUsuario().IdDeTecnicoConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
+                if((accion == 1)&&(idPuesto != null))
                 {
-                    ProyectoIgnisID = id.Value;
-                    //Selecciono los puestos de ese proyecto
-                    PuestosProyecto = await _context.Puesto
-                    .Include(e=>e.Especialidad)
-                    .Include(t=>t.Tecnico)
-                    .ThenInclude(a=>a.ApplicationUser)
-                    .Where(p=>p.ProyectoIgnisID==id.Value).              
-                    ToListAsync();
+                    
+                    var Puesto = await _context.Puesto.Where(p=>p.ID==idPuesto).FirstOrDefaultAsync();
+                    Puesto.Estado = Puesto.EnumEstadoPuesto.Ocupado;
+                    Puesto.TecnicoID=TecnicoID;
+                    await _context.SaveChangesAsync();
+                }
+                else if((accion == 0)&&(idPuesto != null))
+                {
+                    var Solicitud= await _context.TecnicoSolicitudPuesto.Where(s=>s.TecnicoID==TecnicoID && s.PuestoID==idPuesto).FirstOrDefaultAsync();
+                    _context.TecnicoSolicitudPuesto.Remove(Solicitud);
+                    await _context.SaveChangesAsync();
+                    
                     
                 }
 
-            }
-            
-            else if (User.IsInRole("Técnico"))
-            {
+
                 //Listo todos los proyectos del tecnico, incluyo la relacion para traer el nombre del cliente de ApplicationUser
                 //Obtengo el id Tecnico usando el Id de logueo (ApplicationUserId)
                 int IdTecnico = await new OperacionesUsuario().IdDeTecnicoConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
@@ -113,7 +80,6 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
 
                 foreach(ProyectoIgnis t in ProyectosIgnisGral)
                 {
-                    //_context.TecnicoSolicitudesPuesto.Where(s => s.TecnicoID == t.ID).Load();
                     if (t.Puestos != null)
                     {
                         foreach (Puesto p in t.Puestos)
@@ -127,6 +93,10 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                                     //falta agregar estado
                                     if(s.TecnicoID==IdTecnico)
                                     {
+                                        if(p.ProyectoIgnisID==id)
+                                        {
+                                            PuestosProyecto.Add(p);
+                                        }
                                         
                                         p.Especialidad=Especialidades.Where(e=>e.ID==p.EspecialidadID).First();
                                         if(ProyectoIgnis.Find(a=>a.ID == t.ID) == null)
@@ -147,10 +117,7 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                 }
 
               
-
-
-
-
+               
             }
             else
             {

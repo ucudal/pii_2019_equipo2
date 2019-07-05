@@ -437,7 +437,7 @@ namespace MercadoIgnis.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
-                        .WithMany()
+                        .WithMany("TecnicosSolicitudPuesto")
                         .HasForeignKey("TecnicoID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

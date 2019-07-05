@@ -28,6 +28,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) || User.IsInRole(IdentityData.ClienteRoleName))
@@ -64,6 +65,12 @@
                             @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) )
                             {
                                 <a class="nav-link text-dark"  asp-page="/EspecialidadesTecnico/Index">Especialidades de Tecnicos</a>
+                            }
+                        </li>
+                        <li class="nav-item">
+                            @if (User.IsInRole(IdentityData.TecnicoRoleName))
+                            {
+                                <a class="nav-link text-dark" asp-page="/ProyectosIgnis/TecnicosSolicitudes">Mis Solicitudes</a>
                             }
                         </li>
                         <li class="nav-item">

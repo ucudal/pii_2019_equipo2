@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoIgnis.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190704014118_InitialCreateIdentity")]
+    [Migration("20190704235814_InitialCreateIdentity")]
     partial class InitialCreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -439,7 +439,7 @@ namespace MercadoIgnis.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MercadoIgnis.Models.Tecnico", "Tecnico")
-                        .WithMany()
+                        .WithMany("TecnicosSolicitudPuesto")
                         .HasForeignKey("TecnicoID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
