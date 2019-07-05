@@ -64,18 +64,18 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                 .Include(t => t.ApplicationUser)
                 .Where(a => !Tecnico.Contains(a))
                 .ToListAsync();
-            
+
             TodosTecnicos = new List<Tecnico>();
-            foreach(Tecnico t in Tecnicos)
+            foreach (Tecnico t in Tecnicos)
             {
-                _context.EspecialidadesTecnicos.Where(s=>s.TecnicoID==t.ID).Load();
-                foreach(EspecialidadesTecnicos s in t.EspecialidadesTecnicos)
+                _context.EspecialidadesTecnicos.Where(s => s.TecnicoID == t.ID).Load();
+                foreach (EspecialidadesTecnicos s in t.EspecialidadesTecnicos)
                 {
-                    if(s.EspecialidadID==idEsp)
+                    if (s.EspecialidadID == idEsp)
                     {
                         TodosTecnicos.Add(t);
                     }
-                    
+
 
                 }
             }
@@ -172,7 +172,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                         Puesto = PuestoToUpdate
                     };
                     PuestoToUpdate.TecnicosSugeridosPuesto.Add(appereanceToAdd);
-                    
+
                 }
             }
 
@@ -191,7 +191,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                     throw;
                 }
             }
-           
+
             ControlarCambioEstado(Puesto.ID);
             return Redirect(Request.Path + $"?id={id}");
         }
@@ -199,18 +199,19 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
 
         public async void ControlarCambioEstado(int id)
         {
-             Puesto PuestoToUpdate = await _context.Puesto
-                .Where(m => m.ID == id)
-                .Include(c => c.TecnicosSugeridosPuesto)
-                .FirstOrDefaultAsync();
-            if(PuestoToUpdate.TecnicosSugeridosPuesto.Any())
+            Puesto PuestoToUpdate = await _context.Puesto
+               .Where(m => m.ID == id)
+               .Include(c => c.TecnicosSugeridosPuesto)
+               .FirstOrDefaultAsync();
+            if (PuestoToUpdate.TecnicosSugeridosPuesto.Any())
             {
-                PuestoToUpdate.Estado=Puesto.EnumEstadoPuesto.ConTecnicosSugeridos;
-            }else
-            {
-                 PuestoToUpdate.Estado=Puesto.EnumEstadoPuesto.ALaEsperaDeTecnicos;
+                PuestoToUpdate.Estado = Puesto.EnumEstadoPuesto.ConTecnicosSugeridos;
             }
-           
+            else
+            {
+                PuestoToUpdate.Estado = Puesto.EnumEstadoPuesto.ALaEsperaDeTecnicos;
+            }
+
             await _context.SaveChangesAsync();
         }
 

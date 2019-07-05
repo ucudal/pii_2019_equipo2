@@ -4,24 +4,18 @@ using System.Collections.Generic;
 using MercadoIgnis.Areas.Identity.Data;
 namespace MercadoIgnis.Models
 {
-    public class TecnicoSolicitudPuesto 
+    public class TecnicoSolicitudPuesto
     {
         //Este es el modelo de los Tecnicos solicitudes a puestos
         //Genera la relacion n a n entre Tecnicos y Puestos
         //Se usa el principio de responsablidad unica la unica responsabilidad que tiene esta clase es la de relaccionar un tecnico solicitado a un puesto
-        public int ID{get; set;}
-        
+        public int ID { get; set; }
+
         [ScaffoldColumn(false)]
-        public int TecnicoID {get; set;}
-        public int PuestoID {get; set;}
+        public int TecnicoID { get; set; }
+        public int PuestoID { get; set; }
 
-        public Tecnico Tecnico {get; set;}
-        public Puesto Puesto {get; set;}
-
-
-       
-       
-
-
+        public Tecnico Tecnico { get; set; }
+        public Puesto Puesto { get; set; }
     }
 }

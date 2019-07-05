@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MercadoIgnis.Models
 {
-    
+
     public class ProyectoIgnis : Proyecto
     {
         //Este es el modelo de Proyectos Ignis
@@ -17,15 +17,15 @@ namespace MercadoIgnis.Models
             Finalizado,
             Cancelado
         };
-       
-        
+
+
         [Display(Name = "Estado Proyecto")]
         [DataType(DataType.Text)]
         public EnumEstadoProyecto Estado { get; set; }
         //Collecion de Puestos
         public ICollection<Puesto> Puestos { get; set; }
 
-        public ProyectosIgnisClientes ProyectosIgnisClientes {get; set; } //estaba como collection
-       
+        public ProyectosIgnisClientes ProyectosIgnisClientes { get; set; } //estaba como collection
+
     }
 }

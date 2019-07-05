@@ -33,21 +33,21 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
                 EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
                     .Include(e => e.Especialidad)
                     .Include(e => e.Tecnico)
-                    .ThenInclude(a=>a.ApplicationUser)
-                    .Where(t=>t.TecnicoID==IdTecnico)
+                    .ThenInclude(a => a.ApplicationUser)
+                    .Where(t => t.TecnicoID == IdTecnico)
                     .ToListAsync();
 
 
-                
+
             }
             else if (User.IsInRole("Administrador"))
             {
                 //Si soy administrador muestro todos los tecnicos con sus especialidades
-                 EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
-                    .Include(e => e.Especialidad)
-                    .Include(e => e.Tecnico)
-                    .ThenInclude(a=>a.ApplicationUser)                    
-                    .ToListAsync();
+                EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
+                   .Include(e => e.Especialidad)
+                   .Include(e => e.Tecnico)
+                   .ThenInclude(a => a.ApplicationUser)
+                   .ToListAsync();
             }
             else
             {

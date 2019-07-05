@@ -11,3 +11,5 @@ CreateModel tiene los datos que serán provistos al constructor para inicializar
 DeleteModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion, Especialidad, Puesto, Proyecto Ignis -por lo que CreateModel es un experto conrespecto a crear Calificacion, Especialidad, Puesto, Proyecto Ignis-.
 IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion, Especialidad, Puesto, Proyecto Ignis -por lo que CreateModel es un experto conrespecto a crear Calificacion, Especialidad, Puesto, Proyecto Ignis-.
 EditModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion, Especialidad, Puesto, Proyecto Ignis -por lo que CreateModel es un experto conrespecto a crear Calificacion, Especialidad, Puesto, Proyecto Ignis-.
+Principio de responsablidad unica se usa en TecnicoSolicitudPuesto
+Principio de inversion de dependencia en proyecto

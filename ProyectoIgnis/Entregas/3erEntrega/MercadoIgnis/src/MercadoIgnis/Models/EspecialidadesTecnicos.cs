@@ -8,19 +8,13 @@ namespace MercadoIgnis.Models
     {
         //Este es el modelo de las especialidades de los tecnicos
         //Genera la relacion n a n entre Especialidades y Tecnicos
-        public int ID{get; set;}
-        
+        public int ID { get; set; }
+
         [ScaffoldColumn(false)]
-        public int TecnicoID {get; set;}
-        public int EspecialidadID {get; set;}
+        public int TecnicoID { get; set; }
+        public int EspecialidadID { get; set; }
 
-        public Tecnico Tecnico {get; set;}
-        public Especialidad Especialidad {get; set;}
-
-
-       
-       
-
-        
+        public Tecnico Tecnico { get; set; }
+        public Especialidad Especialidad { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
 
         public async Task<IActionResult> OnGetAsync(int? id, int? idEsp)
         {
-            if ((id == null)||(idEsp == null))
+            if ((id == null) || (idEsp == null))
             {
                 return NotFound();
             }
@@ -62,25 +62,25 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                 .Include(t => t.ApplicationUser)
                 .Where(a => !Tecnico.Contains(a))
                 .ToListAsync();
-            
+
             TodosTecnicos = new List<Tecnico>();
-            foreach(Tecnico t in Tecnicos)
+            foreach (Tecnico t in Tecnicos)
             {
-                _context.TecnicoSugeridoPuesto.Where(s=>s.TecnicoID==t.ID).Load();
-                if(t.TecnicosSugeridoPuesto!=null)
+                _context.TecnicoSugeridoPuesto.Where(s => s.TecnicoID == t.ID).Load();
+                if (t.TecnicosSugeridoPuesto != null)
                 {
-                    foreach(TecnicoSugeridoPuesto s in t.TecnicosSugeridoPuesto)
+                    foreach (TecnicoSugeridoPuesto s in t.TecnicosSugeridoPuesto)
                     {
 
-                        if(s.PuestoID==id)
+                        if (s.PuestoID == id)
                         {
                             TodosTecnicos.Add(t);
                         }
-                    
+
 
                     }
                 }
-                
+
             }
 
             return Page();
@@ -177,7 +177,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                         Puesto = PuestoToUpdate
                     };
                     PuestoToUpdate.TecnicosSolicitudesPuesto.Add(appereanceToAdd);
-                    
+
                 }
             }
 
@@ -196,28 +196,29 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                     throw;
                 }
             }
-           
+
             ControlarCambioEstado(Puesto.ID);
             return Redirect(Request.Path + $"?id={id}");
         }
 
-         public async void ControlarCambioEstado(int id)
+        public async void ControlarCambioEstado(int id)
         {
-             Puesto PuestoToUpdate = await _context.Puesto
-                .Where(m => m.ID == id)
-                .Include(c => c.TecnicosSolicitudesPuesto)
-                .FirstOrDefaultAsync();
-            if(PuestoToUpdate.TecnicosSolicitudesPuesto.Any())
+            Puesto PuestoToUpdate = await _context.Puesto
+               .Where(m => m.ID == id)
+               .Include(c => c.TecnicosSolicitudesPuesto)
+               .FirstOrDefaultAsync();
+            if (PuestoToUpdate.TecnicosSolicitudesPuesto.Any())
             {
-                PuestoToUpdate.Estado=Puesto.EnumEstadoPuesto.ALaEsperaDeConfirmacion;
-            }else
-            {
-                 PuestoToUpdate.Estado=Puesto.EnumEstadoPuesto.ConTecnicosSugeridos;
+                PuestoToUpdate.Estado = Puesto.EnumEstadoPuesto.ALaEsperaDeConfirmacion;
             }
-           
+            else
+            {
+                PuestoToUpdate.Estado = Puesto.EnumEstadoPuesto.ConTecnicosSugeridos;
+            }
+
             await _context.SaveChangesAsync();
         }
-       
+
         private bool PuestoExists(int id)
         {
             return _context.Puesto.Any(e => e.ID == id);
