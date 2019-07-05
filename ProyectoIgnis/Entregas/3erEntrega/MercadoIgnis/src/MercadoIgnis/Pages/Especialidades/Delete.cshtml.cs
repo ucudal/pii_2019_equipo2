@@ -34,7 +34,7 @@ namespace MercadoIgnis.Pages.Especialidades
             {
                 return NotFound();
             }
-            Check.Postcondition(id!=null);
+
             Especialidad = await _context.Especialidad.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Especialidad == null)

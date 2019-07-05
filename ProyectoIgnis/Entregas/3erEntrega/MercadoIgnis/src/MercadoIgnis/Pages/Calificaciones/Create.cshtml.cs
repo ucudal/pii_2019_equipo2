@@ -36,12 +36,9 @@ namespace MercadoIgnis.Pages.Calificaciones
             {
                 return Page();
             }
-            /// Se esta verificando que la Calificacion que se esta mandando a añadir sea distinto de vacio
-            Check.Precondition(Calificacion != null);
+
             _context.Calificacion.Add(Calificacion);
             await _context.SaveChangesAsync();
-            /// Se esta verificando que el espacio de las calificaciones dentro del contexto sea distinto de vacio 
-            Check.Postcondition(_context.Calificacion !=null);
 
             return RedirectToPage("./Index");
         }
