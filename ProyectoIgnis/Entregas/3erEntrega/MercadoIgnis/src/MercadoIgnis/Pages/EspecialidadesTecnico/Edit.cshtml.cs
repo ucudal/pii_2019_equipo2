@@ -13,6 +13,7 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
 {
     public class EditModel : PageModel
     {
+        //Edit Model: en esta pagina de Especialidades de tecnicos, edita las mismas
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
         public EditModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)

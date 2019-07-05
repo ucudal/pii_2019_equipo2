@@ -13,6 +13,7 @@ namespace MercadoIgnis.Pages.Puestos
 {
     public class CreateModel : PageModel
     {
+        //Create Model: en esta pagina de Puestos, crea los mismos
         private readonly IdentityContext _context;
 
         public CreateModel(IdentityContext context)

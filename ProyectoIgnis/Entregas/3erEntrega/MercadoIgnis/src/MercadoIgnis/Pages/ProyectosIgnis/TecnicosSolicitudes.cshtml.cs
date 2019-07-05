@@ -21,46 +21,45 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
         {
             _context = context;
         }
-        public int ProyectoIgnisID{get;set;}
-        public int PuestoID{get;set;}
-        public IEnumerable<ProyectosIgnisClientes> ProyectosIgnisClientes {get; set;}
+        public int ProyectoIgnisID { get; set; }
+        public int PuestoID { get; set; }
+        public IEnumerable<ProyectosIgnisClientes> ProyectosIgnisClientes { get; set; }
 
         //Usadas para listar
-        public List<ProyectoIgnis> ProyectoIgnis {get; set;}
-        public List<Puesto> PuestosProyecto {get;set;}
-        
+        public List<ProyectoIgnis> ProyectoIgnis { get; set; }
+        public List<Puesto> PuestosProyecto { get; set; }
+
         [BindProperty]
         public Cliente Cliente { get; set; }
         public IEnumerable<ProyectoIgnis> Proyectos { get; set; }
 
-        
+
         public async Task OnGetAsync(int? id, int? accion, int? idPuesto)
         {
-        
+
             if (User.IsInRole("Técnico"))
             {
-                
+
                 //Aceptar o Denegar Solicitudes
                 //Accion 1 acepta
                 //Accion 0 deniega (la elimina de la relacion)
                 int TecnicoID = await new OperacionesUsuario().IdDeTecnicoConIdApplicationUser(ContextoSingleton.Instance.userManager.GetUserId(User));
-                if((accion == 1)&&(idPuesto != null))
+                if ((accion == 1) && (idPuesto != null))
                 {
-                    
-                    var Puesto = await _context.Puesto.Where(p=>p.ID==idPuesto).FirstOrDefaultAsync();
+
+                    var Puesto = await _context.Puesto.Where(p => p.ID == idPuesto).FirstOrDefaultAsync();
                     Puesto.Estado = Puesto.EnumEstadoPuesto.Ocupado;
-                    Puesto.TecnicoID=TecnicoID;
+                    Puesto.TecnicoID = TecnicoID;
                     await _context.SaveChangesAsync();
                 }
-                else if((accion == 0)&&(idPuesto != null))
+                else if ((accion == 0) && (idPuesto != null))
                 {
-                    var Solicitud= await _context.TecnicoSolicitudPuesto.Where(s=>s.TecnicoID==TecnicoID && s.PuestoID==idPuesto).FirstOrDefaultAsync();
+                    var Solicitud = await _context.TecnicoSolicitudPuesto.Where(s => s.TecnicoID == TecnicoID && s.PuestoID == idPuesto).FirstOrDefaultAsync();
                     _context.TecnicoSolicitudPuesto.Remove(Solicitud);
                     await _context.SaveChangesAsync();
-                    
-                    
-                }
 
+
+                }
 
                 //Listo todos los proyectos del tecnico, incluyo la relacion para traer el nombre del cliente de ApplicationUser
                 //Obtengo el id Tecnico usando el Id de logueo (ApplicationUserId)
@@ -76,38 +75,38 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                 ProyectoIgnis = new List<ProyectoIgnis>();
                 PuestosProyecto = new List<Puesto>();
 
-                var Especialidades =await _context.Especialidad.ToListAsync();
+                var Especialidades = await _context.Especialidad.ToListAsync();
 
-                foreach(ProyectoIgnis t in ProyectosIgnisGral)
+                foreach (ProyectoIgnis t in ProyectosIgnisGral)
                 {
                     if (t.Puestos != null)
                     {
                         foreach (Puesto p in t.Puestos)
                         {
-                            
-                            
+
+
                             if ((p.TecnicosSolicitudesPuesto != null))
                             {
                                 foreach (TecnicoSolicitudPuesto s in p.TecnicosSolicitudesPuesto)
                                 {
                                     //falta agregar estado
-                                    if(s.TecnicoID==IdTecnico)
+                                    if (s.TecnicoID == IdTecnico)
                                     {
-                                        if(p.ProyectoIgnisID==id)
+                                        if (p.ProyectoIgnisID == id)
                                         {
                                             PuestosProyecto.Add(p);
                                         }
-                                        
-                                        p.Especialidad=Especialidades.Where(e=>e.ID==p.EspecialidadID).First();
-                                        if(ProyectoIgnis.Find(a=>a.ID == t.ID) == null)
+
+                                        p.Especialidad = Especialidades.Where(e => e.ID == p.EspecialidadID).First();
+                                        if (ProyectoIgnis.Find(a => a.ID == t.ID) == null)
                                         {
                                             ProyectoIgnis.Add(t);
                                         }
-                                           
+
                                     }
                                 }
 
-                               
+
                             }
 
 
@@ -115,18 +114,11 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                     }
 
                 }
-
-              
-               
             }
             else
             {
                 //throw exception
             }
-            
-
-
-
         }
     }
 }

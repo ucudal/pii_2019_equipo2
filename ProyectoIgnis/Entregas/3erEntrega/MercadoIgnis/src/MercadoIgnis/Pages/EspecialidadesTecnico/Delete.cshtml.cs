@@ -12,6 +12,7 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
 {
     public class DeleteModel : PageModel
     {
+        //Delete Model: En esta pagina de Especialidades de los tecnicos, elimina las mismas
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
         public DeleteModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)

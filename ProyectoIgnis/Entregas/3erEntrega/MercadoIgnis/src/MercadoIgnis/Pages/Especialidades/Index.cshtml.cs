@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MercadoIgnis.Pages.Especialidades
 {
+    //Index Model: en esta pagina de Especialidades, te carga la vista principal
     [Authorize(Roles = IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class IndexModel : PageModel
     {

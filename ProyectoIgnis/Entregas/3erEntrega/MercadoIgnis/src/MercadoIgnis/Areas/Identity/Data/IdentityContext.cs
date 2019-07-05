@@ -41,9 +41,5 @@ namespace MercadoIgnis.Areas.Identity.Data
         public DbSet<MercadoIgnis.Models.TecnicoSugeridoPuesto> TecnicoSugeridoPuesto { get; set; }
 
         public DbSet<MercadoIgnis.Models.TecnicoSolicitudPuesto> TecnicoSolicitudPuesto { get; set; }
-
-        
-
-        
     }
 }

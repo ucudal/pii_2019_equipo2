@@ -14,6 +14,7 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
 {
     public class DeleteModel : PageModel
     {
+        //Delete Model: En esta pagina de Proyectos Ignis, elimina las mismas
         private readonly IdentityContext _context;
 
         public DeleteModel(IdentityContext context)

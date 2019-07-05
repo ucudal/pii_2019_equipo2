@@ -14,6 +14,7 @@ using static MercadoIgnis.Models.ProyectoIgnis;
 //EditModel tiene los datos que serán provistos al constructor para inicializar instancias de ProyectoIgnis -por lo que EditModel es un experto conrespecto a crear ProyectoIgnis-.
 namespace MercadoIgnis.Pages.ProyectosIgnis
 {
+    //Edit Model: en esta pagina de Proyetos Ignis, edita las mismas
     public class EditModel : PageModel
     {
         private readonly IdentityContext _context;

@@ -14,6 +14,7 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
 {
     public class IndexModel : PageModel
     {
+        //Index Model: en esta pagina de Proyectos Personales, te carga la vista principal
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
         public IndexModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)
@@ -30,7 +31,8 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
 
         public string FechadeComienzo { get; set; }
         public EnumTipoProyectoPersonal Tipos { get; set; }
-
+        
+        //Hace una busqueda por fecha y por tipo de proyecto
         public async Task OnGetAsync()
         {
             // // Use LINQ to get list of Proyectos Personales.

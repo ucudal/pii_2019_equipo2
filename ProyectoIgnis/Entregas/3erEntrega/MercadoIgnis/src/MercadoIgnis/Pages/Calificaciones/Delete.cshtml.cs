@@ -14,6 +14,7 @@ namespace MercadoIgnis.Pages.Calificaciones
 {
     public class DeleteModel : PageModel
     {
+        //Delete Model: En esta pagina de Calificaciones, elimina las mismas
         private readonly IdentityContext _context;
 
         public DeleteModel(IdentityContext context)
