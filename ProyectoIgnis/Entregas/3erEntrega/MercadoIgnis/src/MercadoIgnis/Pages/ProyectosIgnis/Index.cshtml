@@ -6,6 +6,10 @@
 }
 
 <h1>Proyectos Ignis</h1>
+@if((User.IsInRole(IdentityData.TecnicoRoleName)))
+{
+    <h6> Mis Proyectos terminados donde formé parte </h6>
+}
 @if((User.IsInRole(IdentityData.ClienteRoleName)))
 {
 <p>
@@ -59,20 +63,26 @@
                
             </td>
             <td>
-                <a asp-page="./Index" asp-route-id="@item.ID">Seleccionar</a> |
+                @if((User.IsInRole(IdentityData.ClienteRoleName))||(User.IsInRole(IdentityData.AdminRoleName)) )
+                {
+                <a asp-page="./Index" asp-route-id="@item.ID">Seleccionar</a> 
+                }
                 @if((User.IsInRole(IdentityData.ClienteRoleName)))
                 {
                     <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> 
                 }
-                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                @if((User.IsInRole(IdentityData.ClienteRoleName))||(User.IsInRole(IdentityData.AdminRoleName)) )
+                {
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> 
                 <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+                }
             </td>
         </tr>
     }
     </tbody>
 </table>
 
-@if (Model.PuestosProyecto != null)
+@if ((Model.PuestosProyecto != null) && ( (User.IsInRole(IdentityData.ClienteRoleName)) || (User.IsInRole(IdentityData.AdminRoleName))))
 {
     <h3>Puestos del Proyecto</h3>
     <table class="table">

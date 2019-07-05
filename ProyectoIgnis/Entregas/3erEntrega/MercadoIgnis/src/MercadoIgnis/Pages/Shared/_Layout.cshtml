@@ -28,61 +28,66 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    
-                    <ul class="navbar-nav flex-grow-1">
+                    @if (User.IsInRole(IdentityData.AdminRoleName))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) || User.IsInRole(IdentityData.ClienteRoleName))
-                            {
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Inicio</a>
-                            }
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName))
-                            {
-                                <a class="nav-link text-dark" asp-page="/Especialidades/Index">Especialidades</a>
-                            }
-                            
+                            <a class="nav-link text-dark" asp-page="/Especialidades/Index">Especialidades</a>   
                         </li>
                         <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName))
-                            {
-                                <a class="nav-link text-dark" asp-page="/ProyectosPersonales/Index">Proyectos Personales</a>
-                            }
+                            <a class="nav-link text-dark" asp-page="/ProyectosIgnis/Index">Proyectos Ignis</a>
                         </li>
                         <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) || User.IsInRole(IdentityData.ClienteRoleName))
-                            {
-                                 <a class="nav-link text-dark" asp-page="/ProyectosIgnis/Index">Proyectos Ignis</a>
-                            }
-                        </li>
-                        <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) || User.IsInRole(IdentityData.ClienteRoleName))
-                            {
-                                <a class="nav-link text-dark"  asp-page="/Calificaciones/Index">Calificaciones</a>
-                            }
-                        </li>
-                        <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName) || User.IsInRole(IdentityData.TecnicoRoleName) )
-                            {
                                 <a class="nav-link text-dark"  asp-page="/EspecialidadesTecnico/Index">Especialidades de Tecnicos</a>
-                            }
                         </li>
                         <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.TecnicoRoleName))
-                            {
-                                <a class="nav-link text-dark" asp-page="/ProyectosIgnis/TecnicosSolicitudes">Mis Solicitudes</a>
-                            }
-                        </li>
-                        <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName))
-                            {
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Usuarios</a>
-                            }
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Usuarios del sistema</a>
                         </li>
                         <li class="nav-item">
                             <partial name="_LoginPartial" />
                         </li>
                     </ul>
+                    }
+                    else if (User.IsInRole(IdentityData.TecnicoRoleName))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/ProyectosIgnis/Index">Proyectos Ignis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"  asp-page="/EspecialidadesTecnico/Index">Mis Especialidades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/ProyectosIgnis/TecnicosSolicitudes">Solicitudes</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <partial name="_LoginPartial" />
+                        </li>
+                    </ul>
+
+                    }
+                    else if (User.IsInRole(IdentityData.ClienteRoleName))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/ProyectosIgnis/Index">Mis Proyectos Ignis</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <partial name="_LoginPartial" />
+                        </li>
+                    </ul>
+                    }
+                    
                     
                 </div>
             </div>

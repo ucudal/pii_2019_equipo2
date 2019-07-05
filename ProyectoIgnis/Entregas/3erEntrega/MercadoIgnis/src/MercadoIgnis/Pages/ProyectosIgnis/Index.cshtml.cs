@@ -102,9 +102,9 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                 //Todos los proyectos con sus puestos, solicitudes de tecnicos y tecnicos
                 var ProyectosIgnisGral = await _context.ProyectoIgnis.
                 Include(l => l.Puestos).
-                ThenInclude(c => c.TecnicosSolicitudesPuesto).
                 ThenInclude(a => a.Tecnico).
                 ThenInclude(a => a.ApplicationUser).
+                Where(p=>p.Estado == Models.ProyectoIgnis.EnumEstadoProyecto.Finalizado).
                 ToListAsync();
                 ProyectoIgnis = new List<ProyectoIgnis>();
                 PuestosProyecto = new List<Puesto>();
@@ -118,27 +118,15 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
                     {
                         foreach (Puesto p in t.Puestos)
                         {
-                            
-                            
-                            if ((p.TecnicosSolicitudesPuesto != null))
-                            {
-                                foreach (TecnicoSolicitudPuesto s in p.TecnicosSolicitudesPuesto)
+                            if(p.TecnicoID==IdTecnico)
+                            {   
+                                if(ProyectoIgnis.Find(a=>a.ID == t.ID) == null)
                                 {
-                                    //falta agregar estado
-                                    if(s.TecnicoID==IdTecnico)
-                                    {
-                                        
-                                        p.Especialidad=Especialidades.Where(e=>e.ID==p.EspecialidadID).First();
-                                        if(ProyectoIgnis.Find(a=>a.ID == t.ID) == null)
-                                        {
-                                            ProyectoIgnis.Add(t);
-                                        }
-                                           
-                                    }
+                                    ProyectoIgnis.Add(t);
                                 }
-
-                               
                             }
+                                            
+                                    
 
 
                         }
