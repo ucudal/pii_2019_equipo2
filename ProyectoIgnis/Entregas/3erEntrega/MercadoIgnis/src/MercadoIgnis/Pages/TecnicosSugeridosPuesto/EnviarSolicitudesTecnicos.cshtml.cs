@@ -71,13 +71,13 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                 {
                     foreach (TecnicoSugeridoPuesto s in t.TecnicosSugeridoPuesto)
                     {
+                        TodosTecnicos.Add(t);
+                    }
 
                         if (s.PuestoID == id)
                         {
                             TodosTecnicos.Add(t);
                         }
-
-
                     }
                 }
 

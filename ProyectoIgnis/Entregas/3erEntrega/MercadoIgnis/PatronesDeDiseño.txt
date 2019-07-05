@@ -1,0 +1,6 @@
+Patrones de diseño utilizados:
+
+Singleton: Utilizado en .\Controllers\ContextoSingleton.cs
+Model view viewmodel: Es el patron utilizado en todo el proyecto. Todos los archivos en la carpeta Model son los
+                      modelos y todas los archivos en la carpeta de Pages son vistas.
+
