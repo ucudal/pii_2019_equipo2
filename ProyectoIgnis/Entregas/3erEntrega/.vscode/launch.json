@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/MercadoIgnis/src/MercadoIgnis/bin/Debug/netcoreapp2.2/MercadoIgnis.dll",
+            "program": "${workspaceFolder}/MercadoIgnis/tests/MercadoIgnis.Tests/bin/Debug/netcoreapp2.2/MercadoIgnis.Tests.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/MercadoIgnis/src/MercadoIgnis",
+            "cwd": "${workspaceFolder}/MercadoIgnis/tests/MercadoIgnis.Tests",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

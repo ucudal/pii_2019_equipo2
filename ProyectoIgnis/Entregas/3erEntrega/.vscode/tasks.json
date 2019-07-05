@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/MercadoIgnis/src/MercadoIgnis/MercadoIgnis.csproj"
+                "${workspaceFolder}/MercadoIgnis/tests/MercadoIgnis.Tests/MercadoIgnis.Tests.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/MercadoIgnis/src/MercadoIgnis/MercadoIgnis.csproj"
+                "${workspaceFolder}/MercadoIgnis/tests/MercadoIgnis.Tests/MercadoIgnis.Tests.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -28,7 +28,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/MercadoIgnis/src/MercadoIgnis/MercadoIgnis.csproj"
+                "${workspaceFolder}/MercadoIgnis/tests/MercadoIgnis.Tests/MercadoIgnis.Tests.csproj"
             ],
             "problemMatcher": "$tsc"
         }

@@ -8,7 +8,6 @@ namespace MercadoIgnis.Models
 {
     public class Cliente
     {
-        
         [Key]
         public int ID{get;set;}
 
