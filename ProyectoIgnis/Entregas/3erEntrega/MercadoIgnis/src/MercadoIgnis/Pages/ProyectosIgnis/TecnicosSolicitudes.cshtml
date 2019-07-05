@@ -1,21 +1,13 @@
-@page "{id:int?}"
-@model MercadoIgnis.Pages.ProyectosIgnis.IndexModel
+@page "{id:int?}/{idPuesto:int?}/{accion:int?}"
+@model MercadoIgnis.Pages.ProyectosIgnis.TecnicosSolicitudesModel
 @using MercadoIgnis.Areas.Identity.Data
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Solicitudes";
 }
 
-<h1>Proyectos Ignis</h1>
-@if((User.IsInRole(IdentityData.TecnicoRoleName)))
-{
-    <h6> Mis Proyectos terminados donde formé parte </h6>
-}
-@if((User.IsInRole(IdentityData.ClienteRoleName)))
-{
-<p>
-    <a asp-page="Create">Crear Nuevo</a>
-</p>
-}
+<h1>Mis Solicitudes</h1>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -63,26 +55,14 @@
                
             </td>
             <td>
-                @if((User.IsInRole(IdentityData.ClienteRoleName))||(User.IsInRole(IdentityData.AdminRoleName)) )
-                {
-                <a asp-page="./Index" asp-route-id="@item.ID">Seleccionar</a> 
-                }
-                @if((User.IsInRole(IdentityData.ClienteRoleName)))
-                {
-                    <a asp-page="../Puestos/Create" asp-route-id="@item.ID">Agregar Puesto</a> 
-                }
-                @if((User.IsInRole(IdentityData.ClienteRoleName))||(User.IsInRole(IdentityData.AdminRoleName)) )
-                {
-                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> 
-                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
-                }
+                <a asp-page="./TecnicosSolicitudes" asp-route-id="@item.ID">Ver Solicitudes</a> 
             </td>
         </tr>
     }
     </tbody>
 </table>
 
-@if ((Model.PuestosProyecto != null) && ( (User.IsInRole(IdentityData.ClienteRoleName)) || (User.IsInRole(IdentityData.AdminRoleName))))
+@if (Model.PuestosProyecto != null)
 {
     <h3>Puestos del Proyecto</h3>
     <table class="table">
@@ -120,21 +100,11 @@
                 </td>
                 
               
-                <td>@if((User.IsInRole(IdentityData.ClienteRoleName))&&(item.Estado.ToString() == "ConTecnicosSugeridos"))
-                    {
-                     <a asp-page="../TecnicosSugeridosPuesto/EnviarSolicitudesTecnicos" asp-route-idEsp="@item.Especialidad.ID" asp-route-id="@item.ID">Elegir Tecnico para Puesto</a>
-                    }
-                    else if((User.IsInRole(IdentityData.AdminRoleName))&&(item.Estado.ToString() == "ALaEsperaDeTecnicos"))
-                    {
-                         <a asp-page="../TecnicosSugeridosPuesto/SugerirTecnicosPuesto" asp-route-idEsp="@item.Especialidad.ID" asp-route-id="@item.ID">Sugerir Tecnicos</a> 
-                    }
-                    
+                <td>
+                    <a asp-page="./TecnicosSolicitudes" asp-route-idPuesto="@item.ID" asp-route-accion="1">Aceptar Solicitud</a> 
                 </td>
                 <td>
-                    @if((User.IsInRole(IdentityData.ClienteRoleName)))
-                    {
-                         <a asp-page="../Puestos/Delete" asp-route-id="@item.ID">Quitar</a>  
-                    }                   
+                       <a asp-page="./TecnicosSolicitudes" asp-route-idPuesto="@item.ID" asp-route-accion="0">Denegar Solicitud</a>                     
                 </td>
             </tr>
         }

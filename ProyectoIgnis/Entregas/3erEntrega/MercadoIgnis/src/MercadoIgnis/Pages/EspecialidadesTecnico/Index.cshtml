@@ -1,15 +1,22 @@
 @page
 @model MercadoIgnis.Pages.EspecialidadesTecnico.IndexModel
-
+@using MercadoIgnis.Areas.Identity.Data
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Especialidades";
+}
+@if((User.IsInRole(IdentityData.TecnicoRoleName)))
+{
+    <h1>Mis especialidades</h1>
+    <p>
+    <a asp-page="Create">Agregarme una nueva especialidad</a>
+    </p>
+}
+@if((User.IsInRole(IdentityData.AdminRoleName)))
+{
+    <h1>Especialidades de los tecnicos</h1>
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -35,9 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Especialidad.Area)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
             </td>
         </tr>
 }

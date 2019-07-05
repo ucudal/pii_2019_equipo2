@@ -30,7 +30,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
 
         public async Task<IActionResult> OnGetAsync(int? id, int? idEsp)
         {
-            if (id == null)
+            if ((id == null)||(idEsp == null))
             {
                 return NotFound();
             }
@@ -75,7 +75,9 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
                     }
 
 
+                    }
                 }
+                
             }
 
             return Page();
