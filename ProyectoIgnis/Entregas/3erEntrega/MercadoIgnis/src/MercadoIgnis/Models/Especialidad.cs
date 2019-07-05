@@ -5,6 +5,7 @@ namespace MercadoIgnis.Models
 {
     public class Especialidad
     {
+        //Este es el modelo de las especialidades
         public int ID { get; set; }
 
         [Display(Name = "Area")]

@@ -15,6 +15,7 @@ namespace MercadoIgnis.Pages.ProyectosIgnis
 {
     public class CreateModel : PageModel
     {
+        //Create Model: en esta pagina de Proyecto Ignis, crea los mismos
         private readonly IdentityContext _context;
 
         public CreateModel(IdentityContext context)

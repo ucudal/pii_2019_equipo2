@@ -12,6 +12,7 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
 {
     public class DetailsModel : PageModel
     {
+        //Details Model: en esta pagina de Proyectos Personales, ve los detalles las mismas
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
         public DetailsModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)

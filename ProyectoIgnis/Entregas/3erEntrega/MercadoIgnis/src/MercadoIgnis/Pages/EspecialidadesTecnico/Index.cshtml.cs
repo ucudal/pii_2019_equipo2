@@ -12,6 +12,7 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
 {
     public class IndexModel : PageModel
     {
+        //Index Model: en esta pagina de Especialidades de tecnicos, te carga la vista principal
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
         public IndexModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)
@@ -32,21 +33,21 @@ namespace MercadoIgnis.Pages.EspecialidadesTecnico
                 EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
                     .Include(e => e.Especialidad)
                     .Include(e => e.Tecnico)
-                    .ThenInclude(a=>a.ApplicationUser)
-                    .Where(t=>t.TecnicoID==IdTecnico)
+                    .ThenInclude(a => a.ApplicationUser)
+                    .Where(t => t.TecnicoID == IdTecnico)
                     .ToListAsync();
 
 
-                
+
             }
             else if (User.IsInRole("Administrador"))
             {
                 //Si soy administrador muestro todos los tecnicos con sus especialidades
-                 EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
-                    .Include(e => e.Especialidad)
-                    .Include(e => e.Tecnico)
-                    .ThenInclude(a=>a.ApplicationUser)                    
-                    .ToListAsync();
+                EspecialidadesTecnicos = await _context.EspecialidadesTecnicos
+                   .Include(e => e.Especialidad)
+                   .Include(e => e.Tecnico)
+                   .ThenInclude(a => a.ApplicationUser)
+                   .ToListAsync();
             }
             else
             {

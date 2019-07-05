@@ -13,6 +13,7 @@ namespace MercadoIgnis.Pages.ProyectosPersonales
 {
     public class CreateModel : PageModel
     {
+        //Create Model: en esta pagina de Proyectos Personales crea los mismos
         private readonly MercadoIgnis.Areas.Identity.Data.IdentityContext _context;
 
         public CreateModel(MercadoIgnis.Areas.Identity.Data.IdentityContext context)

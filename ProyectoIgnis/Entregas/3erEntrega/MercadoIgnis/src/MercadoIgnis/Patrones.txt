@@ -1,0 +1,15 @@
+Patrones de diseño utilizados:
+
+Singleton: Utilizado en .\Controllers\ContextoSingleton.cs
+Model view viewmodel: Es el patron utilizado en todo el proyecto. Todos los archivos en la carpeta Model son los
+                      modelos y todas los archivos en la carpeta de Pages son vistas.
+
+Patrones utilizado:
+Patron expert en las pages de todas las clases
+Patron Creator en las pages de todas las clases
+CreateModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion, Especialidad, Puesto, Proyecto Ignis -por lo que CreateModel es un experto conrespecto a crear Calificacion, Especialidad, Puesto, Proyecto Ignis-.
+DeleteModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion, Especialidad, Puesto, Proyecto Ignis -por lo que CreateModel es un experto conrespecto a crear Calificacion, Especialidad, Puesto, Proyecto Ignis-.
+IndexModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion, Especialidad, Puesto, Proyecto Ignis -por lo que CreateModel es un experto conrespecto a crear Calificacion, Especialidad, Puesto, Proyecto Ignis-.
+EditModel tiene los datos que serán provistos al constructor para inicializar instancias de Calificacion, Especialidad, Puesto, Proyecto Ignis -por lo que CreateModel es un experto conrespecto a crear Calificacion, Especialidad, Puesto, Proyecto Ignis-.
+Principio de responsablidad unica se usa en TecnicoSolicitudPuesto
+Principio de inversion de dependencia en proyecto

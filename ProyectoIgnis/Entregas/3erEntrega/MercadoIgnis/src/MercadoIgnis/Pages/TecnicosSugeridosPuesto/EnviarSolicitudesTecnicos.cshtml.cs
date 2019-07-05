@@ -30,7 +30,7 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
 
         public async Task<IActionResult> OnGetAsync(int? id, int? idEsp)
         {
-            if ((id == null)||(idEsp == null))
+            if ((id == null) || (idEsp == null))
             {
                 return NotFound();
             }
@@ -67,15 +67,15 @@ namespace MercadoIgnis.Pages.TecnicosSugeridosPuesto
             foreach (Tecnico t in Tecnicos)
             {
                 _context.TecnicoSugeridoPuesto.Where(s => s.TecnicoID == t.ID).Load();
-                foreach (TecnicoSugeridoPuesto s in t.TecnicosSugeridoPuesto)
+                if (t.TecnicosSugeridoPuesto != null)
                 {
-                    if (s.PuestoID == id)
+                    foreach (TecnicoSugeridoPuesto s in t.TecnicosSugeridoPuesto)
                     {
                         TodosTecnicos.Add(t);
                     }
                     
                 }
-                
+
             }
 
             return Page();
